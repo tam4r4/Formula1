@@ -1,13 +1,12 @@
 import axios from "axios";
 import React from "react";
 //import Loader from "./Loader";
-import history from "./history";
 
 export default class AllDrivers extends React.Component {
 
     state = {
-        drivers: [] ,
-       // loading: true
+        drivers: [],
+        // loading: true
     }
 
     componentDidMount() {
@@ -19,27 +18,27 @@ export default class AllDrivers extends React.Component {
         const url = "https://ergast.com/api/f1/2013/driverStandings.json";
 
         const response = await axios.get(url);
-let podaci =response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings[0].Driver;
+        let podaci = response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings[0].Driver;
         console.log(podaci);
         this.setState({
-           drivers: podaci,
-           //  loading: false
+            drivers: podaci,
+            //  loading: false
         });
-        
+
     }
 
-        render() {
+    render() {
 
-        
-            return (
-                <div>
+
+        return (
+            <div>
                 {this.state.drivers.map(x =>
-                <div>
-                   <p> Nesto:</p>
-                </div>
+                    <div>
+                        <p> Nesto:</p>
+                    </div>
                 )}
-                </div>
-            );
-        }
+            </div>
+        );
     }
+}
 

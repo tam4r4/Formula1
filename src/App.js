@@ -1,15 +1,15 @@
 import React from "react";
 import { Router, Switch, Route, Link } from "react-router-dom";
 import history from "./history";
-import AllDrivers from "./AllDrivers";
-import AllTeams from "./AllTeams";
-import AllRaces from "./AllRaces";
-import DriverRaces from "./DriverRaces";
-import TeamDetails from "./TeamDetails";
-import TeamResults from "./TeamResults";
-import Qualifiers from "./Qualifiers";
-import Results from "./Results";
-import DriverDetails from "./DriverDetails";
+import AllDrivers from "./components/AllDrivers";
+import AllTeams from "./components/AllTeams"
+import AllRaces from "./components/AllRaces";
+import DriverRaces from "./components/DriverRaces";
+import TeamDetails from "./components/TeamDetails";
+import TeamResults from "./components/TeamResults";
+import Qualifiers from "./components/Qualifiers";
+import Results from "./components/Results";
+import DriverDetails from "./components/DriverDetails";
 
 export default class App extends React.Component {
     render() {
