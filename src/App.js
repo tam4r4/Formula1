@@ -12,33 +12,33 @@ import Results from "./components/Results";
 import DriverDetails from "./components/DriverDetails";
 
 export default class App extends React.Component {
-    render() {
-        return (
-            <div>
-                <Router history={history}>
-                    <nav>
-                        <ul>
-                            <li>
-                                <Link to="/">LOGO</Link>
-                            </li>
-                            <li>
-                                <Link to="/drivers">Drivers</Link>
-                            </li>
-                            <li>
-                                <Link to="/teams">Teams</Link>
-                            </li>
-                            <li>
-                                <Link to="/races">Races</Link>
-                            </li>
-                        </ul>
-                    </nav>
-                    <Switch>
-                        <Route path="/drivers" exact component={AllDrivers} />
-                        <Route path="/teams" exact component={AllTeams} />
-                        <Route path="/races" exact component={AllRaces} />
-                    </Switch>
-                </Router>
-            </div>
-        );
-    }
+  render() {
+    return (
+      <div>
+        <Router history={history}>
+          <nav>
+            <ul>
+              <li>
+                <Link to="/">LOGO</Link>
+              </li>
+              <li>
+                <Link to="/drivers">Drivers</Link>
+              </li>
+              <li>
+                <Link to="/teams">Teams</Link>
+              </li>
+              <li>
+                <Link to="/races">Races</Link>
+              </li>
+            </ul>
+          </nav>
+          <Switch>
+            <Route path="/drivers" exact component={AllDrivers} />
+            <Route path="/teams" exact component={AllTeams} />
+            <Route path="/races" exact component={AllRaces} />
+          </Switch>
+        </Router>
+      </div>
+    );
+  }
 }
