@@ -6,7 +6,7 @@ import history from "../history";
 export default class AllDrivers extends React.Component {
   state = {
     driverStandings: [],
-    loading: true,
+    loading: true
   };
 
   componentDidMount() {
@@ -22,9 +22,9 @@ export default class AllDrivers extends React.Component {
     this.setState({
       driverStandings:
         response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings,
-      loading: false,
+      loading: false
     });
-  };
+  }
 
   handleDriverDetails = (name) => {
     //console.log(name);
