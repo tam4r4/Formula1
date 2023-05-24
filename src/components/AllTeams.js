@@ -2,10 +2,12 @@ import React from "react";
 import axios from "axios";
 import Loader from "./Loader";
 import history from "../history";
+import Flag from 'react-flagkit';
 
 export default class AllTeams extends React.Component {
     state = {
         teamStandings: [],
+        flags: [],
         loading: true
     }
 
@@ -16,17 +18,48 @@ export default class AllTeams extends React.Component {
     getTeams = async () => {
         const url = "http://ergast.com/api/f1/2013/constructorStandings.json";
         const response = await axios.get(url);
+
+        const url2 = "https://raw.githubusercontent.com/Dinuks/country-nationality-list/master/countries.json";
+
+        const response2 = await axios.get(url2);
+
+
+           console.log("response2", response2);
+
+
         this.setState({
             teamStandings: response.data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings,
+            flags: response2.data,
             loading: false
         });
     }
 
     handleTeamDetails = (name) => {
         console.log(name);
-        const linkTo = "/details/" + name;
+        const linkTo = "/teamDetails/" + name;
         history.push(linkTo);
     }
+
+
+    getFlagCode = (nationality) => {
+
+        console.log("getFlagCode");
+
+        // let nationality = this.state.teamStandings[1].Constructor.nationality;
+
+        let zastava = this.state.flags.filter(x => x.nationality === nationality);
+        if(zastava.length) {
+            return zastava[0].alpha_2_code;
+        } else {
+            if(nationality === "British") {
+                return "GB";
+            } 
+        }
+
+        //console.log("zastava", zastava);
+    }
+
+    
 
     render() {
 
@@ -39,17 +72,20 @@ export default class AllTeams extends React.Component {
         return (
             <div >
                 <table >
+                    <thead>
+                        <td>Constructor Championship Standings - 2013</td>
+                    </thead>
                     {this.state.teamStandings.map(x =>
                         <tbody>
                             <tr>
                                 <td>
                                     <h2 className="comments"> {x.position}</h2>
                                 </td>
-                                <td onClick={() => this.handleCommentDetails(x.id)}>
-                                    <h2 className="comments"> {x.Constructor.name}  </h2>
+                                <td onClick={() => this.handleTeamDetails(x.Constructor.constructorId)}>
+                                    <h2 className="comments"> <Flag country={this.getFlagCode(x.Constructor.nationality)} /> {x.Constructor.name}  </h2>
                                 </td>
-                                <td>
-                                    <h2 className="comments">Details </h2>
+                                <td >
+                                    <a href= {x.Constructor.url} className="comments">Details </a>
                                 </td>
                                 <td>
                                     <h2 className="comments">{x.points} </h2>

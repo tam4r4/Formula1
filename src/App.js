@@ -4,12 +4,9 @@ import history from "./history";
 import AllDrivers from "./components/AllDrivers";
 import AllTeams from "./components/AllTeams";
 import AllRaces from "./components/AllRaces";
-import DriverRaces from "./components/DriverRaces";
 import TeamDetails from "./components/TeamDetails";
-import TeamResults from "./components/TeamResults";
-import Qualifiers from "./components/Qualifiers";
-import Results from "./components/Results";
 import DriverDetails from "./components/DriverDetails";
+import RacesDetails from "./components/RacesDetails";
 
 export default class App extends React.Component {
   render() {
@@ -36,7 +33,10 @@ export default class App extends React.Component {
             <Route path="/drivers" exact component={AllDrivers} />
             <Route path="/drivers/:name" exact component={DriverDetails} />
             <Route path="/teams" exact component={AllTeams} />
+            <Route path="/teamDetails/:name" exact component={TeamDetails} />
+
             <Route path="/races" exact component={AllRaces} />
+            <Route path="/races/:round" exact component={RacesDetails} />
           </Switch>
         </Router>
       </div>
