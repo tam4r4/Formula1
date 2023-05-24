@@ -29,15 +29,19 @@ export default class DriverDetails extends React.Component {
     //console.log(this.state.driverDetails.Driver.driverId);
   };
   render() {
-    return (
-      <div>
-        <p>Name:{this.state.driverDetails.Driver?.givenName}</p>
-        <p>Family Name:{this.state.driverDetails.Driver?.familyName}</p>
-        <p>Country:{this.state.driverDetails.Driver?.nationality}</p>
-        <p>Team:{this.state.driverDetails.Constructors?.name}</p>
-        <p>Birth:{this.state.driverDetails.Driver?.dateOfBirth}</p>
-        <p>Biography:{this.state.driverDetails.Driver?.url}</p>
-      </div>
-    );
+    if (this.state.driverDetails) {
+      return (
+        <div>
+          <p>Name:{this.state.driverDetails.Driver?.givenName}</p>
+          <p>Family Name:{this.state.driverDetails.Driver?.familyName}</p>
+          <p>Country:{this.state.driverDetails.Driver?.nationality}</p>
+          <p>Team:{this.state.driverDetails.Constructors?.name}</p>
+          <p>Birth:{this.state.driverDetails.Driver?.dateOfBirth}</p>
+          <p>Biography:{this.state.driverDetails.Driver?.url}</p>
+        </div>
+      );
+    } else {
+      return <div>No driver</div>;
+    }
   }
 }
