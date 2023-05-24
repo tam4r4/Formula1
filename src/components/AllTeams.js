@@ -24,9 +24,11 @@ export default class AllTeams extends React.Component {
 
     handleTeamDetails = (name) => {
         console.log(name);
-        const linkTo = "/details/" + name;
+        const linkTo = "/teamDetails/" + name;
         history.push(linkTo);
     }
+
+    
 
     render() {
 
@@ -45,11 +47,11 @@ export default class AllTeams extends React.Component {
                                 <td>
                                     <h2 className="comments"> {x.position}</h2>
                                 </td>
-                                <td onClick={() => this.handleCommentDetails(x.id)}>
+                                <td onClick={() => this.handleTeamDetails(x.Constructor.constructorId)}>
                                     <h2 className="comments"> {x.Constructor.name}  </h2>
                                 </td>
-                                <td>
-                                    <h2 className="comments">Details </h2>
+                                <td >
+                                    <a href= {x.Constructor.url} className="comments">Details </a>
                                 </td>
                                 <td>
                                     <h2 className="comments">{x.points} </h2>
