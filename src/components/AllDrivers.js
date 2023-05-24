@@ -45,7 +45,7 @@ export default class AllDrivers extends React.Component {
       <div>
         <table>
           {this.state.driverStandings.map((x) => (
-            <tbody>
+            <tbody key={x.Driver.driverId}>
               <tr>
                 <td>
                   <h2 className="comments"> {x.position}</h2>
