@@ -4,11 +4,7 @@ import history from "./history";
 import AllDrivers from "./components/AllDrivers";
 import AllTeams from "./components/AllTeams";
 import AllRaces from "./components/AllRaces";
-import DriverRaces from "./components/DriverRaces";
 import TeamDetails from "./components/TeamDetails";
-import TeamResults from "./components/TeamResults";
-import Qualifiers from "./components/Qualifiers";
-import Results from "./components/Results";
 import DriverDetails from "./components/DriverDetails";
 import RacesDetails from "./components/RacesDetails";
 
