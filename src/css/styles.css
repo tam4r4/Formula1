@@ -1,11 +1,12 @@
 body {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
     background-color: black;
-}
-
-.bgrPhoto {
-    background-image: url();
+    /*background: url(./../../img/f-1.png) no-repeat center fixed;*/
+    background: url(./../../img/trace-flag.png) no-repeat center fixed;
+    background-size: cover;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .tab-container {
@@ -41,3 +42,8 @@ h1 {
     font-size: 30px;
     padding: 10px 25px;
 }
+
+/* .home_page {
+    background-color: url(./../../img/f-1.png) no-repeat center fixed;
+} */
+
