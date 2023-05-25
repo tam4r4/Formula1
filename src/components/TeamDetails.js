@@ -1,11 +1,14 @@
 import React from "react";
 import Loader from "./Loader";
 import axios from "axios";
+import Flag from "react-flagkit";
 
 export default class TeamDetails extends React.Component {
     state = {
         someRaces: [],
         vozaci: "",
+        flags: [],
+        country: "",
         loading: true
     }
 
@@ -22,10 +25,24 @@ export default class TeamDetails extends React.Component {
         const response = await axios.get(url);
 
         console.log("response", response.data.MRData.RaceTable.Races);
+        
+        const url2 = "https://raw.githubusercontent.com/Dinuks/country-nationality-list/master/countries.json";
+
+        const response2 = await axios.get(url2);
+
+        console.log("response22", response2.data);
+
+        const url3 = `http://ergast.com/api/f1/2013/constructors/results.json`;
+
+        const response3 = await axios.get(url3);
+
+
 
         this.setState({
             someRaces: response.data.MRData.RaceTable.Races,
+            flags: response2.data,
             vozaci: response.data.MRData.RaceTable.Races[0].Results,
+            country: response3.data,
             loading: false
         });
 
@@ -33,10 +50,32 @@ export default class TeamDetails extends React.Component {
     }
 
 
+    getFlagCode = (nationality) => {
+      
+        console.log("getFlagCode");
+        
+      //  console.log(country);
+
+        let zastava = this.state.flags.filter(x => 
+            x.en_short_name === nationality);
+        if (zastava.length) {
+            return zastava[0].alpha_2_code;
+        } else {
+            if (nationality === "British") {
+                return "GB";
+            }
+        }
+
+        //  return zastava[0].alpha_2_code;
+
+    }
+
+
+
     render() {
         if (this.state.loading) {
             return <div className="kon-loader">
-                <Loader />;
+                <Loader />
             </div>
         }
 
@@ -63,7 +102,7 @@ export default class TeamDetails extends React.Component {
 
                             <tr>
                                 <td>{x.round}</td>
-                                <td >{x.raceName}</td>
+                                <td > <Flag country={this.getFlagCode(x.Circuit.Location.country)}/> {x.raceName}</td>
                                 <td >{x.Results[0].position}</td>
                                 <td >{x.Results[1].position}</td>
                                 <td>{parseInt(x.Results[0].points) + parseInt(x.Results[1].points)}</td>

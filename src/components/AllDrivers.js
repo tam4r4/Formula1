@@ -36,7 +36,7 @@ export default class AllDrivers extends React.Component {
     if (this.state.loading) {
       return (
         <div className="kon-loader">
-          <Loader />;
+          <Loader />
         </div>
       );
     }
