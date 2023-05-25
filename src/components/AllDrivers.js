@@ -2,10 +2,12 @@ import React from "react";
 import axios from "axios";
 import Loader from "./Loader";
 import history from "../history";
+import Flag from "react-flagkit";
 
 export default class AllDrivers extends React.Component {
   state = {
     driverStandings: [],
+    flags: [],
     loading: true
   };
 
@@ -19,9 +21,13 @@ export default class AllDrivers extends React.Component {
     console.log(
       response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings
     );
+
+    const url3 = "https://raw.githubusercontent.com/Dinuks/country-nationality-list/master/countries.json";
+    const response3 = await axios.get(url3);
+
     this.setState({
-      driverStandings:
-        response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings,
+      driverStandings: response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings,
+      flags: response3.data,
       loading: false
     });
   }
@@ -31,6 +37,28 @@ export default class AllDrivers extends React.Component {
     const linkTo = "/drivers/" + name;
     history.push(linkTo);
   };
+
+
+  getFlagCode = (nationality) => {           //   prepisano iz RaceDetails
+    console.log("getFlagCode");
+
+    let zastava = this.state.flags.filter((x) => x.nationality === nationality);
+    if (zastava.length) {
+      return zastava[0].alpha_2_code;
+    } else {
+      if (nationality === "British") {
+        return "GB";
+      }
+      if (nationality === "Dutch") {
+        return "NL";
+      }
+      if (nationality === "UAE") {
+        return "AE";
+      }
+    }
+  };
+
+
 
   render() {
     if (this.state.loading) {
@@ -52,7 +80,7 @@ export default class AllDrivers extends React.Component {
             {this.state.driverStandings.map((x) => (
               <tr>
                 <td> {x.position}</td>
-                <td onClick={() => this.handleDriverDetails(x.Driver.driverId)}>
+                <td onClick={() => this.handleDriverDetails(x.Driver.driverId)}> <Flag country={this.getFlagCode(x.Driver.nationality)} />
                   {x.Driver.givenName} {x.Driver.familyName}
                 </td>
                 <td>{x.Constructors[0].name}</td>

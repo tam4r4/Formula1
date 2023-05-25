@@ -2,11 +2,13 @@ import React from "react";
 import axios from "axios";
 import Loader from "./Loader";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
+import Flag from "react-flagkit";
 
 export default class DriverDetails extends React.Component {
   state = {
     driverDetails: {},
     races: [],
+    flags: [],
     loading: true,
   };
 
@@ -27,15 +29,42 @@ export default class DriverDetails extends React.Component {
     const response2 = await axios.get(url2);
     console.log(response2.data.MRData.RaceTable.Races);
 
+    const url3 = "https://raw.githubusercontent.com/Dinuks/country-nationality-list/master/countries.json";
+    const response3 = await axios.get(url3);
+
     this.setState({
       driverDetails:
         response.data.MRData.StandingsTable.StandingsLists[0]
-          .DriverStandings[0],
+.DriverStandings[0],
       races: response2.data.MRData.RaceTable.Races,
-
+      flags: response3.data,
       loading: false,
     });
   };
+
+   
+  getFlagCode = (nationality) => {
+    console.log("getFlagCode");
+
+    let zastava = this.state.flags.filter(
+      (x) => x.en_short_name === nationality
+    );
+    if (zastava.length) {
+      return zastava[0].alpha_2_code;
+    } else {
+      if (nationality === "UK") {
+        return "GB";
+      }
+      if (nationality === "Korea") {
+        return "KR";
+      }
+      if (nationality === "UAE") {
+        return "AE";
+      }
+    }
+
+  };
+
 
   render() {
     if (this.state.loading) {
@@ -78,7 +107,7 @@ export default class DriverDetails extends React.Component {
               {this.state.races.map((d) => (
                 <tr key={d.round}>
                   <td>{d.round}</td>
-                  <td>{d.raceName}</td>
+                  <td> <Flag country={this.getFlagCode(d.Circuit.Location.country)} /> {d.raceName}</td>
                   <td>{d.Results[0].Constructor.name}</td>
                   <td>{d.Results[0].grid}</td>
                   <td>{d.Results[0].position}</td>
@@ -91,3 +120,5 @@ export default class DriverDetails extends React.Component {
     );
   }
 }
+
+
