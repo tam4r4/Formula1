@@ -36,34 +36,30 @@ export default class AllDrivers extends React.Component {
     if (this.state.loading) {
       return (
         <div className="kon-loader">
-          <Loader />;
+          <Loader />
         </div>
       );
     }
 
     return (
       <div>
-        <table>
-          {this.state.driverStandings.map((x) => (
-            <tbody>
+        <h1>Drivers Championship</h1>
+        <table className="tab-container">
+          <thead>
+            <tr>Driver Championship Standings 2013</tr>
+          </thead>
+          <tbody>
+            {this.state.driverStandings.map((x) => (
               <tr>
-                <td>
-                  <h2 className="comments"> {x.position}</h2>
-                </td>
+                <td> {x.position}</td>
                 <td onClick={() => this.handleDriverDetails(x.Driver.driverId)}>
-                  <h2 className="comments">
-                    {x.Driver.givenName} {x.Driver.familyName}
-                  </h2>
+                  {x.Driver.givenName} {x.Driver.familyName}
                 </td>
-                <td>
-                  <h2 className="comments">{x.Constructors[0].name} </h2>
-                </td>
-                <td>
-                  <h2 className="comments">{x.points} </h2>
-                </td>
+                <td>{x.Constructors[0].name}</td>
+                <td>{x.points}</td>
               </tr>
-            </tbody>
-          ))}
+            ))};
+          </tbody>
         </table>
       </div>
     );

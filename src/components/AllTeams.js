@@ -24,7 +24,7 @@ export default class AllTeams extends React.Component {
         const response2 = await axios.get(url2);
 
 
-           console.log("response2", response2);
+        console.log("response2", response2);
 
 
         this.setState({
@@ -48,48 +48,45 @@ export default class AllTeams extends React.Component {
         // let nationality = this.state.teamStandings[1].Constructor.nationality;
 
         let zastava = this.state.flags.filter(x => x.nationality === nationality);
-        if(zastava.length) {
+        if (zastava.length) {
             return zastava[0].alpha_2_code;
         } else {
-            if(nationality === "British") {
+            if (nationality === "British") {
                 return "GB";
-            } 
+            }
         }
 
         //console.log("zastava", zastava);
     }
 
-    
+
 
     render() {
 
         if (this.state.loading) {
             return <div className="kon-loader">
-                <Loader />;
+                <Loader />
             </div>
         }
 
         return (
             <div >
-                <table >
+                <h1>Constructors Championship</h1>
+                <table className="tab-container">
                     <thead>
-                        <td>Constructor Championship Standings - 2013</td>
+                        <tr>Constructor Championship Standings - 2013</tr>
                     </thead>
                     {this.state.teamStandings.map(x =>
                         <tbody>
                             <tr>
-                                <td>
-                                    <h2 className="comments"> {x.position}</h2>
-                                </td>
+                                <td> {x.position}</td>
                                 <td onClick={() => this.handleTeamDetails(x.Constructor.constructorId)}>
-                                    <h2 className="comments"> <Flag country={this.getFlagCode(x.Constructor.nationality)} /> {x.Constructor.name}  </h2>
+                                    <Flag country={this.getFlagCode(x.Constructor.nationality)} /> {x.Constructor.name}
                                 </td>
                                 <td >
-                                    <a href= {x.Constructor.url} className="comments">Details </a>
+                                    <a href={x.Constructor.url}>Details </a>
                                 </td>
-                                <td>
-                                    <h2 className="comments">{x.points} </h2>
-                                </td>
+                                <td>{x.points}</td>
                             </tr>
                         </tbody>
                     )}
