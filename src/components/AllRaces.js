@@ -16,6 +16,7 @@ export default class AllRaces extends React.Component {
     const url = "https://ergast.com/api/f1/2013/results/1.json";
     const response = await axios.get(url);
     console.log(response.data.MRData.RaceTable.Races);
+
     this.setState({
       races: response.data.MRData.RaceTable.Races,
     });
@@ -47,7 +48,7 @@ export default class AllRaces extends React.Component {
             {this.state.races.map((race) => (
               <tr key={race.round}>
                 <td>{race.round}</td>
-                <td onClick={() => this.handleRaceDetails(race.raceName)}>
+                <td onClick={() => this.handleRaceDetails(race.round)}>
                   {race.raceName}
                 </td>
                 <td>{race.Circuit.circuitName}</td>
