@@ -11,7 +11,7 @@ import RacesDetails from "./components/RacesDetails";
 export default class App extends React.Component {
   render() {
     return (
-      <div>
+      <div className="bgrPhoto">
         <Router history={history}>
           <nav>
             <ul>
