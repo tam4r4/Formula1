@@ -69,8 +69,14 @@ export default class TeamDetails extends React.Component {
     if (zastava.length) {
       return zastava[0].alpha_2_code;
     } else {
-      if (nationality === "British") {
+      if (nationality === "UK") {
         return "GB";
+      }
+      if (nationality === "Korea") {
+        return "KR";
+      }
+      if (nationality === "UAE") {
+        return "AE";
       }
     }
 
