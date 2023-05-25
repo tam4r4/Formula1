@@ -5,7 +5,8 @@ import RacesDetails from "./RacesDetails";
 
 export default class AllRaces extends React.Component {
   state = {
-    races: []
+    races: [],
+    flags: [],
   };
 
   componentDidMount() {
@@ -16,9 +17,12 @@ export default class AllRaces extends React.Component {
     const url = "https://ergast.com/api/f1/2013/results/1.json";
     const response = await axios.get(url);
     console.log(response.data.MRData.RaceTable.Races);
-
+    const url2 =
+      "https://raw.githubusercontent.com/Dinuks/country-nationality-list/master/countries.json";
+    const response2 = await axios.get(url2);
     this.setState({
       races: response.data.MRData.RaceTable.Races,
+      flags: response2.data,
     });
   };
 
@@ -32,7 +36,6 @@ export default class AllRaces extends React.Component {
       <div>
         <h1>Race calendar</h1>
         <table className="tab-container">
-
           <thead>
             <tr>Race Calendar 2013</tr>
             <tr>
@@ -57,7 +60,6 @@ export default class AllRaces extends React.Component {
               </tr>
             ))}
           </tbody>
-
         </table>
       </div>
     );
