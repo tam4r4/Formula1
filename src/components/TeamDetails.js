@@ -5,6 +5,7 @@ import axios from "axios";
 export default class TeamDetails extends React.Component {
     state = {
         someRaces: [],
+        vozaci: "",
         loading: true
     }
 
@@ -24,9 +25,13 @@ export default class TeamDetails extends React.Component {
 
         this.setState({
             someRaces: response.data.MRData.RaceTable.Races,
+            vozaci: response.data.MRData.RaceTable.Races[0].Results,
             loading: false
         });
+
+
     }
+
 
     render() {
         if (this.state.loading) {
@@ -36,21 +41,26 @@ export default class TeamDetails extends React.Component {
         }
 
         return (
-            <div >
-                <table className="tab-container">
-                    <thead>
-                        <tr>Formula 1 2013 Results</tr>
-                    </thead>
+            <div>
+
+                <table >
+                    <tr>
+                        <td>Formula 1 2013 Results</td>
+                    </tr>
+                    <div>
+                        <tr>
+                            <td>Round</td>
+                            <td>Grand Prix</td>
+                            <td> {this.state.vozaci[0].Driver.familyName} </td>
+                            <td> {this.state.vozaci[1].Driver.familyName}  </td>
+                            <td>Points</td>
+                        </tr>
+                    </div>
 
                     {this.state.someRaces.map(x =>
+
                         <tbody>
-                            <tr>
-                                <td>Round</td>
-                                <td>Grand Prix</td>
-                                <td>{x.Results[0].Driver.familyName}</td>
-                                <td>{x.Results[1].Driver.familyName}</td>
-                                <td>Points</td>
-                            </tr>
+
                             <tr>
                                 <td>{x.round}</td>
                                 <td >{x.raceName}</td>
@@ -59,6 +69,7 @@ export default class TeamDetails extends React.Component {
                                 <td>{parseInt(x.Results[0].points) + parseInt(x.Results[1].points)}</td>
                             </tr>
                         </tbody>
+
                     )}
                 </table>
             </div>
