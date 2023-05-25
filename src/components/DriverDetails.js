@@ -56,8 +56,10 @@ export default class DriverDetails extends React.Component {
           <a href={this.state.driverDetails.Driver?.url}>Biograpfy</a>
         </p>
         <div>
-          <table className="tabela">
+          <table className="tab-container">
+
             <thead>
+              <tr>Formula 1 2013 Results</tr>
               <tr>
                 <th>Round</th>
                 <th>Grand Prix</th>
@@ -66,6 +68,7 @@ export default class DriverDetails extends React.Component {
                 <th>Race</th>
               </tr>
             </thead>
+
             <tbody>
               {this.state.races.map((d) => (
                 <tr key={d.round}>

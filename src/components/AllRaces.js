@@ -5,7 +5,7 @@ import RacesDetails from "./RacesDetails";
 
 export default class AllRaces extends React.Component {
   state = {
-    races: [],
+    races: []
   };
 
   componentDidMount() {
@@ -30,7 +30,8 @@ export default class AllRaces extends React.Component {
     return (
       <div>
         <h1>Race calendar</h1>
-        <table>
+        <table className="tab-container">
+
           <thead>
             <tr>Race Calendar 2013</tr>
             <tr>
@@ -41,6 +42,7 @@ export default class AllRaces extends React.Component {
               <th>Winner</th>
             </tr>
           </thead>
+
           <tbody>
             {this.state.races.map((race) => (
               <tr key={race.round}>
@@ -54,6 +56,7 @@ export default class AllRaces extends React.Component {
               </tr>
             ))}
           </tbody>
+
         </table>
       </div>
     );
