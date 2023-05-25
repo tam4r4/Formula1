@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import Loader from "./Loader";
+import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 
 export default class DriverDetails extends React.Component {
   state = {
@@ -56,7 +57,9 @@ export default class DriverDetails extends React.Component {
         <p>Birth:{this.state.driverDetails.Driver?.dateOfBirth}</p>
         <p>
           Biography:
-          <a href={this.state.driverDetails.Driver?.url}>Link</a>
+          <a href={this.state.driverDetails.Driver?.url}>
+            <OpenInNewIcon className="vikipedija" />
+          </a>
         </p>
         <div>
           <table className="tab-container">
