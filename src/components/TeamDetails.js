@@ -6,6 +6,7 @@ export default class TeamDetails extends React.Component {
 
     state = {
         someRaces: [],
+        vozaci: "",
         loading: true
     }
 
@@ -34,15 +35,13 @@ export default class TeamDetails extends React.Component {
 
         this.setState({
             someRaces: response.data.MRData.RaceTable.Races,
+            vozaci: response.data.MRData.RaceTable.Races[0].Results,
             loading: false
 
         });
 
 
-
     }
-
-
 
 
     render() {
@@ -54,43 +53,27 @@ export default class TeamDetails extends React.Component {
             </div>
         }
 
-        //    console.log("someRaces", someRaces);
-
         return (
-
-            <div >
-
-                {/* <h2>Nesto bezveze </h2> */}
-
+            <div>
 
                 <table >
-
+                    <tr>
+                        <td>Formula 1 2013 Results</td>
+                    </tr>
+                    <div>
+                        <tr>
+                            <td>Round</td>
+                            <td>Grand Prix</td>
+                            <td> {this.state.vozaci[0].Driver.familyName} </td>
+                            <td> {this.state.vozaci[1].Driver.familyName}  </td>
+                            <td>Points</td>
+                        </tr>
+                    </div>
 
                     {this.state.someRaces.map(x =>
 
-                        //                          <thead> 
-
-                        // <th>Round</th>
-                        // <th>Grand Prix</th>
-                        // <th>{x.Results[0].familyName}</th>
-                        // <th>Webber</th>
-                        // <th>Points</th>
-
-                        // </thead> 
-
-
                         <tbody>
-                            <tr>
-                                <td>Formula 1 2013 Results</td>
-                            </tr>
-                            <tr>
-                                <td>Round</td>
-                                <td>Grand Prix</td>
-                                <td>{x.Results[0].Driver.familyName}</td>
-                                <td>{x.Results[1].Driver.familyName}</td>
-                                <td>Points</td>
 
-                            </tr>
                             <tr>
                                 <td>
                                     <h2 className="comments"> {x.round}</h2>
@@ -109,8 +92,6 @@ export default class TeamDetails extends React.Component {
                                 </td>
                             </tr>
                         </tbody>
-
-
 
                     )}
                 </table>
