@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import Loader from "./Loader";
+import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 
 export default class DriverDetails extends React.Component {
   state = {
@@ -47,17 +48,21 @@ export default class DriverDetails extends React.Component {
     console.log(this.state.driverDetails);
     return (
       <div>
-        <p>Name:{this.state.driverDetails.Driver?.givenName}</p>
-        <p>Family Name:{this.state.driverDetails.Driver?.familyName}</p>
+        <h2>
+          {this.state.driverDetails.Driver?.givenName}
+          {this.state.driverDetails.Driver?.familyName}
+        </h2>
         <p>Country:{this.state.driverDetails.Driver?.nationality}</p>
         <p>Team:{this.state.driverDetails.Constructors[0].name}</p>
         <p>Birth:{this.state.driverDetails.Driver?.dateOfBirth}</p>
         <p>
-          <a href={this.state.driverDetails.Driver?.url}>Biograpfy</a>
+          Biography:
+          <a href={this.state.driverDetails.Driver?.url}>
+            <OpenInNewIcon className="vikipedija" />
+          </a>
         </p>
         <div>
           <table className="tab-container">
-
             <thead>
               <tr>Formula 1 2013 Results</tr>
               <tr>
