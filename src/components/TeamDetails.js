@@ -3,32 +3,22 @@ import Loader from "./Loader";
 import axios from "axios";
 
 export default class TeamDetails extends React.Component {
-
     state = {
         someRaces: [],
         vozaci: "",
         loading: true
     }
 
-
-
     componentDidMount() {
-
         this.getTeamDetails();
     }
 
-
     getTeamDetails = async () => {
-
         console.log(this.props.match.params.name);
-
         console.log("iza id");
 
-
         const id = this.props.match.params.name;
-
         const url = `http://ergast.com/api/f1/2013/constructors/${id}/results.json`;
-
         const response = await axios.get(url);
 
         console.log("response", response.data.MRData.RaceTable.Races);
@@ -37,7 +27,6 @@ export default class TeamDetails extends React.Component {
             someRaces: response.data.MRData.RaceTable.Races,
             vozaci: response.data.MRData.RaceTable.Races[0].Results,
             loading: false
-
         });
 
 
@@ -45,9 +34,7 @@ export default class TeamDetails extends React.Component {
 
 
     render() {
-
         if (this.state.loading) {
-
             return <div className="kon-loader">
                 <Loader />;
             </div>
@@ -75,32 +62,18 @@ export default class TeamDetails extends React.Component {
                         <tbody>
 
                             <tr>
-                                <td>
-                                    <h2 className="comments"> {x.round}</h2>
-                                </td>
-                                <td >
-                                    <h2 className="comments"> {x.raceName}  </h2>
-                                </td>
-                                <td >
-                                    <h2 className="comments"> {x.Results[0].position} </h2>
-                                </td>
-                                <td >
-                                    <h2 className="comments"> {x.Results[1].position} </h2>
-                                </td>
-                                <td>
-                                    <h2 className="comments"> {parseInt(x.Results[0].points) + parseInt(x.Results[1].points)} </h2>
-                                </td>
+                                <td>{x.round}</td>
+                                <td >{x.raceName}</td>
+                                <td >{x.Results[0].position}</td>
+                                <td >{x.Results[1].position}</td>
+                                <td>{parseInt(x.Results[0].points) + parseInt(x.Results[1].points)}</td>
                             </tr>
                         </tbody>
 
                     )}
                 </table>
-
             </div>
-
         );
-
-
     }
 }
 

@@ -34,7 +34,6 @@ export default class App extends React.Component {
             <Route path="/drivers/:name" exact component={DriverDetails} />
             <Route path="/teams" exact component={AllTeams} />
             <Route path="/teamDetails/:name" exact component={TeamDetails} />
-
             <Route path="/races" exact component={AllRaces} />
             <Route path="/races/:round" exact component={RacesDetails} />
           </Switch>

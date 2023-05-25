@@ -5,7 +5,7 @@ import RacesDetails from "./RacesDetails";
 
 export default class AllRaces extends React.Component {
   state = {
-    races: [],
+    races: []
   };
 
   componentDidMount() {
@@ -16,6 +16,7 @@ export default class AllRaces extends React.Component {
     const url = "https://ergast.com/api/f1/2013/results/1.json";
     const response = await axios.get(url);
     console.log(response.data.MRData.RaceTable.Races);
+
     this.setState({
       races: response.data.MRData.RaceTable.Races,
     });
@@ -30,7 +31,8 @@ export default class AllRaces extends React.Component {
     return (
       <div>
         <h1>Race calendar</h1>
-        <table>
+        <table className="tab-container">
+
           <thead>
             <tr>Race Calendar 2013</tr>
             <tr>
@@ -41,11 +43,12 @@ export default class AllRaces extends React.Component {
               <th>Winner</th>
             </tr>
           </thead>
+
           <tbody>
             {this.state.races.map((race) => (
               <tr key={race.round}>
                 <td>{race.round}</td>
-                <td onClick={() => this.handleRaceDetails(race.raceName)}>
+                <td onClick={() => this.handleRaceDetails(race.round)}>
                   {race.raceName}
                 </td>
                 <td>{race.Circuit.circuitName}</td>
@@ -54,6 +57,7 @@ export default class AllRaces extends React.Component {
               </tr>
             ))}
           </tbody>
+
         </table>
       </div>
     );
