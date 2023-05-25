@@ -1,9 +1,10 @@
 import React from "react";
 import axios from "axios";
 import Loader from "./Loader";
+import Flag from "react-flagkit";
 
 export default class RacesDetails extends React.Component {
-  state = { results: [], details: {}, loading: true };
+  state = { results: [], details: {}, flags: [], loading: true };
 
   componentDidMount() {
     this.getAllRaces();
@@ -18,11 +19,36 @@ export default class RacesDetails extends React.Component {
     const url2 = `http://ergast.com/api/f1/2013/${id}/results/1.json`;
     const response2 = await axios.get(url2);
     console.log(response2.data.MRData.RaceTable.Races[0]);
+
+    const url3 =
+      "https://raw.githubusercontent.com/Dinuks/country-nationality-list/master/countries.json";
+    const response3 = await axios.get(url3);
+
     this.setState({
       results: response.data.MRData.RaceTable.Races[0].Results,
       details: response2.data.MRData.RaceTable.Races[0],
+      flags: response3.data,
       loading: false,
     });
+  };
+
+  getFlagCode = (nationality) => {
+    console.log("getFlagCode");
+
+    let zastava = this.state.flags.filter((x) => x.nationality === nationality);
+    if (zastava.length) {
+      return zastava[0].alpha_2_code;
+    } else {
+      if (nationality === "British") {
+        return "GB";
+      }
+      if (nationality === "Dutch") {
+        return "NL";
+      }
+      if (nationality === "UAE") {
+        return "AE";
+      }
+    }
   };
 
   render() {
@@ -58,6 +84,7 @@ export default class RacesDetails extends React.Component {
                 <tr key={res.position}>
                   <td>{res.position}</td>
                   <td>
+                    <Flag country={this.getFlagCode(res.Driver.nationality)} />
                     {res.Driver.givenName} {res.Driver.familyName}
                   </td>
                   <td>{res.Constructor.name}</td>
