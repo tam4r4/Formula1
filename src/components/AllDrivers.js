@@ -86,7 +86,7 @@ export default class AllDrivers extends React.Component {
                 <td>{x.Constructors[0].name}</td>
                 <td>{x.points}</td>
               </tr>
-            ))};
+            ))}
           </tbody>
         </table>
       </div>

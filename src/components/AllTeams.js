@@ -76,20 +76,21 @@ export default class AllTeams extends React.Component {
                     <thead>
                         <tr>Constructor Championship Standings - 2013</tr>
                     </thead>
-                    {this.state.teamStandings.map(x =>
-                        <tbody>
+                    <tbody>
+                        {this.state.teamStandings.map((x) => (
                             <tr>
                                 <td> {x.position}</td>
                                 <td onClick={() => this.handleTeamDetails(x.Constructor.constructorId)}>
                                     <Flag country={this.getFlagCode(x.Constructor.nationality)} /> {x.Constructor.name}
                                 </td>
-                                <td >
+                                <td>
                                     <a href={x.Constructor.url}>Details </a>
                                 </td>
                                 <td>{x.points}</td>
                             </tr>
-                        </tbody>
-                    )}
+                        ))}
+                    </tbody>
+
                 </table>
             </div>
         );

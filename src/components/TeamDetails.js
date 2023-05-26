@@ -121,8 +121,8 @@ export default class TeamDetails extends React.Component {
             </tr>
           </div>
 
-          {this.state.someRaces.map((x) => (
-            <tbody>
+          <tbody>
+            {this.state.someRaces.map((x) => (
               <tr>
                 <td>{x.round}</td>
                 <td>
@@ -139,8 +139,8 @@ export default class TeamDetails extends React.Component {
                     parseInt(x.Results[1].points)}
                 </td>
               </tr>
-            </tbody>
-          ))}
+            ))}
+          </tbody>
         </table>
       </div>
     );
