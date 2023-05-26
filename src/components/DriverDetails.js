@@ -35,14 +35,14 @@ export default class DriverDetails extends React.Component {
     this.setState({
       driverDetails:
         response.data.MRData.StandingsTable.StandingsLists[0]
-.DriverStandings[0],
+          .DriverStandings[0],
       races: response2.data.MRData.RaceTable.Races,
       flags: response3.data,
       loading: false,
     });
   };
 
-   
+
   getFlagCode = (nationality) => {
     console.log("getFlagCode");
 
@@ -94,7 +94,6 @@ export default class DriverDetails extends React.Component {
           </p>
         </dl>
 
-<<<<<<< HEAD
         <table className="tab-container">
           <thead>
             <tr>Formula 1 2013 Results</tr>
@@ -112,31 +111,14 @@ export default class DriverDetails extends React.Component {
               <tr key={d.round}>
                 <td>{d.round}</td>
                 <td>{d.raceName}</td>
-                <td>{d.Results[0].Constructor.name}</td>
+                <td> <Flag country={this.getFlagCode(d.Circuit.Location.country)} /> {d.raceName}</td>
                 <td>{d.Results[0].grid}</td>
                 <td>{d.Results[0].position}</td>
               </tr>
             ))}
           </tbody>
         </table>
-=======
-            <tbody>
-              {this.state.races.map((d) => (
-                <tr key={d.round}>
-                  <td>{d.round}</td>
-                  <td> <Flag country={this.getFlagCode(d.Circuit.Location.country)} /> {d.raceName}</td>
-                  <td>{d.Results[0].Constructor.name}</td>
-                  <td>{d.Results[0].grid}</td>
-                  <td>{d.Results[0].position}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
->>>>>>> 5d553ab2b2448b5995b684df2d37ee241a3d3843
       </div>
-
-
     );
   }
 }
