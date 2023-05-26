@@ -2,9 +2,16 @@ import React from "react";
 import axios from "axios";
 import Loader from "./Loader";
 import Flag from "react-flagkit";
+import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 
 export default class RacesDetails extends React.Component {
-  state = { results: [], details: {}, flags: [], loading: true };
+  state = {
+    results: [],
+    details: {},
+    flags: [],
+    loading: true,
+    qualifiers: [],
+  };
 
   componentDidMount() {
     this.getAllRaces();
@@ -19,6 +26,8 @@ export default class RacesDetails extends React.Component {
     const url2 = `http://ergast.com/api/f1/2013/${id}/results/1.json`;
     const response2 = await axios.get(url2);
     console.log(response2.data.MRData.RaceTable.Races[0]);
+    const url4 = `https://ergast.com/api/f1/2013/${id}/qualifying.json`;
+    const response4 = await axios.get(url4);
 
     const url3 =
       "https://raw.githubusercontent.com/Dinuks/country-nationality-list/master/countries.json";
@@ -29,6 +38,7 @@ export default class RacesDetails extends React.Component {
       details: response2.data.MRData.RaceTable.Races[0],
       flags: response3.data,
       loading: false,
+      qualifiers: response4.data.MRData.RaceTable.Races[0].QualifyingResults,
     });
   };
 
@@ -68,33 +78,63 @@ export default class RacesDetails extends React.Component {
           <p>Location: {this.state.details.Circuit.Location.locality}</p>
           <p>Date: {this.state.details.date}</p>
           <p>
-            Full Report: <a href={this.state.details.url}>Link</a>
+            Full Report:{" "}
+            <a href={this.state.details.url}>
+              <OpenInNewIcon />
+            </a>
           </p>
         </dl>
-
-        <table className="tab-container">
-          <thead>
-            <tr>
-              <th>Pos</th>
-              <th>Driver</th>
-              <th>Team</th>
-              <th>Result</th>
-            </tr>
-          </thead>
-          <tbody>
-            {this.state.results.map((res) => (
-              <tr key={res.position}>
-                <td>{res.position}</td>
-                <td>
-                  <Flag country={this.getFlagCode(res.Driver.nationality)} />
-                  {res.Driver.givenName} {res.Driver.familyName}
-                </td>
-                <td>{res.Constructor.name}</td>
-                <td>{res.Time ? res.Time.time : null}</td>
+        <div>
+          <table className="tab-container">
+            <thead>
+              <tr>Driver Results</tr>
+              <tr>
+                <th>Pos</th>
+                <th>Driver</th>
+                <th>Team</th>
+                <th>Result</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {this.state.results.map((res) => (
+                <tr key={res.position}>
+                  <td>{res.position}</td>
+                  <td>
+                    <Flag country={this.getFlagCode(res.Driver.nationality)} />
+                    {res.Driver.givenName} {res.Driver.familyName}
+                  </td>
+                  <td>{res.Constructor.name}</td>
+                  <td>{res.Time ? res.Time.time : null}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <table className="tab-container">
+            <thead>
+              <tr>Qualifying Results</tr>
+              <tr>
+                <th>Pos</th>
+                <th>Driver</th>
+                <th>Team</th>
+                <th>Best Time</th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.state.qualifiers.map((raceQual) => (
+                <tr key={raceQual.position}>
+                  <td>{raceQual.position}</td>
+                  <td>
+                    {raceQual.Driver.givenName} {raceQual.Driver.familyName}
+                  </td>
+                  <td>{raceQual.Constructor.name}</td>
+                  <td>{raceQual.Q3}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     );
   }
