@@ -8,25 +8,24 @@ import TeamDetails from "./components/TeamDetails";
 import DriverDetails from "./components/DriverDetails";
 import RacesDetails from "./components/RacesDetails";
 
-
 export default class App extends React.Component {
   render() {
     return (
       <div>
         <Router history={history}>
-          <nav>
+          <nav className="navBar">
             <ul>
               <li>
-                <Link to="/">LOGO</Link>
+                <Link to="/"><img src="/img/F1-logo.png"></img></Link>
               </li>
               <li>
-                <Link to="/drivers">Drivers</Link>
+                <Link to="/drivers"><img src="/img/drivers.png"></img></Link>
               </li>
               <li>
-                <Link to="/teams">Teams</Link>
+                <Link to="/teams"><img src="/img/teams.png"></img></Link>
               </li>
               <li>
-                <Link to="/races">Races</Link>
+                <Link to="/races"><img src="/img/races.png"></img></Link>
               </li>
             </ul>
           </nav>
