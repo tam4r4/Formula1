@@ -4,10 +4,17 @@ import Loader from "./Loader";
 import Flag from "react-flagkit";
 
 export default class RacesDetails extends React.Component {
-  state = { results: [], details: {}, flags: [], loading: true };
+  state = {
+    results: [],
+    details: {},
+    flags: [],
+    loading: true,
+    qualifiers: [],
+  };
 
   componentDidMount() {
     this.getAllRaces();
+    this.getAllQualifiers();
   }
 
   getAllRaces = async () => {
@@ -19,6 +26,8 @@ export default class RacesDetails extends React.Component {
     const url2 = `http://ergast.com/api/f1/2013/${id}/results/1.json`;
     const response2 = await axios.get(url2);
     console.log(response2.data.MRData.RaceTable.Races[0]);
+    const url4 = `https://ergast.com/api/f1/2013/${id}/qualifying.json`;
+    const response4 = await axios.get(url4);
 
     const url3 =
       "https://raw.githubusercontent.com/Dinuks/country-nationality-list/master/countries.json";
@@ -29,6 +38,7 @@ export default class RacesDetails extends React.Component {
       details: response2.data.MRData.RaceTable.Races[0],
       flags: response3.data,
       loading: false,
+      qualifiers: response4.data.MRData.RaceTable.Races[0].QualifyingResults,
     });
   };
 
