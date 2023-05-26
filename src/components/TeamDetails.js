@@ -93,19 +93,21 @@ export default class TeamDetails extends React.Component {
     }
 
     return (
-      <div>
-        <h2>{this.state.detalji.Constructor.name}</h2>
-        <p>Country: {this.state.detalji.Constructor.nationality}</p>
-        <p>Position: {this.state.detalji.position}</p>
-        <p>Points: {this.state.detalji.points}</p>
-        <p>
-          Biography:
-          <a href={this.state.detalji.Constructor.url}>
-            <OpenInNewIcon className="vikipedija" />
-          </a>
-        </p>
+      <div className="wrapper">
+        <dl className="details">
+          <p>{this.state.detalji.Constructor.name}</p>
+          <p>Country: {this.state.detalji.Constructor.nationality}</p>
+          <p>Position: {this.state.detalji.position}</p>
+          <p>Points: {this.state.detalji.points}</p>
+          <p>
+            Biography:
+            <a href={this.state.detalji.Constructor.url}>
+              <OpenInNewIcon />
+            </a>
+          </p>
+        </dl>
 
-        <table>
+        <table className="tab-container">
           <tr>
             <td>Formula 1 2013 Results</td>
           </tr>

@@ -70,7 +70,7 @@ export default class AllTeams extends React.Component {
         }
 
         return (
-            <div >
+            <div className="wrapper">
                 <h1>Constructors Championship</h1>
                 <table className="tab-container">
                     <thead>

@@ -61,39 +61,40 @@ export default class RacesDetails extends React.Component {
     }
 
     return (
-      <div>
-        <h2>{this.state.details.raceName}</h2>
-        <p>Country: {this.state.details.Circuit.Location.country}</p>
-        <p>Location: {this.state.details.Circuit.Location.locality}</p>
-        <p>Date: {this.state.details.date}</p>
-        <p>
-          Full Report: <a href={this.state.details.url}>Link</a>
-        </p>
-        <div>
-          <table className="tabela">
-            <thead>
-              <tr>
-                <th>Pos</th>
-                <th>Driver</th>
-                <th>Team</th>
-                <th>Result</th>
+      <div className="wrapper">
+        <dl className="details">
+          <p>{this.state.details.raceName}</p>
+          <p>Country: {this.state.details.Circuit.Location.country}</p>
+          <p>Location: {this.state.details.Circuit.Location.locality}</p>
+          <p>Date: {this.state.details.date}</p>
+          <p>
+            Full Report: <a href={this.state.details.url}>Link</a>
+          </p>
+        </dl>
+
+        <table className="tab-container">
+          <thead>
+            <tr>
+              <th>Pos</th>
+              <th>Driver</th>
+              <th>Team</th>
+              <th>Result</th>
+            </tr>
+          </thead>
+          <tbody>
+            {this.state.results.map((res) => (
+              <tr key={res.position}>
+                <td>{res.position}</td>
+                <td>
+                  <Flag country={this.getFlagCode(res.Driver.nationality)} />
+                  {res.Driver.givenName} {res.Driver.familyName}
+                </td>
+                <td>{res.Constructor.name}</td>
+                <td>{res.Time ? res.Time.time : null}</td>
               </tr>
-            </thead>
-            <tbody>
-              {this.state.results.map((res) => (
-                <tr key={res.position}>
-                  <td>{res.position}</td>
-                  <td>
-                    <Flag country={this.getFlagCode(res.Driver.nationality)} />
-                    {res.Driver.givenName} {res.Driver.familyName}
-                  </td>
-                  <td>{res.Constructor.name}</td>
-                  <td>{res.Time ? res.Time.time : null}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+            ))}
+          </tbody>
+        </table>
       </div>
     );
   }

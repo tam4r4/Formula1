@@ -1,24 +1,35 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
     background-color: black;
     /*background: url(./../../img/f-1.png) no-repeat center fixed;*/
     background: url(./../../img/trace-flag.png) no-repeat center fixed;
     background-size: cover;
-    font-family: Arial, Helvetica, sans-serif;
+}
+
+.wrapper{
+    display: flex;
+    justify-content: flex-end;
 }
 
 .tab-container {
     background-color: white;
+    color: black;
     border-collapse: collapse;
-    width: 70%;
+    width: 60%;
+    margin-right: 50px;
 }
 
 .tab-container th,
 .tab-container td {
     border:  1px solid rgb(241, 241, 241);
     text-align: left;
+    font-size: 15px;
     padding: 5px 15px;
 }
 
@@ -43,7 +54,16 @@ h1 {
     padding: 10px 25px;
 }
 
-/* .home_page {
-    background-color: url(./../../img/f-1.png) no-repeat center fixed;
-} */
+.details {
+    background-color: black;
+    color: white;
+    font-size: 15px;
+    font-weight: lighter;
+    padding: 25px;
+}
+
+.details :first-child {
+    font-weight: bold;
+    font-size: 25px;
+}
 

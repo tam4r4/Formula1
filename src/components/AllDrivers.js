@@ -42,7 +42,7 @@ export default class AllDrivers extends React.Component {
     }
 
     return (
-      <div>
+      <div className="wrapper">
         <h1>Drivers Championship</h1>
         <table className="tab-container">
           <thead>

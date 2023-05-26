@@ -47,47 +47,51 @@ export default class DriverDetails extends React.Component {
     }
     console.log(this.state.driverDetails);
     return (
-      <div>
-        <h2>
-          {this.state.driverDetails.Driver?.givenName}
-          {this.state.driverDetails.Driver?.familyName}
-        </h2>
-        <p>Country:{this.state.driverDetails.Driver?.nationality}</p>
-        <p>Team:{this.state.driverDetails.Constructors[0].name}</p>
-        <p>Birth:{this.state.driverDetails.Driver?.dateOfBirth}</p>
-        <p>
-          Biography:
-          <a href={this.state.driverDetails.Driver?.url}>
-            <OpenInNewIcon className="vikipedija" />
-          </a>
-        </p>
-        <div>
-          <table className="tab-container">
-            <thead>
-              <tr>Formula 1 2013 Results</tr>
-              <tr>
-                <th>Round</th>
-                <th>Grand Prix</th>
-                <th>Team</th>
-                <th>Grid</th>
-                <th>Race</th>
-              </tr>
-            </thead>
+      <div className="wrapper">
+        {/* description list */}
+        <dl className="details">
+          <p>
+            {this.state.driverDetails.Driver?.givenName}<br></br>
+            {this.state.driverDetails.Driver?.familyName}
+          </p>
+          <p>Country: {this.state.driverDetails.Driver?.nationality}</p>
+          <p>Team: {this.state.driverDetails.Constructors[0].name}</p>
+          <p>Birth: {this.state.driverDetails.Driver?.dateOfBirth}</p>
+          <p>
+            Biography:
+            <a href={this.state.driverDetails.Driver?.url}>
+              <OpenInNewIcon />
+            </a>
+          </p>
+        </dl>
 
-            <tbody>
-              {this.state.races.map((d) => (
-                <tr key={d.round}>
-                  <td>{d.round}</td>
-                  <td>{d.raceName}</td>
-                  <td>{d.Results[0].Constructor.name}</td>
-                  <td>{d.Results[0].grid}</td>
-                  <td>{d.Results[0].position}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+        <table className="tab-container">
+          <thead>
+            <tr>Formula 1 2013 Results</tr>
+            <tr>
+              <th>Round</th>
+              <th>Grand Prix</th>
+              <th>Team</th>
+              <th>Grid</th>
+              <th>Race</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {this.state.races.map((d) => (
+              <tr key={d.round}>
+                <td>{d.round}</td>
+                <td>{d.raceName}</td>
+                <td>{d.Results[0].Constructor.name}</td>
+                <td>{d.Results[0].grid}</td>
+                <td>{d.Results[0].position}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
+
+
     );
   }
 }
