@@ -8,6 +8,7 @@ import TeamDetails from "./components/TeamDetails";
 import DriverDetails from "./components/DriverDetails";
 import RacesDetails from "./components/RacesDetails";
 
+
 export default class App extends React.Component {
   render() {
     return (
