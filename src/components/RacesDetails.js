@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import Loader from "./Loader";
 import Flag from "react-flagkit";
+import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 
 export default class RacesDetails extends React.Component {
   state = {
@@ -14,7 +15,6 @@ export default class RacesDetails extends React.Component {
 
   componentDidMount() {
     this.getAllRaces();
-    this.getAllQualifiers();
   }
 
   getAllRaces = async () => {
@@ -78,33 +78,63 @@ export default class RacesDetails extends React.Component {
           <p>Location: {this.state.details.Circuit.Location.locality}</p>
           <p>Date: {this.state.details.date}</p>
           <p>
-            Full Report: <a href={this.state.details.url}>Link</a>
+            Full Report:{" "}
+            <a href={this.state.details.url}>
+              <OpenInNewIcon />
+            </a>
           </p>
         </dl>
-
-        <table className="tab-container">
-          <thead>
-            <tr>
-              <th>Pos</th>
-              <th>Driver</th>
-              <th>Team</th>
-              <th>Result</th>
-            </tr>
-          </thead>
-          <tbody>
-            {this.state.results.map((res) => (
-              <tr key={res.position}>
-                <td>{res.position}</td>
-                <td>
-                  <Flag country={this.getFlagCode(res.Driver.nationality)} />
-                  {res.Driver.givenName} {res.Driver.familyName}
-                </td>
-                <td>{res.Constructor.name}</td>
-                <td>{res.Time ? res.Time.time : null}</td>
+        <div>
+          <table className="tab-container">
+            <thead>
+              <tr>Driver Results</tr>
+              <tr>
+                <th>Pos</th>
+                <th>Driver</th>
+                <th>Team</th>
+                <th>Result</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {this.state.results.map((res) => (
+                <tr key={res.position}>
+                  <td>{res.position}</td>
+                  <td>
+                    <Flag country={this.getFlagCode(res.Driver.nationality)} />
+                    {res.Driver.givenName} {res.Driver.familyName}
+                  </td>
+                  <td>{res.Constructor.name}</td>
+                  <td>{res.Time ? res.Time.time : null}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <table className="tab-container">
+            <thead>
+              <tr>Qualifying Results</tr>
+              <tr>
+                <th>Pos</th>
+                <th>Driver</th>
+                <th>Team</th>
+                <th>Best Time</th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.state.qualifiers.map((raceQual) => (
+                <tr key={raceQual.position}>
+                  <td>{raceQual.position}</td>
+                  <td>
+                    {raceQual.Driver.givenName} {raceQual.Driver.familyName}
+                  </td>
+                  <td>{raceQual.Constructor.name}</td>
+                  <td>{raceQual.Q3}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     );
   }
