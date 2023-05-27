@@ -66,6 +66,36 @@ export default class DriverDetails extends React.Component {
   };
 
 
+  getFlagCode2 = (nationality) => {
+    console.log("getFlagCode");
+
+    let zastava = this.state.flags.filter(
+      (x) => x.nationality === nationality
+    );
+    if (zastava.length) {
+      return zastava[0].alpha_2_code;
+    } else {
+      if (nationality === "UK") {
+        return "GB";
+      }
+      if (nationality === "British") {
+        return "GB";
+      }
+      if (nationality === "Dutch") {
+        return "NL";
+      }
+     
+      if (nationality === "Korea") {
+        return "KR";
+      }
+      if (nationality === "UAE") {
+        return "AE";
+      }
+    }
+
+  };
+
+
   render() {
     if (this.state.loading) {
       return (
@@ -79,6 +109,9 @@ export default class DriverDetails extends React.Component {
       <div className="wrapper">
         {/* description list */}
         <dl className="details">
+
+          <p> <Flag country={this.getFlagCode2(this.state.driverDetails.Driver.nationality)} /> </p>
+
           <p>
             {this.state.driverDetails.Driver?.givenName}<br></br>
             {this.state.driverDetails.Driver?.familyName}
@@ -110,8 +143,8 @@ export default class DriverDetails extends React.Component {
             {this.state.races.map((d) => (
               <tr key={d.round}>
                 <td>{d.round}</td>
-                <td>{d.raceName}</td>
-                <td> <Flag country={this.getFlagCode(d.Circuit.Location.country)} /> {d.raceName}</td>
+                <td> <Flag country={this.getFlagCode(d.Circuit.Location.country)} />{d.raceName}</td>
+                <td> {d.Results[0].Constructor.name}</td>
                 <td>{d.Results[0].grid}</td>
                 <td>{d.Results[0].position}</td>
               </tr>
