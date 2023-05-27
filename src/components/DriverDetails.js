@@ -96,6 +96,42 @@ export default class DriverDetails extends React.Component {
   };
 
 
+  getImageCode = (lastName) => {
+    console.log("getImageCode");
+
+    console.log("lastName", lastName);
+
+      //    src="../img/hamilton.jpg"
+
+      var x = lastName.toLowerCase();
+
+      if(x === "räikkönen"){
+        x = "raikkonen";
+      }
+      if(x === "hülkenberg"){
+        x = "hulkenberg";
+      }
+      if(x === "pérez"){
+        x = "perez";
+      }
+      if(x === "gutiérrez"){
+        x = "gutierrez";
+      }
+      if(x === "van der garde"){
+        x = "garde";
+      }
+      if(x === "di resta"){
+        x = "resta";
+      }
+
+
+      console.log("prezimeSaMalimSlovom:", x);
+
+      return "../img/" + x + ".jpg";
+  
+  }
+
+
   render() {
     if (this.state.loading) {
       return (
@@ -109,7 +145,7 @@ export default class DriverDetails extends React.Component {
       <div className="wrapper">
         {/* description list */}
         <dl className="details">
-
+          <img src={this.getImageCode(this.state.driverDetails.Driver.familyName)} alt="slika vozaca" className="img-drivers" />              
           <p> <Flag country={this.getFlagCode2(this.state.driverDetails.Driver.nationality)} /> </p>
 
           <p>
@@ -155,5 +191,7 @@ export default class DriverDetails extends React.Component {
     );
   }
 }
+
+
 
 
