@@ -7,6 +7,8 @@ import AllRaces from "./components/AllRaces";
 import TeamDetails from "./components/TeamDetails";
 import DriverDetails from "./components/DriverDetails";
 import RacesDetails from "./components/RacesDetails";
+ // import { Home } from "@mui/icons-material";
+ import Home from "./components/Home";
 
 export default class App extends React.Component {
   render() {
@@ -16,20 +18,22 @@ export default class App extends React.Component {
           <nav className="navBar">
             <ul>
               <li>
-                <Link to="/"><img src="/img/F1-logo.png"></img></Link>
+                <Link to="/home"> Home {<img src="/img/F1-logo.png"></img>}</Link>
               </li>
               <li>
-                <Link to="/drivers"><img src="/img/drivers.png"></img></Link>
+                <Link to="/drivers"> Drivers </Link>             
               </li>
               <li>
-                <Link to="/teams"><img src="/img/teams.png"></img></Link>
+                <Link to="/teams"> Teams{<img src="/img/teams.png"></img>}</Link>
               </li>
               <li>
-                <Link to="/races"><img src="/img/races.png"></img></Link>
+                <Link to="/races"> Races {<img src="/img/races.png"></img>}</Link>
               </li>
             </ul>
           </nav>
           <Switch>
+            <Route path="/home" exact component={Home} />
+
             <Route path="/drivers" exact component={AllDrivers} />
             <Route path="/drivers/:name" exact component={DriverDetails} />
             <Route path="/teams" exact component={AllTeams} />
@@ -42,3 +46,4 @@ export default class App extends React.Component {
     );
   }
 }
+         //    <img src="/img/drivers.png"/>

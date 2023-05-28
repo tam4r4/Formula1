@@ -111,6 +111,20 @@ export default class TeamDetails extends React.Component {
   };
 
 
+  getTeamImageCode = (teamName) => {
+    console.log("getTeamImageCode");
+
+    console.log("teamName", teamName);
+
+      //    src="../img/hamilton.jpg"
+
+      var x = teamName.toLowerCase();
+
+      return "../img/" + x + ".png";
+  
+  }
+
+
 
 
   render() {
@@ -125,6 +139,7 @@ export default class TeamDetails extends React.Component {
     return (
       <div className="wrapper">
         <dl className="details">
+          <img src={this.getTeamImageCode(this.state.detalji.Constructor.constructorId)} alt="Slika tima" className="team-image" />
           <p><Flag country={this.getFlagCode2(this.state.detalji.Constructor.nationality)} /></p>
           <p>{this.state.detalji.Constructor.name}</p>
           <p>Country: {this.state.detalji.Constructor.nationality}</p>

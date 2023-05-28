@@ -78,10 +78,10 @@ export default class AllDrivers extends React.Component {
           </thead>
           <tbody>
             {this.state.driverStandings.map((x) => (
-              <tr>
+              <tr key={x.position} >
                 <td> {x.position}</td>
                 <td onClick={() => this.handleDriverDetails(x.Driver.driverId)} className="flag-td"> <Flag className="flag" country={this.getFlagCode(x.Driver.nationality)} />
-                 {x.Driver.givenName} {x.Driver.familyName}
+                  {x.Driver.givenName} {x.Driver.familyName}
                 </td>
                 <td>{x.Constructors[0].name}</td>
                 <td>{x.points}</td>
