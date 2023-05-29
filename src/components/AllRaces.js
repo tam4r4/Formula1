@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import history from "../history";
+import Loader from "./Loader";
 import RacesDetails from "./RacesDetails";
 import Flag from "react-flagkit";
 
@@ -61,7 +62,7 @@ export default class AllRaces extends React.Component {
     if (this.state.loading) {
       return (
         <div className="kon-loader">
-          <Loader />;
+          <Loader />
         </div>
       )
     }

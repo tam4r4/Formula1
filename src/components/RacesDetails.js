@@ -111,7 +111,7 @@ export default class RacesDetails extends React.Component {
     if (this.state.loading) {
       return (
         <div className="kon-loader">
-          <Loader />;
+          <Loader />
         </div>
       );
     }

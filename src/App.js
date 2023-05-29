@@ -9,7 +9,7 @@ import DriverDetails from "./components/DriverDetails";
 import RacesDetails from "./components/RacesDetails";
  // import { Home } from "@mui/icons-material";
  import Home from "./components/Home";
-import { NavLink } from "react-bootstrap";
+ import { NavLink } from "react-router-dom";
 
 export default class App extends React.Component {
 
@@ -26,29 +26,29 @@ export default class App extends React.Component {
               <ul>
                 <li className="drivers">
                   <img src="/img/drivers.png" alt="drivers" width={60} className="image"></img>
-                  <Link to="/drivers">
+                  <NavLink to="/drivers">
                     <div className="overlay drivers">
                       <div className="text">Drivers</div>
                     </div>
-                  </Link>
+                  </NavLink>
                 </li>
 
                 <li className="teams">
                   <img src="/img/teams.png" alt="teams" width={60} className="image"></img>
-                  <Link to="/teams">
+                  <NavLink to="/teams">
                     <div className="overlay teams">
                       <div className="text">Teams</div>
                     </div>
-                  </Link>
+                  </NavLink>
                 </li>
 
                 <li className="races">
                   <img src="/img/races.png" alt="races" width={60} className="image"></img>
-                  <Link to="/races">
+                  <NavLink to="/races">
                     <div className="overlay races">
                       <div className="text">Races</div>
                     </div>
-                  </Link>
+                  </NavLink>
                 </li>
               </ul>
             </div>

@@ -136,7 +136,7 @@ export default class DriverDetails extends React.Component {
     if (this.state.loading) {
       return (
         <div className="kon-loader">
-          <Loader />;
+          <Loader />
         </div>
       )
     }
