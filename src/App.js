@@ -26,29 +26,29 @@ export default class App extends React.Component {
               <ul>
                 <li className="drivers">
                   <img src="/img/drivers.png" alt="drivers" width={60} className="image"></img>
-                  <NavLink to="/drivers">
+                  <Link to="/drivers">
                     <div className="overlay drivers">
                       <div className="text">Drivers</div>
                     </div>
-                  </NavLink>
+                  </Link>
                 </li>
 
                 <li className="teams">
                   <img src="/img/teams.png" alt="teams" width={60} className="image"></img>
-                  <NavLink to="/teams">
+                  <Link to="/teams">
                     <div className="overlay teams">
                       <div className="text">Teams</div>
                     </div>
-                  </NavLink>
+                  </Link>
                 </li>
 
                 <li className="races">
                   <img src="/img/races.png" alt="races" width={60} className="image"></img>
-                  <NavLink to="/races">
+                  <Link to="/races">
                     <div className="overlay races">
                       <div className="text">Races</div>
                     </div>
-                  </NavLink>
+                  </Link>
                 </li>
               </ul>
             </div>
