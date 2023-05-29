@@ -7,6 +7,8 @@ import AllRaces from "./components/AllRaces";
 import TeamDetails from "./components/TeamDetails";
 import DriverDetails from "./components/DriverDetails";
 import RacesDetails from "./components/RacesDetails";
+ // import { Home } from "@mui/icons-material";
+ import Home from "./components/Home";
 
 export default class App extends React.Component {
 
@@ -52,6 +54,8 @@ export default class App extends React.Component {
           </nav>
 
           <Switch>
+            <Route path="/home" exact component={Home} />
+
             <Route path="/drivers" exact component={AllDrivers} />
             <Route path="/driversDetails/:name" exact component={DriverDetails} />
             <Route path="/teams" exact component={AllTeams} />
@@ -64,3 +68,4 @@ export default class App extends React.Component {
     );
   }
 }
+         //    <img src="/img/drivers.png"/>

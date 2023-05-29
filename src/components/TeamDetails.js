@@ -61,8 +61,6 @@ export default class TeamDetails extends React.Component {
   getFlagCode = (nationality) => {
     console.log("getFlagCode");
 
-    //  console.log(country);
-
     let zastava = this.state.flags.filter(
       (x) => x.en_short_name === nationality
     );
@@ -83,6 +81,52 @@ export default class TeamDetails extends React.Component {
     //  return zastava[0].alpha_2_code;
   };
 
+  
+  getFlagCode2 = (nationality) => {
+    console.log("getFlagCode");
+
+    let zastava = this.state.flags.filter(
+      (x) => x.nationality === nationality
+    );
+    if (zastava.length) {
+      return zastava[0].alpha_2_code;
+    } else {
+      if (nationality === "UK") {
+        return "GB";
+      }
+      if (nationality === "British") {
+        return "GB";
+      }
+      if (nationality === "Korea") {
+        return "KR";
+      }
+      if (nationality === "Dutch") {
+        return "NL";
+      }
+      if (nationality === "UAE") {
+        return "AE";
+      }
+    }
+
+  };
+
+
+  getTeamImageCode = (teamName) => {
+    console.log("getTeamImageCode");
+
+    console.log("teamName", teamName);
+
+      //    src="../img/hamilton.jpg"
+
+      var x = teamName.toLowerCase();
+
+      return "../img/" + x + ".png";
+  
+  }
+
+
+
+
   render() {
     if (this.state.loading) {
       return (
@@ -95,6 +139,8 @@ export default class TeamDetails extends React.Component {
     return (
       <div className="main">
         <dl className="details">
+          <img src={this.getTeamImageCode(this.state.detalji.Constructor.constructorId)} alt="Slika tima" className="team-image" />
+          <p><Flag country={this.getFlagCode2(this.state.detalji.Constructor.nationality)} /></p>
           <p>{this.state.detalji.Constructor.name}</p>
           <p>Country: {this.state.detalji.Constructor.nationality}</p>
           <p>Position: {this.state.detalji.position}</p>
