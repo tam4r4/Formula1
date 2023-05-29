@@ -151,8 +151,8 @@ export default class TeamDetails extends React.Component {
                   <Flag country={this.getFlagCode(x.Circuit.Location.country)} />
                   {x.raceName}
                 </td>
-                <td>{x.Results[0].position}</td>
-                <td>{x.Results[1].position}</td>
+                <td className={"position_" + x.Results[0].position }>{x.Results[0].position}</td>
+                <td className={"position_" + x.Results[1].position }>{x.Results[1].position}</td>
                 <td>
                   {parseInt(x.Results[0].points) + parseInt(x.Results[1].points)}
                 </td>

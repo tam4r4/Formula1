@@ -177,7 +177,7 @@ export default class RacesDetails extends React.Component {
                   </td>
                   <td>{res.Constructor.name}</td>
                   <td>{res.Time ? res.Time.time : null}</td>
-                  <td>{res.points}</td>
+                  <td className={"position_" + res.position} > {res.points} </td>
                 </tr>
               ))}
             </tbody>

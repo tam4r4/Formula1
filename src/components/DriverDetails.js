@@ -168,7 +168,7 @@ export default class DriverDetails extends React.Component {
                 </td>
                 <td> {d.Results[0].Constructor.name}</td>
                 <td>{d.Results[0].grid}</td>
-                <td>{d.Results[0].position}</td>
+                <td className={"position_" + d.Results[0].position } > {d.Results[0].position} </td>
               </tr>
             ))}
           </tbody>
