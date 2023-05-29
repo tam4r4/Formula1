@@ -9,7 +9,6 @@ import DriverDetails from "./components/DriverDetails";
 import RacesDetails from "./components/RacesDetails";
  // import { Home } from "@mui/icons-material";
  import Home from "./components/Home";
-import { NavDropdown } from "react-bootstrap";
 
 export default class App extends React.Component {
 
