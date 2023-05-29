@@ -10,7 +10,7 @@ export default class RacesDetails extends React.Component {
     details: {},
     flags: [],
     loading: true,
-    qualifiers: []
+    qualifiers: [],
   };
 
   componentDidMount() {
@@ -32,6 +32,17 @@ export default class RacesDetails extends React.Component {
     const url3 =
       "https://raw.githubusercontent.com/Dinuks/country-nationality-list/master/countries.json";
     const response3 = await axios.get(url3);
+    // var prvoVreme =
+    //   response4.data.MRData.RaceTable.Races[0].QualifyingResults[0].Q1;
+    // var drugoVreme =
+    //   response4.data.MRData.RaceTable.Races[0].QualifyingResults[0].Q2;
+    // var treceVreme =
+    //   response4.data.MRData.RaceTable.Races[0].QualifyingResults[0].Q3;
+    // var niz = [prvoVreme, drugoVreme, treceVreme];
+
+    // console.log("niz vremena", niz);
+    // var noviNiz = niz.sort();
+    // console.log("najkrace vreme ", noviNiz);
 
     this.setState({
       results: response.data.MRData.RaceTable.Races[0].Results,
@@ -40,6 +51,14 @@ export default class RacesDetails extends React.Component {
       loading: false,
       qualifiers: response4.data.MRData.RaceTable.Races[0].QualifyingResults,
     });
+    console.log(response4.data.MRData.RaceTable.Races[0].QualifyingResults);
+  };
+
+  sredjivanjeVremena = (raceQual) => {
+    let niz = [raceQual.Q1, raceQual.Q2, raceQual.Q3];
+    console.log("nisVRremena", niz);
+    let noviNiz = niz.sort();
+    return noviNiz[0];
   };
 
   getFlagCode = (nationality) => {
@@ -61,12 +80,12 @@ export default class RacesDetails extends React.Component {
     }
   };
 
-
-
   getFlagCode2 = (nationality) => {
     console.log("getFlagCode");
 
-    let zastava = this.state.flags.filter((x) => x.en_short_name === nationality);
+    let zastava = this.state.flags.filter(
+      (x) => x.en_short_name === nationality
+    );
     if (zastava.length) {
       return zastava[0].alpha_2_code;
     } else {
@@ -94,14 +113,21 @@ export default class RacesDetails extends React.Component {
         <div className="kon-loader">
           <Loader />;
         </div>
-      )
+      );
     }
 
     return (
       <div className="main">
-
         <dl className="details">
-          <p> <Flag country={this.getFlagCode2(this.state.details.Circuit.Location.country)} size={70} /> </p>    
+          <p>
+            {" "}
+            <Flag
+              country={this.getFlagCode2(
+                this.state.details.Circuit.Location.country
+              )}
+              size={70}
+            />{" "}
+          </p>
           <p>{this.state.details.raceName}</p>
           <p>Country: {this.state.details.Circuit.Location.country}</p>
           <p>Location: {this.state.details.Circuit.Location.locality}</p>
@@ -130,11 +156,14 @@ export default class RacesDetails extends React.Component {
               {this.state.qualifiers.map((raceQual) => (
                 <tr key={raceQual.position}>
                   <td>{raceQual.position}</td>
-                  <td> 
-                  <Flag country={this.getFlagCode(raceQual.Driver.nationality)} />  {raceQual.Driver.givenName} {raceQual.Driver.familyName}
+                  <td>
+                    <Flag
+                      country={this.getFlagCode(raceQual.Driver.nationality)}
+                    />{" "}
+                    {raceQual.Driver.givenName} {raceQual.Driver.familyName}
                   </td>
                   <td>{raceQual.Constructor.name}</td>
-                  <td>{raceQual.Q3}</td>
+                  <td>{this.sredjivanjeVremena(raceQual)}</td>
                 </tr>
               ))}
             </tbody>
