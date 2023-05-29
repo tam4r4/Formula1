@@ -105,7 +105,7 @@ export default class RacesDetails extends React.Component {
 
     return (
       <div className="main">
-        <aside className="details">
+        <aside className="details race-details">
           <p>
             <Flag
               country={this.getFlagCode2(this.state.details.Circuit.Location.country)}
