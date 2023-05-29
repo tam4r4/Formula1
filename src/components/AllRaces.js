@@ -86,7 +86,7 @@ export default class AllRaces extends React.Component {
             {this.state.races.map((race) => (
               <tr key={race.round}>
                 <td>{race.round}</td>
-                <td onClick={() => this.handleRaceDetails(race.round)} className="flag-container">
+                <td onClick={() => this.handleRaceDetails(race.round)} className="flag-container cursor">
                   <Flag
                     country={this.getFlagCode(race.Circuit.Location.country)}
                   />

@@ -174,8 +174,9 @@ export default class DriverDetails extends React.Component {
             {this.state.races.map((d) => (
               <tr key={d.round}>
                 <td>{d.round}</td>
-                <td>
-                  <Flag country={this.getFlagCode(d.Circuit.Location.country)} />{d.raceName}
+                <td className="flag-container">
+                  <Flag country={this.getFlagCode(d.Circuit.Location.country)} />
+                  {d.raceName}
                 </td>
                 <td> {d.Results[0].Constructor.name}</td>
                 <td>{d.Results[0].grid}</td>

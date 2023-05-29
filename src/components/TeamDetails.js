@@ -30,7 +30,7 @@ export default class TeamDetails extends React.Component {
     const response2 = await axios.get(url2);
     const response3 = await axios.get(url3);
     const response4 = await axios.get(url4);
-    
+
     console.log(
       response4.data.MRData.StandingsTable.StandingsLists[0]
         .ConstructorStandings[0]
@@ -147,7 +147,7 @@ export default class TeamDetails extends React.Component {
             {this.state.someRaces.map((x) => (
               <tr key={x.round}>
                 <td>{x.round}</td>
-                <td>
+                <td className="flag-container">
                   <Flag country={this.getFlagCode(x.Circuit.Location.country)} />
                   {x.raceName}
                 </td>

@@ -30,7 +30,7 @@ export default class RacesDetails extends React.Component {
     const response3 = await axios.get(url3);
     const response4 = await axios.get(url4);
    
-    
+
     this.setState({
       results: response.data.MRData.RaceTable.Races[0].Results,
       details: response2.data.MRData.RaceTable.Races[0],
@@ -143,7 +143,7 @@ export default class RacesDetails extends React.Component {
               {this.state.qualifiers.map((raceQual) => (
                 <tr key={raceQual.position}>
                   <td>{raceQual.position}</td>
-                  <td>
+                  <td className="flag-container">
                     <Flag
                       country={this.getFlagCode(raceQual.Driver.nationality)}
                     />{" "}
@@ -174,7 +174,7 @@ export default class RacesDetails extends React.Component {
               {this.state.results.map((res) => (
                 <tr key={res.position}>
                   <td>{res.position}</td>
-                  <td>
+                  <td className="flag-container">
                     <Flag country={this.getFlagCode(res.Driver.nationality)} />
                     {res.Driver.givenName} {res.Driver.familyName}
                   </td>

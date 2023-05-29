@@ -160,6 +160,9 @@ h1 {
 .flag-container {
     display: flex;
     align-items: center;
+}
+
+.cursor {
     cursor: pointer;
 }
 

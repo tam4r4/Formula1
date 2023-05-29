@@ -81,7 +81,7 @@ export default class AllTeams extends React.Component {
                         {this.state.teamStandings.map((x) => (
                             <tr key={x.position}>
                                 <td> {x.position}</td>
-                                <td onClick={() => this.handleTeamDetails(x.Constructor.constructorId)} className="flag-container">
+                                <td onClick={() => this.handleTeamDetails(x.Constructor.constructorId)} className="flag-container cursor">
                                     <Flag country={this.getFlagCode(x.Constructor.nationality)} /> {x.Constructor.name}
                                 </td>
                                 <td>

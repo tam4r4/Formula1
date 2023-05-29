@@ -81,7 +81,7 @@ export default class AllDrivers extends React.Component {
               {this.state.driverStandings.map((x) => (
                 <tr key={x.position}>
                   <td> {x.position}</td>
-                  <td onClick={() => this.handleDriverDetails(x.Driver.driverId)} className="flag-container"> 
+                  <td onClick={() => this.handleDriverDetails(x.Driver.driverId)} className="flag-container cursor"> 
                   <Flag country={this.getFlagCode(x.Driver.nationality)} />
                     {x.Driver.givenName} {x.Driver.familyName}
                   </td>
