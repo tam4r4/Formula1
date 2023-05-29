@@ -72,7 +72,7 @@ export default class AllTeams extends React.Component {
 
         return (
             <div className="main">
-                <h1>Constructors Championship</h1>
+                <h1>CONSTRUCTORS CHAMPIONSHIP</h1>
                 <table className="tab-container">
                     <thead>
                         <td colSpan={5}>Constructor Championship Standings - 2013</td>

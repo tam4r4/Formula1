@@ -72,7 +72,7 @@ export default class AllDrivers extends React.Component {
     return (
       <div>
         <div className="main">
-          <h1>Drivers Championship</h1>
+          <h1>DRIVERS CHAMPIONSHIP</h1>
           <table className="tab-container">
             <thead>
               <td colSpan={4}>Driver Championship Standings 2013</td>

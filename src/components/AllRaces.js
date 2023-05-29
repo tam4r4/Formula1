@@ -69,7 +69,7 @@ export default class AllRaces extends React.Component {
 
     return (
       <div className="main">
-        <h1>Race calendar</h1>
+        <h1>RACE CALENDAR</h1>
         <table className="tab-container">
           <thead>
             <td colSpan={5}>Race Calendar 2013</td>

@@ -115,10 +115,10 @@ export default class TeamDetails extends React.Component {
 
     return (
       <div className="main">
-        <dl className="details">
+        <aside className="details">
           <img src={this.getTeamImageCode(this.state.details.Constructor.constructorId)} alt="Team picture" className="team-image" />
           <p><Flag country={this.getFlagCode2(this.state.details.Constructor.nationality)} /></p>
-          <p>{this.state.details.Constructor.name}</p>
+          <p className="details-name">{this.state.details.Constructor.name}</p>
           <p>Country: {this.state.details.Constructor.nationality}</p>
           <p>Position: {this.state.details.position}</p>
           <p>Points: {this.state.details.points}</p>
@@ -127,7 +127,7 @@ export default class TeamDetails extends React.Component {
               <OpenInNewIcon className="openNewTab" />
             </a>
           </p>
-        </dl>
+        </aside>
 
         <table className="tab-container details-tab-container">
           <thead>

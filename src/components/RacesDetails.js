@@ -105,17 +105,14 @@ export default class RacesDetails extends React.Component {
 
     return (
       <div className="main">
-        <dl className="details">
+        <aside className="details">
           <p>
-            {" "}
             <Flag
-              country={this.getFlagCode2(
-                this.state.details.Circuit.Location.country
-              )}
-              size={70}
-            />{" "}
+              country={this.getFlagCode2(this.state.details.Circuit.Location.country)}
+              size={70} 
+              />
           </p>
-          <p>{this.state.details.raceName}</p>
+          <p className="details-name">{this.state.details.raceName}</p>
           <p>Country: {this.state.details.Circuit.Location.country}</p>
           <p>Location: {this.state.details.Circuit.Location.locality}</p>
           <p>Date: {this.state.details.date}</p>
@@ -125,7 +122,7 @@ export default class RacesDetails extends React.Component {
               <OpenInNewIcon className="openNewTab" />
             </a>
           </p>
-        </dl>
+        </aside>
 
         <div>
           <table className="tab-container qualify-tab-container">

@@ -39,13 +39,12 @@ export default class DriverDetails extends React.Component {
 
 
   getFlagCode = (nationality) => {
-    console.log("getFlagCode");
 
-    let zastava = this.state.flags.filter(
+    let flag = this.state.flags.filter(
       (x) => x.en_short_name === nationality
     );
-    if (zastava.length) {
-      return zastava[0].alpha_2_code;
+    if (flag.length) {
+      return flag[0].alpha_2_code;
     } else {
       if (nationality === "UK") {
         return "GB";
@@ -62,13 +61,12 @@ export default class DriverDetails extends React.Component {
 
 
   getFlagCode2 = (nationality) => {
-    console.log("getFlagCode");
 
-    let zastava = this.state.flags.filter(
+    let flag = this.state.flags.filter(
       (x) => x.nationality === nationality
     );
-    if (zastava.length) {
-      return zastava[0].alpha_2_code;
+    if (flag.length) {
+      return flag[0].alpha_2_code;
     } else {
       if (nationality === "UK") {
         return "GB";
@@ -92,14 +90,8 @@ export default class DriverDetails extends React.Component {
 
 
   getImageCode = (lastName) => {
-    console.log("getImageCode");
-
-    console.log("lastName", lastName);
-
-    //    src="../img/hamilton.jpg"
 
     var x = lastName.toLowerCase();
-
     if (x === "räikkönen") {
       x = "raikkonen";
     }
@@ -119,9 +111,6 @@ export default class DriverDetails extends React.Component {
       x = "resta";
     }
 
-
-    console.log("prezimeSaMalimSlovom:", x);
-
     return "../img/" + x + ".jpg";
 
   }
@@ -135,15 +124,14 @@ export default class DriverDetails extends React.Component {
         </div>
       )
     }
-    console.log(this.state.driverDetails);
+    
     return (
       <div className="main">
-        {/* description list */}
-        <dl className="details">
+        <aside className="details">
           <img src={this.getImageCode(this.state.driverDetails.Driver.familyName)} alt="slika vozaca" className="img-drivers" />
           <p> <Flag country={this.getFlagCode2(this.state.driverDetails.Driver.nationality)} /> </p>
 
-          <p>
+          <p className="details-name">
             {this.state.driverDetails.Driver?.givenName}<br></br>
             {this.state.driverDetails.Driver?.familyName}
           </p>
@@ -156,7 +144,7 @@ export default class DriverDetails extends React.Component {
               <OpenInNewIcon className="openNewTab" />
             </a>
           </p>
-        </dl>
+        </aside>
 
         <table className="tab-container details-tab-container">
           <thead>
