@@ -193,3 +193,13 @@ h1 {
     width: 100px;
 }
 
+.kon-loader {
+    height: 100vh;
+    background-color: rgb(255, 255, 205);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: mediumseagreen;
+    size: 30px;
+}
+

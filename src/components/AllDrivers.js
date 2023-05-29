@@ -33,18 +33,15 @@ export default class AllDrivers extends React.Component {
   }
 
   handleDriverDetails = (name) => {
-    //console.log(name);
     const linkTo = "/driverDetails/" + name;
     history.push(linkTo);
   };
 
-
-  getFlagCode = (nationality) => {           //   prepisano iz RaceDetails
-   // console.log("getFlagCode");
-
-    let zastava = this.state.flags.filter((x) => x.nationality === nationality);
-    if (zastava.length) {
-      return zastava[0].alpha_2_code;
+  
+  getFlagCode = (nationality) => {
+    let flag = this.state.flags.filter((x) => x.nationality === nationality);
+    if (flag.length) {
+      return flag[0].alpha_2_code;
     } else {
       if (nationality === "British") {
         return "GB";
