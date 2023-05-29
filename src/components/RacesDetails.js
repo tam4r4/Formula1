@@ -158,7 +158,7 @@ export default class RacesDetails extends React.Component {
               {this.state.results.map((res) => (
                 <tr key={res.position}>
                   <td>{res.position}</td>
-                  <td className="flag-container">
+                  <td>
                     <Flag country={this.getFlagCode(res.Driver.nationality)} />
                     {res.Driver.givenName} {res.Driver.familyName}
                   </td>

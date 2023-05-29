@@ -171,7 +171,7 @@ export default class TeamDetails extends React.Component {
             {this.state.someRaces.map((x) => (
               <tr key={x.round}>
                 <td>{x.round}</td>
-                <td className="flag-container">
+                <td>
                   {" "}
                   <Flag
                     country={this.getFlagCode(x.Circuit.Location.country)}
