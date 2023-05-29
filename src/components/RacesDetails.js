@@ -32,17 +32,6 @@ export default class RacesDetails extends React.Component {
     const url3 =
       "https://raw.githubusercontent.com/Dinuks/country-nationality-list/master/countries.json";
     const response3 = await axios.get(url3);
-    // var prvoVreme =
-    //   response4.data.MRData.RaceTable.Races[0].QualifyingResults[0].Q1;
-    // var drugoVreme =
-    //   response4.data.MRData.RaceTable.Races[0].QualifyingResults[0].Q2;
-    // var treceVreme =
-    //   response4.data.MRData.RaceTable.Races[0].QualifyingResults[0].Q3;
-    // var niz = [prvoVreme, drugoVreme, treceVreme];
-
-    // console.log("niz vremena", niz);
-    // var noviNiz = niz.sort();
-    // console.log("najkrace vreme ", noviNiz);
 
     this.setState({
       results: response.data.MRData.RaceTable.Races[0].Results,
@@ -54,11 +43,11 @@ export default class RacesDetails extends React.Component {
     console.log(response4.data.MRData.RaceTable.Races[0].QualifyingResults);
   };
 
-  sredjivanjeVremena = (raceQual) => {
-    let niz = [raceQual.Q1, raceQual.Q2, raceQual.Q3];
-    console.log("nisVRremena", niz);
-    let noviNiz = niz.sort();
-    return noviNiz[0];
+  TheBestTime = (raceQual) => {
+    let qual = [raceQual.Q1, raceQual.Q2, raceQual.Q3];
+
+    let newArray = qual.sort();
+    return newArray[0];
   };
 
   getFlagCode = (nationality) => {
@@ -134,7 +123,7 @@ export default class RacesDetails extends React.Component {
           <p>Date: {this.state.details.date}</p>
           <p>
             Full Report:{" "}
-            <a href={this.state.details.url} target="_blank" >
+            <a href={this.state.details.url} target="_blank">
               <OpenInNewIcon className="openNewTab" />
             </a>
           </p>
@@ -163,7 +152,7 @@ export default class RacesDetails extends React.Component {
                     {raceQual.Driver.givenName} {raceQual.Driver.familyName}
                   </td>
                   <td>{raceQual.Constructor.name}</td>
-                  <td>{this.sredjivanjeVremena(raceQual)}</td>
+                  <td>{this.TheBestTime(raceQual)}</td>
                 </tr>
               ))}
             </tbody>
