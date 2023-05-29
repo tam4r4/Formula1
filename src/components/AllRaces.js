@@ -7,7 +7,7 @@ import Flag from "react-flagkit";
 export default class AllRaces extends React.Component {
   state = {
     races: [],
-    flags: [],
+    flags: []
   };
 
   componentDidMount() {
@@ -58,12 +58,20 @@ export default class AllRaces extends React.Component {
   };
 
   render() {
+    if (this.state.loading) {
+      return (
+        <div className="kon-loader">
+          <Loader />;
+        </div>
+      )
+    }
+
     return (
-      <div className="wrapper">
+      <div className="main">
         <h1>Race calendar</h1>
         <table className="tab-container">
           <thead>
-            <tr>Race Calendar 2013</tr>
+            <td colSpan={5}>Race Calendar 2013</td>
             <tr>
               <th>Round</th>
               <th>Grand Prix</th>
@@ -77,7 +85,7 @@ export default class AllRaces extends React.Component {
             {this.state.races.map((race) => (
               <tr key={race.round}>
                 <td>{race.round}</td>
-                <td onClick={() => this.handleRaceDetails(race.round)}>
+                <td onClick={() => this.handleRaceDetails(race.round)} className="flag-container">
                   <Flag
                     country={this.getFlagCode(race.Circuit.Location.country)}
                   />

@@ -9,7 +9,7 @@ export default class DriverDetails extends React.Component {
     driverDetails: {},
     races: [],
     flags: [],
-    loading: true,
+    loading: true
   };
 
   componentDidMount() {
@@ -72,11 +72,11 @@ export default class DriverDetails extends React.Component {
         <div className="kon-loader">
           <Loader />;
         </div>
-      );
+      )
     }
     console.log(this.state.driverDetails);
     return (
-      <div className="wrapper">
+      <div className="main">
         {/* description list */}
         <dl className="details">
           <p>
@@ -89,14 +89,14 @@ export default class DriverDetails extends React.Component {
           <p>
             Biography:
             <a href={this.state.driverDetails.Driver?.url}>
-              <OpenInNewIcon />
+              <OpenInNewIcon className="openNewTab" />
             </a>
           </p>
         </dl>
 
-        <table className="tab-container">
+        <table className="tab-container details-tab-container">
           <thead>
-            <tr>Formula 1 2013 Results</tr>
+            <td colSpan={5}>Formula 1 2013 Results</td>
             <tr>
               <th>Round</th>
               <th>Grand Prix</th>
@@ -111,7 +111,7 @@ export default class DriverDetails extends React.Component {
               <tr key={d.round}>
                 <td>{d.round}</td>
                 <td>{d.raceName}</td>
-                <td> <Flag country={this.getFlagCode(d.Circuit.Location.country)} /> {d.raceName}</td>
+                <td className="flag-container"> <Flag country={this.getFlagCode(d.Circuit.Location.country)} />{d.raceName}</td>
                 <td>{d.Results[0].grid}</td>
                 <td>{d.Results[0].position}</td>
               </tr>

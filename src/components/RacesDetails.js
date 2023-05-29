@@ -10,7 +10,7 @@ export default class RacesDetails extends React.Component {
     details: {},
     flags: [],
     loading: true,
-    qualifiers: [],
+    qualifiers: []
   };
 
   componentDidMount() {
@@ -67,11 +67,12 @@ export default class RacesDetails extends React.Component {
         <div className="kon-loader">
           <Loader />;
         </div>
-      );
+      )
     }
 
     return (
-      <div className="wrapper">
+      <div className="main">
+
         <dl className="details">
           <p>{this.state.details.raceName}</p>
           <p>Country: {this.state.details.Circuit.Location.country}</p>
@@ -80,40 +81,15 @@ export default class RacesDetails extends React.Component {
           <p>
             Full Report:{" "}
             <a href={this.state.details.url}>
-              <OpenInNewIcon />
+              <OpenInNewIcon className="openNewTab" />
             </a>
           </p>
         </dl>
+
         <div>
-          <table className="tab-container">
+          <table className="tab-container qualify-tab-container">
             <thead>
-              <tr>Driver Results</tr>
-              <tr>
-                <th>Pos</th>
-                <th>Driver</th>
-                <th>Team</th>
-                <th>Result</th>
-              </tr>
-            </thead>
-            <tbody>
-              {this.state.results.map((res) => (
-                <tr key={res.position}>
-                  <td>{res.position}</td>
-                  <td>
-                    <Flag country={this.getFlagCode(res.Driver.nationality)} />
-                    {res.Driver.givenName} {res.Driver.familyName}
-                  </td>
-                  <td>{res.Constructor.name}</td>
-                  <td>{res.Time ? res.Time.time : null}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        <div>
-          <table className="tab-container">
-            <thead>
-              <tr>Qualifying Results</tr>
+              <td colSpan={4}>Qualifying Results</td>
               <tr>
                 <th>Pos</th>
                 <th>Driver</th>
@@ -121,6 +97,7 @@ export default class RacesDetails extends React.Component {
                 <th>Best Time</th>
               </tr>
             </thead>
+
             <tbody>
               {this.state.qualifiers.map((raceQual) => (
                 <tr key={raceQual.position}>
@@ -130,6 +107,36 @@ export default class RacesDetails extends React.Component {
                   </td>
                   <td>{raceQual.Constructor.name}</td>
                   <td>{raceQual.Q3}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <div>
+          <table className="tab-container results-tab-container">
+            <thead>
+              <td colSpan={5}>Driver Results</td>
+              <tr>
+                <th>Pos</th>
+                <th>Driver</th>
+                <th>Team</th>
+                <th>Result</th>
+                <th>Points</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {this.state.results.map((res) => (
+                <tr key={res.position}>
+                  <td>{res.position}</td>
+                  <td className="flag-container">
+                    <Flag country={this.getFlagCode(res.Driver.nationality)} />
+                    {res.Driver.givenName} {res.Driver.familyName}
+                  </td>
+                  <td>{res.Constructor.name}</td>
+                  <td>{res.Time ? res.Time.time : null}</td>
+                  <td>{res.points}</td>
                 </tr>
               ))}
             </tbody>

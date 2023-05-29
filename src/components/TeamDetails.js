@@ -11,7 +11,7 @@ export default class TeamDetails extends React.Component {
     flags: [],
     country: "",
     loading: true,
-    detalji: {},
+    detalji: {}
   };
 
   componentDidMount() {
@@ -89,11 +89,11 @@ export default class TeamDetails extends React.Component {
         <div className="kon-loader">
           <Loader />
         </div>
-      );
+      )
     }
 
     return (
-      <div className="wrapper">
+      <div className="main">
         <dl className="details">
           <p>{this.state.detalji.Constructor.name}</p>
           <p>Country: {this.state.detalji.Constructor.nationality}</p>
@@ -102,30 +102,30 @@ export default class TeamDetails extends React.Component {
           <p>
             Biography:
             <a href={this.state.detalji.Constructor.url}>
-              <OpenInNewIcon />
+              <OpenInNewIcon className="openNewTab" />
             </a>
           </p>
         </dl>
 
-        <table className="tab-container">
-          <tr>
-            <td>Formula 1 2013 Results</td>
-          </tr>
-          <div>
+        <table className="tab-container details-tab-container">
+          <thead>
             <tr>
-              <td>Round</td>
-              <td>Grand Prix</td>
-              <td> {this.state.vozaci[0].Driver.familyName} </td>
-              <td> {this.state.vozaci[1].Driver.familyName} </td>
-              <td>Points</td>
+              <td colSpan={5}>Formula 1 2013 Results</td>
             </tr>
-          </div>
+            <tr>
+              <th>Round</th>
+              <th>Grand Prix</th>
+              <th>{this.state.vozaci[0].Driver.familyName}</th>
+              <th>{this.state.vozaci[1].Driver.familyName}</th>
+              <th>Points</th>
+            </tr>
+          </thead>
 
           <tbody>
             {this.state.someRaces.map((x) => (
-              <tr>
+              <tr key={x.round}>
                 <td>{x.round}</td>
-                <td>
+                <td className="flag-container">
                   {" "}
                   <Flag
                     country={this.getFlagCode(x.Circuit.Location.country)}
@@ -135,8 +135,7 @@ export default class TeamDetails extends React.Component {
                 <td>{x.Results[0].position}</td>
                 <td>{x.Results[1].position}</td>
                 <td>
-                  {parseInt(x.Results[0].points) +
-                    parseInt(x.Results[1].points)}
+                  {parseInt(x.Results[0].points) + parseInt(x.Results[1].points)}
                 </td>
               </tr>
             ))}

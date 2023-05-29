@@ -9,33 +9,55 @@ import DriverDetails from "./components/DriverDetails";
 import RacesDetails from "./components/RacesDetails";
 
 export default class App extends React.Component {
+
   render() {
     return (
       <div>
         <Router history={history}>
-          <nav className="navBar">
-            <ul>
-              <li>
-                <Link to="/"><img src="/img/F1-logo.png"></img></Link>
-              </li>
-              <li>
-                <Link to="/drivers"><img src="/img/drivers.png"></img></Link>
-              </li>
-              <li>
-                <Link to="/teams"><img src="/img/teams.png"></img></Link>
-              </li>
-              <li>
-                <Link to="/races"><img src="/img/races.png"></img></Link>
-              </li>
-            </ul>
+          <ul>
+            <li className="logo-icon"><Link to="/"><img src="/img/F1_logo.png" width={200}></img></Link></li>
+          </ul>
+
+          <nav>
+            <div className="nav-icons-container">
+              <ul>
+                <li className="drivers">
+                  <img src="/img/drivers.png" alt="drivers" width={60} className="image"></img>
+                  <Link to="/drivers">
+                    <div className="overlay drivers">
+                      <div className="text">Drivers</div>
+                    </div>
+                  </Link>
+                </li>
+
+                <li className="teams">
+                  <img src="/img/teams.png" alt="teams" width={60} className="image"></img>
+                  <Link to="/teams">
+                    <div className="overlay teams">
+                      <div className="text">Teams</div>
+                    </div>
+                  </Link>
+                </li>
+
+                <li className="races">
+                  <img src="/img/races.png" alt="races" width={60} className="image"></img>
+                  <Link to="/races">
+                    <div className="overlay races">
+                      <div className="text">Races</div>
+                    </div>
+                  </Link>
+                </li>
+              </ul>
+            </div>
           </nav>
+
           <Switch>
             <Route path="/drivers" exact component={AllDrivers} />
-            <Route path="/drivers/:name" exact component={DriverDetails} />
+            <Route path="/driversDetails/:name" exact component={DriverDetails} />
             <Route path="/teams" exact component={AllTeams} />
             <Route path="/teamDetails/:name" exact component={TeamDetails} />
             <Route path="/races" exact component={AllRaces} />
-            <Route path="/races/:round" exact component={RacesDetails} />
+            <Route path="/racesDetails/:round" exact component={RacesDetails} />
           </Switch>
         </Router>
       </div>

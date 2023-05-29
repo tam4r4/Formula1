@@ -62,25 +62,26 @@ export default class AllTeams extends React.Component {
 
 
     render() {
-
         if (this.state.loading) {
-            return <div className="kon-loader">
-                <Loader />
-            </div>
-        }
+            return (
+              <div className="kon-loader">
+                <Loader />;
+              </div>
+            )
+          }
 
         return (
-            <div className="wrapper">
+            <div className="main">
                 <h1>Constructors Championship</h1>
                 <table className="tab-container">
                     <thead>
-                        <tr>Constructor Championship Standings - 2013</tr>
+                        <td colSpan={5}>Constructor Championship Standings - 2013</td>
                     </thead>
                     <tbody>
                         {this.state.teamStandings.map((x) => (
-                            <tr>
+                            <tr key={x.position}>
                                 <td> {x.position}</td>
-                                <td onClick={() => this.handleTeamDetails(x.Constructor.constructorId)}>
+                                <td onClick={() => this.handleTeamDetails(x.Constructor.constructorId)} className="flag-container">
                                     <Flag country={this.getFlagCode(x.Constructor.nationality)} /> {x.Constructor.name}
                                 </td>
                                 <td>

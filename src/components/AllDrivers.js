@@ -40,7 +40,7 @@ export default class AllDrivers extends React.Component {
 
 
   getFlagCode = (nationality) => {           //   prepisano iz RaceDetails
-    console.log("getFlagCode");
+   // console.log("getFlagCode");
 
     let zastava = this.state.flags.filter((x) => x.nationality === nationality);
     if (zastava.length) {
@@ -66,29 +66,33 @@ export default class AllDrivers extends React.Component {
         <div className="kon-loader">
           <Loader />
         </div>
-      );
+      )
     }
 
     return (
-      <div className="wrapper">
-        <h1>Drivers Championship</h1>
-        <table className="tab-container">
-          <thead>
-            <tr>Driver Championship Standings 2013</tr>
-          </thead>
-          <tbody>
-            {this.state.driverStandings.map((x) => (
-              <tr>
-                <td> {x.position}</td>
-                <td onClick={() => this.handleDriverDetails(x.Driver.driverId)} className="flag-td"> <Flag className="flag" country={this.getFlagCode(x.Driver.nationality)} />
-                 {x.Driver.givenName} {x.Driver.familyName}
-                </td>
-                <td>{x.Constructors[0].name}</td>
-                <td>{x.points}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      <div>
+        <div className="main">
+          <h1>Drivers Championship</h1>
+          <table className="tab-container">
+            <thead>
+              <td colSpan={4}>Driver Championship Standings 2013</td>
+            </thead>
+            <tbody>
+              {this.state.driverStandings.map((x) => (
+                <tr key={x.position}>
+                  <td> {x.position}</td>
+                  <td onClick={() => this.handleDriverDetails(x.Driver.driverId)} className="flag-container"> 
+                  <Flag country={this.getFlagCode(x.Driver.nationality)} />
+                    {x.Driver.givenName} {x.Driver.familyName}
+                  </td>
+                  <td>{x.Constructors[0].name}</td>
+                  <td>{x.points}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
       </div>
     );
   }
