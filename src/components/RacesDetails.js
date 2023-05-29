@@ -19,20 +19,18 @@ export default class RacesDetails extends React.Component {
 
   getAllRaces = async () => {
     const id = this.props.match.params.round;
-    //console.log(id);
+
     const url = `http://ergast.com/api/f1/2013/${id}/results.json`;
-    const response = await axios.get(url);
-    console.log(response.data.MRData.RaceTable.Races[0].Results);
     const url2 = `http://ergast.com/api/f1/2013/${id}/results/1.json`;
-    const response2 = await axios.get(url2);
-    console.log(response2.data.MRData.RaceTable.Races[0]);
+    const url3 = "https://raw.githubusercontent.com/Dinuks/country-nationality-list/master/countries.json";
     const url4 = `https://ergast.com/api/f1/2013/${id}/qualifying.json`;
-    const response4 = await axios.get(url4);
 
-    const url3 =
-      "https://raw.githubusercontent.com/Dinuks/country-nationality-list/master/countries.json";
+    const response = await axios.get(url);
+    const response2 = await axios.get(url2);
     const response3 = await axios.get(url3);
-
+    const response4 = await axios.get(url4);
+   
+    
     this.setState({
       results: response.data.MRData.RaceTable.Races[0].Results,
       details: response2.data.MRData.RaceTable.Races[0],

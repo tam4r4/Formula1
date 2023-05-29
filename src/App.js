@@ -17,14 +17,14 @@ export default class App extends React.Component {
       <div>
         <Router history={history}>
           <ul>
-            <li className="logo-icon"><Link to="/"><img src="/img/F1_logo.png" width={200}></img></Link></li>
+            <li className="logo-icon"><Link to="/"><img src="/img/F1_logo.png" width={200}/></Link></li>
           </ul>
 
           <nav>
             <div className="nav-icons-container">
               <ul>
                 <li className="drivers">
-                  <img src="/img/drivers.png" alt="drivers" width={60} className="image"></img>
+                  <img src="/img/drivers.png" alt="drivers" width={60} className="image"/>
                   <NavLink to="/drivers">
                     <div className="overlay drivers">
                       <div className="text">Drivers</div>
@@ -33,7 +33,7 @@ export default class App extends React.Component {
                 </li>
 
                 <li className="teams">
-                  <img src="/img/teams.png" alt="teams" width={60} className="image"></img>
+                  <img src="/img/teams.png" alt="teams" width={60} className="image"/>
                   <NavLink to="/teams">
                     <div className="overlay teams">
                       <div className="text">Teams</div>
@@ -42,7 +42,7 @@ export default class App extends React.Component {
                 </li>
 
                 <li className="races">
-                  <img src="/img/races.png" alt="races" width={60} className="image"></img>
+                  <img src="/img/races.png" alt="races" width={60} className="image"/>
                   <NavLink to="/races">
                     <div className="overlay races">
                       <div className="text">Races</div>
@@ -68,4 +68,3 @@ export default class App extends React.Component {
     );
   }
 }
-         //    <img src="/img/drivers.png"/>

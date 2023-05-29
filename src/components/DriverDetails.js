@@ -19,18 +19,13 @@ export default class DriverDetails extends React.Component {
   getDriverDetails = async () => {
     const id = this.props.match.params.name;
     const url = `https://ergast.com/api/f1/2013/drivers/${id}/driverStandings.json`;
-    console.log(url);
-    const response = await axios.get(url);
-    console.log(
-      response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings[0]
-    );
-
     const url2 = `http://ergast.com/api/f1/2013/drivers/${id}/results.json`;
-    const response2 = await axios.get(url2);
-    console.log(response2.data.MRData.RaceTable.Races);
-
     const url3 = "https://raw.githubusercontent.com/Dinuks/country-nationality-list/master/countries.json";
+    
+    const response = await axios.get(url);
+    const response2 = await axios.get(url2);
     const response3 = await axios.get(url3);
+
 
     this.setState({
       driverDetails:
