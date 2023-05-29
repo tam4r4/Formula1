@@ -147,7 +147,7 @@ export default class TeamDetails extends React.Component {
           <p>Points: {this.state.detalji.points}</p>
           <p>
             Biography:
-            <a href={this.state.detalji.Constructor.url}>
+            <a href={this.state.detalji.Constructor.url} target="_blank" >
               <OpenInNewIcon className="openNewTab" />
             </a>
           </p>
