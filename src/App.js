@@ -1,5 +1,5 @@
 import React from "react";
-import { Router, Switch, Route, Link } from "react-router-dom";
+import { Router, Switch, Route, Link, NavLink } from "react-router-dom";
 import history from "./history";
 import AllDrivers from "./components/AllDrivers";
 import AllTeams from "./components/AllTeams";
@@ -9,7 +9,6 @@ import DriverDetails from "./components/DriverDetails";
 import RacesDetails from "./components/RacesDetails";
  // import { Home } from "@mui/icons-material";
  import Home from "./components/Home";
- import { NavLink } from "react-router-dom";
 
 export default class App extends React.Component {
 
