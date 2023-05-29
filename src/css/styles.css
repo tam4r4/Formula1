@@ -174,8 +174,7 @@ h1 {
     width: 80px;
 }
 
-
 .team-image {
-    height: 100px;
+    height: auto;
     width: 100px;
 }

@@ -28,7 +28,7 @@ export default class AllRaces extends React.Component {
   };
 
   handleRaceDetails = (round) => {
-    const linkTo = "/races/" + round;
+    const linkTo = "/raceDetails/" + round;
     history.push(linkTo);
   };
 

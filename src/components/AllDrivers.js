@@ -34,7 +34,7 @@ export default class AllDrivers extends React.Component {
 
   handleDriverDetails = (name) => {
     //console.log(name);
-    const linkTo = "/drivers/" + name;
+    const linkTo = "/driverDetails/" + name;
     history.push(linkTo);
   };
 
