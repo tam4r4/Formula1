@@ -134,7 +134,7 @@ export default class RacesDetails extends React.Component {
           <p>Date: {this.state.details.date}</p>
           <p>
             Full Report:{" "}
-            <a href={this.state.details.url}>
+            <a href={this.state.details.url} target="_blank" >
               <OpenInNewIcon className="openNewTab" />
             </a>
           </p>
@@ -187,7 +187,7 @@ export default class RacesDetails extends React.Component {
               {this.state.results.map((res) => (
                 <tr key={res.position}>
                   <td>{res.position}</td>
-                  <td className="flag-container">
+                  <td>
                     <Flag country={this.getFlagCode(res.Driver.nationality)} />
                     {res.Driver.givenName} {res.Driver.familyName}
                   </td>

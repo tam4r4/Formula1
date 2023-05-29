@@ -147,7 +147,7 @@ export default class TeamDetails extends React.Component {
           <p>Points: {this.state.detalji.points}</p>
           <p>
             Biography:
-            <a href={this.state.detalji.Constructor.url}>
+            <a href={this.state.detalji.Constructor.url} target="_blank" >
               <OpenInNewIcon className="openNewTab" />
             </a>
           </p>
@@ -171,7 +171,7 @@ export default class TeamDetails extends React.Component {
             {this.state.someRaces.map((x) => (
               <tr key={x.round}>
                 <td>{x.round}</td>
-                <td className="flag-container">
+                <td>
                   {" "}
                   <Flag
                     country={this.getFlagCode(x.Circuit.Location.country)}
