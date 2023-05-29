@@ -19,7 +19,6 @@ export default class TeamDetails extends React.Component {
   }
 
   getTeamDetails = async () => {
-
     const id = this.props.match.params.name;
     const url = `http://ergast.com/api/f1/2013/constructors/${id}/results.json`;
     const url2 = "https://raw.githubusercontent.com/Dinuks/country-nationality-list/master/countries.json";
@@ -31,25 +30,18 @@ export default class TeamDetails extends React.Component {
     const response3 = await axios.get(url3);
     const response4 = await axios.get(url4);
 
-    console.log(
-      response4.data.MRData.StandingsTable.StandingsLists[0]
-        .ConstructorStandings[0]
-    );
-
     this.setState({
       someRaces: response.data.MRData.RaceTable.Races,
       flags: response2.data,
       drivers: response.data.MRData.RaceTable.Races[0].Results,
       country: response3.data,
       loading: false,
-      details:
-        response4.data.MRData.StandingsTable.StandingsLists[0]
-          .ConstructorStandings[0],
+      details: response4.data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings[0],
     });
   };
 
+
   getFlagCode = (nationality) => {
-    console.log("getFlagCode");
 
     let flag = this.state.flags.filter(
       (x) => x.en_short_name === nationality
@@ -68,7 +60,7 @@ export default class TeamDetails extends React.Component {
       }
     }
   };
- 
+
   getFlagCode2 = (nationality) => {
 
     let flag = this.state.flags.filter(
@@ -96,12 +88,8 @@ export default class TeamDetails extends React.Component {
   };
 
   getTeamImageCode = (teamName) => {
-    console.log("getTeamImageCode");
-
-    console.log("teamName", teamName);
-      var x = teamName.toLowerCase();
-      return "../img/" + x + ".png";
-  
+    var x = teamName.toLowerCase();
+    return "../img/" + x + ".png";
   }
 
   render() {
