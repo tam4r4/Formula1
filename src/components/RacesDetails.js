@@ -108,7 +108,7 @@ export default class RacesDetails extends React.Component {
           <p>Date: {this.state.details.date}</p>
           <p>
             Full Report:{" "}
-            <a href={this.state.details.url}>
+            <a href={this.state.details.url} target="_blank" >
               <OpenInNewIcon className="openNewTab" />
             </a>
           </p>
