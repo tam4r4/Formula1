@@ -10,7 +10,7 @@ export default class RacesDetails extends React.Component {
     details: {},
     flags: [],
     loading: true,
-    qualifiers: [],
+    qualifiers: []
   };
 
   componentDidMount() {
@@ -29,7 +29,7 @@ export default class RacesDetails extends React.Component {
     const response2 = await axios.get(url2);
     const response3 = await axios.get(url3);
     const response4 = await axios.get(url4);
-   
+
 
     this.setState({
       results: response.data.MRData.RaceTable.Races[0].Results,
@@ -38,7 +38,6 @@ export default class RacesDetails extends React.Component {
       loading: false,
       qualifiers: response4.data.MRData.RaceTable.Races[0].QualifyingResults,
     });
-    console.log(response4.data.MRData.RaceTable.Races[0].QualifyingResults);
   };
 
   TheBestTime = (raceQual) => {
@@ -49,11 +48,10 @@ export default class RacesDetails extends React.Component {
   };
 
   getFlagCode = (nationality) => {
-    console.log("getFlagCode");
 
-    let zastava = this.state.flags.filter((x) => x.nationality === nationality);
-    if (zastava.length) {
-      return zastava[0].alpha_2_code;
+    let flag = this.state.flags.filter((x) => x.nationality === nationality);
+    if (flag.length) {
+      return flag[0].alpha_2_code;
     } else {
       if (nationality === "British") {
         return "GB";
@@ -68,13 +66,12 @@ export default class RacesDetails extends React.Component {
   };
 
   getFlagCode2 = (nationality) => {
-    console.log("getFlagCode");
 
-    let zastava = this.state.flags.filter(
+    let flag = this.state.flags.filter(
       (x) => x.en_short_name === nationality
     );
-    if (zastava.length) {
-      return zastava[0].alpha_2_code;
+    if (flag.length) {
+      return flag[0].alpha_2_code;
     } else {
       if (nationality === "British") {
         return "GB";
@@ -109,8 +106,8 @@ export default class RacesDetails extends React.Component {
           <p>
             <Flag
               country={this.getFlagCode2(this.state.details.Circuit.Location.country)}
-              size={70} 
-              />
+              size={70}
+            />
           </p>
           <p className="details-name">{this.state.details.raceName}</p>
           <p>Country: {this.state.details.Circuit.Location.country}</p>
