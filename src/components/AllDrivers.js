@@ -16,13 +16,11 @@ export default class AllDrivers extends React.Component {
   }
 
   getDrivers = async () => {
-    const url = "https://ergast.com/api/f1/2013/driverStandings.json";
-    const response = await axios.get(url);
-    console.log(
-      response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings
-    );
-
+    // const url = "https://ergast.com/api/f1/2013/driverStandings.json";
+    const url = "https://raw.githubusercontent.com/nkezic/f1/main/AllDrivers";
     const url3 = "https://raw.githubusercontent.com/Dinuks/country-nationality-list/master/countries.json";
+
+    const response = await axios.get(url);
     const response3 = await axios.get(url3);
 
     this.setState({
@@ -37,7 +35,7 @@ export default class AllDrivers extends React.Component {
     history.push(linkTo);
   };
 
-  
+
   getFlagCode = (nationality) => {
     let flag = this.state.flags.filter((x) => x.nationality === nationality);
     if (flag.length) {
@@ -78,8 +76,11 @@ export default class AllDrivers extends React.Component {
               {this.state.driverStandings.map((x) => (
                 <tr key={x.position}>
                   <td> {x.position}</td>
-                  <td onClick={() => this.handleDriverDetails(x.Driver.driverId)} className="flag-container cursor"> 
-                  <Flag country={this.getFlagCode(x.Driver.nationality)} />
+                  <td onClick={() => this.handleDriverDetails(x.Driver.driverId)} className="flag-container cursor">
+                    <Flag
+                      country={this.getFlagCode(x.Driver.nationality)}
+                      className="flag-icon"
+                    />
                     {x.Driver.givenName} {x.Driver.familyName}
                   </td>
                   <td>{x.Constructors[0].name}</td>

@@ -21,7 +21,7 @@ export default class DriverDetails extends React.Component {
     const url = `https://ergast.com/api/f1/2013/drivers/${id}/driverStandings.json`;
     const url2 = `http://ergast.com/api/f1/2013/drivers/${id}/results.json`;
     const url3 = "https://raw.githubusercontent.com/Dinuks/country-nationality-list/master/countries.json";
-    
+
     const response = await axios.get(url);
     const response2 = await axios.get(url2);
     const response3 = await axios.get(url3);
@@ -124,13 +124,16 @@ export default class DriverDetails extends React.Component {
         </div>
       )
     }
-    
+
     return (
       <div className="main">
         <aside className="details">
           <img src={this.getImageCode(this.state.driverDetails.Driver.familyName)} alt="slika vozaca" className="img-drivers" />
-          <p> <Flag country={this.getFlagCode2(this.state.driverDetails.Driver.nationality)} /> </p>
-
+          <p>
+            <Flag
+              country={this.getFlagCode2(this.state.driverDetails.Driver.nationality)}
+            />
+          </p>
           <p className="details-name">
             {this.state.driverDetails.Driver?.givenName}<br></br>
             {this.state.driverDetails.Driver?.familyName}
@@ -163,12 +166,15 @@ export default class DriverDetails extends React.Component {
               <tr key={d.round}>
                 <td>{d.round}</td>
                 <td className="flag-container">
-                  <Flag country={this.getFlagCode(d.Circuit.Location.country)} />
+                  <Flag
+                    country={this.getFlagCode(d.Circuit.Location.country)}
+                    className="flag-icon"
+                  />
                   {d.raceName}
                 </td>
                 <td> {d.Results[0].Constructor.name}</td>
                 <td>{d.Results[0].grid}</td>
-                <td className={"position_" + d.Results[0].position } > {d.Results[0].position} </td>
+                <td className={"position_" + d.Results[0].position} > {d.Results[0].position} </td>
               </tr>
             ))}
           </tbody>

@@ -7,8 +7,8 @@ import AllRaces from "./components/AllRaces";
 import TeamDetails from "./components/TeamDetails";
 import DriverDetails from "./components/DriverDetails";
 import RacesDetails from "./components/RacesDetails";
- // import { Home } from "@mui/icons-material";
- import Home from "./components/Home";
+// import { Home } from "@mui/icons-material";
+import Home from "./components/Home";
 
 export default class App extends React.Component {
 
@@ -16,42 +16,33 @@ export default class App extends React.Component {
     return (
       <div>
         <Router history={history}>
-          <ul>
-            <li className="logo-icon"><Link to="/"><img src="/img/F1_logo.png" width={200}/></Link></li>
-          </ul>
+          <div>
+            <li className="logo-icon"><Link to="/"><img src="/img/F1_logo.png" width={200} /></Link></li>
+          </div>
 
-          <nav>
-            <div className="nav-icons-container">
-              <ul>
-                <li className="drivers">
-                  <img src="/img/drivers.png" alt="drivers" width={60} className="image"/>
-                  <NavLink to="/drivers">
-                    <div className="overlay drivers">
-                      <div className="text">Drivers</div>
-                    </div>
-                  </NavLink>
-                </li>
+          <nav className="nav-icons-container">
+            <div className="drivers-link">
+              <NavLink to="/drivers" exact activeClassName="active-link">
+                <Link>Drivers</Link>
+                <img src="/img/drivers.png" alt="Drivers" width={80} />
+              </NavLink>
+            </div>
 
-                <li className="teams">
-                  <img src="/img/teams.png" alt="teams" width={60} className="image"/>
-                  <NavLink to="/teams">
-                    <div className="overlay teams">
-                      <div className="text">Teams</div>
-                    </div>
-                  </NavLink>
-                </li>
+            <div className="teams-link">
+              <NavLink to="/teams" exact activeClassName="active-link">
+                <Link>Teams</Link>
+                <img src="/img/teams.png" alt="Teams" width={90} />
+              </NavLink>
+            </div>
 
-                <li className="races">
-                  <img src="/img/races.png" alt="races" width={60} className="image"/>
-                  <NavLink to="/races">
-                    <div className="overlay races">
-                      <div className="text">Races</div>
-                    </div>
-                  </NavLink>
-                </li>
-              </ul>
+            <div className="races-link">
+              <NavLink to="/races" exact activeClassName="active-link">
+                <Link>Races</Link>
+                <img src="/img/races.png" alt="Races" width={90} />
+              </NavLink>
             </div>
           </nav>
+
 
           <Switch>
             <Route path="/home" exact component={Home} />

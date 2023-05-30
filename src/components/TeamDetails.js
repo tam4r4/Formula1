@@ -103,6 +103,7 @@ export default class TeamDetails extends React.Component {
 
     return (
       <div className="main">
+
         <aside className="details">
           <img src={this.getTeamImageCode(this.state.details.Constructor.constructorId)} alt="Team picture" className="team-image" />
           <p><Flag country={this.getFlagCode2(this.state.details.Constructor.nationality)} /></p>
@@ -112,7 +113,7 @@ export default class TeamDetails extends React.Component {
           <p>Points: {this.state.details.points}</p>
           <p>Biography:
             <a href={this.state.details.Constructor.url} target="_blank">
-              <OpenInNewIcon className="openNewTab" />
+              <OpenInNewIcon className="open-new-tab-icon" />
             </a>
           </p>
         </aside>
@@ -136,11 +137,13 @@ export default class TeamDetails extends React.Component {
               <tr key={x.round}>
                 <td>{x.round}</td>
                 <td className="flag-container">
-                  <Flag country={this.getFlagCode(x.Circuit.Location.country)} />
+                  <Flag country={this.getFlagCode(x.Circuit.Location.country)}
+                    className="flag-icon"
+                  />
                   {x.raceName}
                 </td>
-                <td className={"position_" + x.Results[0].position }>{x.Results[0].position}</td>
-                <td className={"position_" + x.Results[1].position }>{x.Results[1].position}</td>
+                <td className={"position_" + x.Results[0].position}>{x.Results[0].position}</td>
+                <td className={"position_" + x.Results[1].position}>{x.Results[1].position}</td>
                 <td>
                   {parseInt(x.Results[0].points) + parseInt(x.Results[1].points)}
                 </td>

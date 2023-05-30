@@ -16,12 +16,13 @@ export default class AllRaces extends React.Component {
   }
 
   getAllRaces = async () => {
-    const url = "https://ergast.com/api/f1/2013/results/1.json";
+    // const url = "https://ergast.com/api/f1/2013/results/1.json";
+    const url = "https://raw.githubusercontent.com/nkezic/f1/main/AllRaces";
+    const url2 = "https://raw.githubusercontent.com/Dinuks/country-nationality-list/master/countries.json";
+
     const response = await axios.get(url);
-    console.log(response.data.MRData.RaceTable.Races);
-    const url2 =
-      "https://raw.githubusercontent.com/Dinuks/country-nationality-list/master/countries.json";
     const response2 = await axios.get(url2);
+
     this.setState({
       races: response.data.MRData.RaceTable.Races,
       flags: response2.data,
@@ -36,13 +37,11 @@ export default class AllRaces extends React.Component {
   getFlagCode = (nationality) => {
     console.log("getFlagCode");
 
-    //  console.log(country);
-
-    let zastava = this.state.flags.filter(
+    let flag = this.state.flags.filter(
       (x) => x.en_short_name === nationality
     );
-    if (zastava.length) {
-      return zastava[0].alpha_2_code;
+    if (flag.length) {
+      return flag[0].alpha_2_code;
     } else {
       if (nationality === "UK") {
         return "GB";
@@ -89,6 +88,7 @@ export default class AllRaces extends React.Component {
                 <td onClick={() => this.handleRaceDetails(race.round)} className="flag-container cursor">
                   <Flag
                     country={this.getFlagCode(race.Circuit.Location.country)}
+                    className="flag-icon"
                   />
                   {race.raceName}
                 </td>

@@ -3,6 +3,7 @@ import axios from "axios";
 import Loader from "./Loader";
 import history from "../history";
 import Flag from 'react-flagkit';
+import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 
 export default class AllTeams extends React.Component {
     state = {
@@ -16,16 +17,12 @@ export default class AllTeams extends React.Component {
     }
 
     getTeams = async () => {
-        const url = "http://ergast.com/api/f1/2013/constructorStandings.json";
-        const response = await axios.get(url);
-
+        // const url = "http://ergast.com/api/f1/2013/constructorStandings.json";
+        const url = "https://raw.githubusercontent.com/nkezic/f1/main/AllTeams";
         const url2 = "https://raw.githubusercontent.com/Dinuks/country-nationality-list/master/countries.json";
 
+        const response = await axios.get(url);
         const response2 = await axios.get(url2);
-
-
-        console.log("response2", response2);
-
 
         this.setState({
             teamStandings: response.data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings,
@@ -35,28 +32,22 @@ export default class AllTeams extends React.Component {
     }
 
     handleTeamDetails = (name) => {
-        console.log(name);
         const linkTo = "/teamDetails/" + name;
         history.push(linkTo);
     }
 
 
     getFlagCode = (nationality) => {
-
-        console.log("getFlagCode");
-
         // let nationality = this.state.teamStandings[1].Constructor.nationality;
 
-        let zastava = this.state.flags.filter(x => x.nationality === nationality);
-        if (zastava.length) {
-            return zastava[0].alpha_2_code;
+        let flag = this.state.flags.filter(x => x.nationality === nationality);
+        if (flag.length) {
+            return flag[0].alpha_2_code;
         } else {
             if (nationality === "British") {
                 return "GB";
             }
         }
-
-        //console.log("zastava", zastava);
     }
 
 
@@ -64,11 +55,11 @@ export default class AllTeams extends React.Component {
     render() {
         if (this.state.loading) {
             return (
-              <div className="kon-loader">
-                <Loader />
-              </div>
+                <div className="kon-loader">
+                    <Loader />
+                </div>
             )
-          }
+        }
 
         return (
             <div className="main">
@@ -82,10 +73,16 @@ export default class AllTeams extends React.Component {
                             <tr key={x.position}>
                                 <td> {x.position}</td>
                                 <td onClick={() => this.handleTeamDetails(x.Constructor.constructorId)} className="flag-container cursor">
-                                    <Flag country={this.getFlagCode(x.Constructor.nationality)} /> {x.Constructor.name}
+                                    <Flag
+                                        country={this.getFlagCode(x.Constructor.nationality)}
+                                        className="flag-icon"
+                                    />
+                                    {x.Constructor.name}
                                 </td>
                                 <td>
-                                    <a href={x.Constructor.url}>Details </a>
+                                    <a href={x.Constructor.url} className="new-tab-link cursor" target="_blank">Details
+                                        <OpenInNewIcon className="open-new-tab-icon" />
+                                    </a>
                                 </td>
                                 <td>{x.points}</td>
                             </tr>

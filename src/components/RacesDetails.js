@@ -40,7 +40,7 @@ export default class RacesDetails extends React.Component {
     });
   };
 
-  TheBestTime = (raceQual) => {
+  getBestTime = (raceQual) => {
     let qual = [raceQual.Q1, raceQual.Q2, raceQual.Q3];
 
     let newArray = qual.sort();
@@ -113,8 +113,7 @@ export default class RacesDetails extends React.Component {
           <p>Country: {this.state.details.Circuit.Location.country}</p>
           <p>Location: {this.state.details.Circuit.Location.locality}</p>
           <p>Date: {this.state.details.date}</p>
-          <p>
-            Full Report:{" "}
+          <p>Full Report:
             <a href={this.state.details.url} target="_blank">
               <OpenInNewIcon className="openNewTab" />
             </a>
@@ -140,11 +139,12 @@ export default class RacesDetails extends React.Component {
                   <td className="flag-container">
                     <Flag
                       country={this.getFlagCode(raceQual.Driver.nationality)}
-                    />{" "}
+                      className="flag-icon"
+                    />
                     {raceQual.Driver.givenName} {raceQual.Driver.familyName}
                   </td>
                   <td>{raceQual.Constructor.name}</td>
-                  <td>{this.TheBestTime(raceQual)}</td>
+                  <td>{this.getBestTime(raceQual)}</td>
                 </tr>
               ))}
             </tbody>
