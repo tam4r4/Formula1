@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link, NavLink } from "react-router-dom";
+import { Router, Switch, Route, Link, NavLink } from "react-router-dom";
 import history from "./history";
 import AllDrivers from "./components/AllDrivers";
 import AllTeams from "./components/AllTeams";
@@ -10,14 +10,16 @@ import RacesDetails from "./components/RacesDetails";
 import Home from "./components/Home";
 
 export default class App extends React.Component {
-
   render() {
-
     return (
       <div>
         <Router history={history}>
           <div>
-            <li className="logo-icon"><Link to="/"><img src="/img/F1_logo.png" width={200} /></Link></li>
+            <li className="logo-icon">
+              <Link to="/">
+                <img src="/img/F1_logo.png" width={200} />
+              </Link>
+            </li>
           </div>
 
           <nav className="nav-icons-container">
@@ -43,12 +45,15 @@ export default class App extends React.Component {
             </div>
           </nav>
 
-
           <Switch>
             <Route path="/home" exact component={Home} />
 
             <Route path="/drivers" exact component={AllDrivers} />
-            <Route path="/driverDetails/:name" exact component={DriverDetails} />
+            <Route
+              path="/driverDetails/:name"
+              exact
+              component={DriverDetails}
+            />
             <Route path="/teams" exact component={AllTeams} />
             <Route path="/teamDetails/:name" exact component={TeamDetails} />
             <Route path="/races" exact component={AllRaces} />

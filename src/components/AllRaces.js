@@ -8,17 +8,17 @@ export default class AllRaces extends React.Component {
   state = {
     races: [],
     flags: [],
-    loading: true
-  }
+    loading: true,
+  };
 
   componentDidMount() {
     this.getAllRaces();
   }
 
   getAllRaces = async () => {
-    // const url = "https://ergast.com/api/f1/2013/results/1.json";
-    const url = "https://raw.githubusercontent.com/nkezic/f1/main/AllRaces";
-    const url2 = "https://raw.githubusercontent.com/Dinuks/country-nationality-list/master/countries.json";
+    const url = "https://ergast.com/api/f1/2013/results/1.json";
+    const url2 =
+      "https://raw.githubusercontent.com/Dinuks/country-nationality-list/master/countries.json";
 
     const response = await axios.get(url);
     const response2 = await axios.get(url2);
@@ -26,21 +26,19 @@ export default class AllRaces extends React.Component {
     this.setState({
       races: response.data.MRData.RaceTable.Races,
       flags: response2.data,
-      loading: false
+      loading: false,
     });
-  }
+  };
 
   handleRaceDetails = (round) => {
     const linkTo = "/raceDetails/" + round;
     history.push(linkTo);
-  }
+  };
 
   getFlagCode = (nationality) => {
     console.log("getFlagCode");
 
-    let flag = this.state.flags.filter(
-      (x) => x.en_short_name === nationality
-    );
+    let flag = this.state.flags.filter((x) => x.en_short_name === nationality);
     if (flag.length) {
       return flag[0].alpha_2_code;
     } else {
@@ -55,7 +53,7 @@ export default class AllRaces extends React.Component {
       }
     }
     //  return zastava[0].alpha_2_code;
-  }
+  };
 
   render() {
     if (this.state.loading) {
@@ -63,7 +61,7 @@ export default class AllRaces extends React.Component {
         <div>
           <Loader />
         </div>
-      )
+      );
     }
 
     return (
@@ -85,7 +83,10 @@ export default class AllRaces extends React.Component {
             {this.state.races.map((race) => (
               <tr key={race.round}>
                 <td>{race.round}</td>
-                <td onClick={() => this.handleRaceDetails(race.round)} className="flag-container cursor">
+                <td
+                  onClick={() => this.handleRaceDetails(race.round)}
+                  className="flag-container cursor"
+                >
                   <Flag
                     country={this.getFlagCode(race.Circuit.Location.country)}
                     className="flag-icon"
