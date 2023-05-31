@@ -26,7 +26,7 @@ export default class AllDrivers extends React.Component {
     this.setState({
       driverStandings: response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings,
       flags: response3.data,
-      // loading: false
+      loading: false
     });
   }
 
