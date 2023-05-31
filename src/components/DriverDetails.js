@@ -33,9 +33,9 @@ export default class DriverDetails extends React.Component {
           .DriverStandings[0],
       races: response2.data.MRData.RaceTable.Races,
       flags: response3.data,
-      loading: false,
+      loading: false
     });
-  };
+  }
 
 
   getFlagCode = (nationality) => {
@@ -56,8 +56,7 @@ export default class DriverDetails extends React.Component {
         return "AE";
       }
     }
-
-  };
+  }
 
 
   getFlagCode2 = (nationality) => {
@@ -85,8 +84,7 @@ export default class DriverDetails extends React.Component {
         return "AE";
       }
     }
-
-  };
+  }
 
 
   getImageCode = (lastName) => {
@@ -110,16 +108,14 @@ export default class DriverDetails extends React.Component {
     if (x === "di resta") {
       x = "resta";
     }
-
     return "../img/" + x + ".jpg";
-
   }
 
 
   render() {
     if (this.state.loading) {
       return (
-        <div className="kon-loader">
+        <div>
           <Loader />
         </div>
       )

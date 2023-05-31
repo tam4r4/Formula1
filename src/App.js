@@ -1,13 +1,13 @@
 import React from "react";
 import { Router, Switch, Route, Link, NavLink } from "react-router-dom";
 import history from "./history";
+import Loader from "./components/Loader";
 import AllDrivers from "./components/AllDrivers";
 import AllTeams from "./components/AllTeams";
 import AllRaces from "./components/AllRaces";
 import TeamDetails from "./components/TeamDetails";
 import DriverDetails from "./components/DriverDetails";
 import RacesDetails from "./components/RacesDetails";
-// import { Home } from "@mui/icons-material";
 import Home from "./components/Home";
 
 export default class App extends React.Component {
@@ -15,6 +15,7 @@ export default class App extends React.Component {
   render() {
     return (
       <div>
+
         <Router history={history}>
           <div>
             <li className="logo-icon"><Link to="/"><img src="/img/F1_logo.png" width={200} /></Link></li>

@@ -16,8 +16,8 @@ export default class AllDrivers extends React.Component {
   }
 
   getDrivers = async () => {
-    // const url = "https://ergast.com/api/f1/2013/driverStandings.json";
-    const url = "https://raw.githubusercontent.com/nkezic/f1/main/AllDrivers";
+    const url = "https://ergast.com/api/f1/2013/driverStandings.json";
+    // const url = "https://raw.githubusercontent.com/nkezic/f1/main/AllDrivers";
     const url3 = "https://raw.githubusercontent.com/Dinuks/country-nationality-list/master/countries.json";
 
     const response = await axios.get(url);
@@ -33,7 +33,7 @@ export default class AllDrivers extends React.Component {
   handleDriverDetails = (name) => {
     const linkTo = "/driverDetails/" + name;
     history.push(linkTo);
-  };
+  }
 
 
   getFlagCode = (nationality) => {
@@ -51,14 +51,14 @@ export default class AllDrivers extends React.Component {
         return "AE";
       }
     }
-  };
+  }
 
 
 
   render() {
     if (this.state.loading) {
       return (
-        <div className="kon-loader">
+        <div>
           <Loader />
         </div>
       )
@@ -90,7 +90,6 @@ export default class AllDrivers extends React.Component {
             </tbody>
           </table>
         </div>
-
       </div>
     );
   }

@@ -2,22 +2,22 @@ import React from "react";
 import axios from "axios";
 import history from "../history";
 import Loader from "./Loader";
-import RacesDetails from "./RacesDetails";
 import Flag from "react-flagkit";
 
 export default class AllRaces extends React.Component {
   state = {
     races: [],
-    flags: []
-  };
+    flags: [],
+    loading: true
+  }
 
   componentDidMount() {
     this.getAllRaces();
   }
 
   getAllRaces = async () => {
-    // const url = "https://ergast.com/api/f1/2013/results/1.json";
-    const url = "https://raw.githubusercontent.com/nkezic/f1/main/AllRaces";
+    const url = "https://ergast.com/api/f1/2013/results/1.json";
+    // const url = "https://raw.githubusercontent.com/nkezic/f1/main/AllRaces";
     const url2 = "https://raw.githubusercontent.com/Dinuks/country-nationality-list/master/countries.json";
 
     const response = await axios.get(url);
@@ -26,13 +26,14 @@ export default class AllRaces extends React.Component {
     this.setState({
       races: response.data.MRData.RaceTable.Races,
       flags: response2.data,
+      loading: false
     });
-  };
+  }
 
   handleRaceDetails = (round) => {
     const linkTo = "/raceDetails/" + round;
     history.push(linkTo);
-  };
+  }
 
   getFlagCode = (nationality) => {
     console.log("getFlagCode");
@@ -53,14 +54,13 @@ export default class AllRaces extends React.Component {
         return "AE";
       }
     }
-
     //  return zastava[0].alpha_2_code;
-  };
+  }
 
   render() {
     if (this.state.loading) {
       return (
-        <div className="kon-loader">
+        <div>
           <Loader />
         </div>
       )

@@ -206,6 +206,10 @@ h1 {
     padding: 5px;
 }
 
+/* .new-tab-container {
+    text-align: justify;
+} */
+
 .img-drivers {
     height: auto;
     width: 100px;
@@ -216,9 +220,9 @@ h1 {
     width: 100px;
 }
 
-.kon-loader {
+.loader-container {
     height: 100vh;
-    background-color: rgb(255, 255, 205);
+    background-color: rgb(254, 254, 0);
     display: flex;
     justify-content: center;
     align-items: center;

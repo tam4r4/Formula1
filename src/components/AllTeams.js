@@ -17,8 +17,8 @@ export default class AllTeams extends React.Component {
     }
 
     getTeams = async () => {
-        // const url = "http://ergast.com/api/f1/2013/constructorStandings.json";
-        const url = "https://raw.githubusercontent.com/nkezic/f1/main/AllTeams";
+        const url = "http://ergast.com/api/f1/2013/constructorStandings.json";
+        // const url = "https://raw.githubusercontent.com/nkezic/f1/main/AllTeams";
         const url2 = "https://raw.githubusercontent.com/Dinuks/country-nationality-list/master/countries.json";
 
         const response = await axios.get(url);
@@ -51,11 +51,10 @@ export default class AllTeams extends React.Component {
     }
 
 
-
     render() {
         if (this.state.loading) {
             return (
-                <div className="kon-loader">
+                <div>
                     <Loader />
                 </div>
             )
@@ -79,7 +78,7 @@ export default class AllTeams extends React.Component {
                                     />
                                     {x.Constructor.name}
                                 </td>
-                                <td>
+                                <td className="new-tab-container">
                                     <a href={x.Constructor.url} className="new-tab-link cursor" target="_blank">Details
                                         <OpenInNewIcon className="open-new-tab-icon" />
                                     </a>
