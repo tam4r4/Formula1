@@ -16,8 +16,8 @@ export default class AllRaces extends React.Component {
   }
 
   getAllRaces = async () => {
-    const url = "https://ergast.com/api/f1/2013/results/1.json";
-    // const url = "https://raw.githubusercontent.com/nkezic/f1/main/AllRaces";
+    // const url = "https://ergast.com/api/f1/2013/results/1.json";
+    const url = "https://raw.githubusercontent.com/nkezic/f1/main/AllRaces";
     const url2 = "https://raw.githubusercontent.com/Dinuks/country-nationality-list/master/countries.json";
 
     const response = await axios.get(url);

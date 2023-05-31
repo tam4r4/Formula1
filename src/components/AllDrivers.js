@@ -16,8 +16,8 @@ export default class AllDrivers extends React.Component {
   }
 
   getDrivers = async () => {
-    const url = "https://ergast.com/api/f1/2013/driverStandings.json";
-    // const url = "https://raw.githubusercontent.com/nkezic/f1/main/AllDrivers";
+    // const url = "https://ergast.com/api/f1/2013/driverStandings.json";
+    const url = "https://raw.githubusercontent.com/nkezic/f1/main/AllDrivers";
     const url3 = "https://raw.githubusercontent.com/Dinuks/country-nationality-list/master/countries.json";
 
     const response = await axios.get(url);
@@ -26,7 +26,7 @@ export default class AllDrivers extends React.Component {
     this.setState({
       driverStandings: response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings,
       flags: response3.data,
-      loading: false
+      // loading: false
     });
   }
 

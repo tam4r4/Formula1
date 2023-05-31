@@ -20,9 +20,11 @@ export default class RacesDetails extends React.Component {
   getAllRaces = async () => {
     const id = this.props.match.params.round;
 
-    const url = `http://ergast.com/api/f1/2013/${id}/results.json`;
+    // const url = `http://ergast.com/api/f1/2013/${id}/results.json`;
+    const url = `https://raw.githubusercontent.com/nkezic/f1/main/Results`;
     const url2 = `http://ergast.com/api/f1/2013/${id}/results/1.json`;
     const url3 = "https://raw.githubusercontent.com/Dinuks/country-nationality-list/master/countries.json";
+    // const url4 = `https://ergast.com/api/f1/2013/${id}/qualifying.json`;
     const url4 = `https://ergast.com/api/f1/2013/${id}/qualifying.json`;
 
     const response = await axios.get(url);

@@ -31,7 +31,7 @@ body {
 .nav-icons-container .teams-link:hover,
 .nav-icons-container .races-link:hover {
     left: 0;
-    background-color: mediumseagreen;
+    background-color: black;
 }
 
 .drivers-link,
@@ -84,10 +84,9 @@ body {
 }
 
 .active-link {
-    background-color:blue;
+    background-color:mediumseagreen;
+    width: 310px;
     left: 0;
-    position: fixed;
-    overflow-x: hidden;
     border-radius: 0 10px 10px 0;
 }
 
@@ -221,8 +220,14 @@ h1 {
 }
 
 .loader-container {
+    position: absolute;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    right: 0;
     height: 100vh;
-    background-color: rgb(254, 254, 0);
+    background-color: rgb(241, 241, 241);
+    text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
