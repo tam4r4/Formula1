@@ -7,8 +7,8 @@ import AllRaces from "./components/AllRaces";
 import TeamDetails from "./components/TeamDetails";
 import DriverDetails from "./components/DriverDetails";
 import RacesDetails from "./components/RacesDetails";
- // import { Home } from "@mui/icons-material";
- import Home from "./components/Home";
+import Home from "./components/Home";
+import { YearProvider } from './context/YearContext';
 
 export default class App extends React.Component {
 
@@ -16,15 +16,16 @@ export default class App extends React.Component {
     return (
       <div>
         <Router history={history}>
+          <YearProvider>
           <ul>
-            <li className="logo-icon"><Link to="/"><img src="/img/F1_logo.png" width={200}/></Link></li>
+            <li className="logo-icon"><Link to="/"><img src="/img/F1_logo.png" width={200} /></Link></li>
           </ul>
 
           <nav>
             <div className="nav-icons-container">
               <ul>
                 <li className="drivers">
-                  <img src="/img/drivers.png" alt="drivers" width={60} className="image"/>
+                  <img src="/img/drivers.png" alt="drivers" width={60} className="image" />
                   <NavLink to="/drivers">
                     <div className="overlay drivers">
                       <div className="text">Drivers</div>
@@ -33,7 +34,7 @@ export default class App extends React.Component {
                 </li>
 
                 <li className="teams">
-                  <img src="/img/teams.png" alt="teams" width={60} className="image"/>
+                  <img src="/img/teams.png" alt="teams" width={60} className="image" />
                   <NavLink to="/teams">
                     <div className="overlay teams">
                       <div className="text">Teams</div>
@@ -42,7 +43,7 @@ export default class App extends React.Component {
                 </li>
 
                 <li className="races">
-                  <img src="/img/races.png" alt="races" width={60} className="image"/>
+                  <img src="/img/races.png" alt="races" width={60} className="image" />
                   <NavLink to="/races">
                     <div className="overlay races">
                       <div className="text">Races</div>
@@ -54,7 +55,7 @@ export default class App extends React.Component {
           </nav>
 
           <Switch>
-            <Route path="/home" exact component={Home} />
+            <Route path="/" exact component={Home} />
 
             <Route path="/drivers" exact component={AllDrivers} />
             <Route path="/driverDetails/:name" exact component={DriverDetails} />
@@ -63,6 +64,8 @@ export default class App extends React.Component {
             <Route path="/races" exact component={AllRaces} />
             <Route path="/raceDetails/:round" exact component={RacesDetails} />
           </Switch>
+
+          </YearProvider>
         </Router>
       </div>
     );

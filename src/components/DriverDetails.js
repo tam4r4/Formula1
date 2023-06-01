@@ -4,6 +4,8 @@ import Loader from "./Loader";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import Flag from "react-flagkit";
 
+import YearContext from "../context/YearContext";
+
 export default class DriverDetails extends React.Component {
   state = {
     driverDetails: {},
@@ -18,8 +20,18 @@ export default class DriverDetails extends React.Component {
 
   getDriverDetails = async () => {
     const id = this.props.match.params.name;
-    const url = `https://ergast.com/api/f1/2013/drivers/${id}/driverStandings.json`;
-    const url2 = `http://ergast.com/api/f1/2013/drivers/${id}/results.json`;
+
+    const year = this.context.year;
+
+    console.log("Prosledjena g. u DriverDetails: ", this.context.year);
+
+    const url = `https://ergast.com/api/f1/${year}/drivers/${id}/driverStandings.json`;
+   //   const url = "https://raw.githubusercontent.com/nkezic/f1/main/DriverDetails";
+
+    const url2 = `http://ergast.com/api/f1/${year}/drivers/${id}/results.json`;
+
+   // const url2 = "https://raw.githubusercontent.com/nkezic/f1/main/DriverDetails";
+
     const url3 = "https://raw.githubusercontent.com/Dinuks/country-nationality-list/master/countries.json";
     
     const response = await axios.get(url);
@@ -29,9 +41,9 @@ export default class DriverDetails extends React.Component {
 
     this.setState({
       driverDetails:
-        response.data.MRData.StandingsTable.StandingsLists[0]
-          .DriverStandings[0],
-      races: response2.data.MRData.RaceTable.Races,
+        response.data.MRData?.StandingsTable?.StandingsLists[0]
+          ?.DriverStandings[0],
+      races: response2.data?.MRData?.RaceTable?.Races,
       flags: response3.data,
       loading: false,
     });
@@ -40,7 +52,7 @@ export default class DriverDetails extends React.Component {
 
   getFlagCode = (nationality) => {
 
-    let flag = this.state.flags.filter(
+    let flag = this.state?.flags?.filter(
       (x) => x.en_short_name === nationality
     );
     if (flag.length) {
@@ -62,7 +74,7 @@ export default class DriverDetails extends React.Component {
 
   getFlagCode2 = (nationality) => {
 
-    let flag = this.state.flags.filter(
+    let flag = this.state?.flags?.filter(
       (x) => x.nationality === nationality
     );
     if (flag.length) {
@@ -128,19 +140,19 @@ export default class DriverDetails extends React.Component {
     return (
       <div className="main">
         <aside className="details">
-          <img src={this.getImageCode(this.state.driverDetails.Driver.familyName)} alt="slika vozaca" className="img-drivers" />
-          <p> <Flag country={this.getFlagCode2(this.state.driverDetails.Driver.nationality)} /> </p>
+          <img src={this.getImageCode(this.state?.driverDetails?.Driver?.familyName)} alt="driver picture" className="img-drivers" />
+          <p> <Flag country={this.getFlagCode2(this.state?.driverDetails?.Driver?.nationality)} /> </p>
 
           <p className="details-name">
-            {this.state.driverDetails.Driver?.givenName}<br></br>
-            {this.state.driverDetails.Driver?.familyName}
+            {this.state?.driverDetails?.Driver?.givenName}<br></br>
+            {this.state?.driverDetails.Driver?.familyName}
           </p>
-          <p>Country: {this.state.driverDetails.Driver?.nationality}</p>
-          <p>Team: {this.state.driverDetails.Constructors[0].name}</p>
-          <p>Birth: {this.state.driverDetails.Driver?.dateOfBirth}</p>
+          <p>Country: {this.state?.driverDetails?.Driver?.nationality}</p>
+          <p>Team: {this.state?.driverDetails?.Constructors[0]?.name}</p>
+          <p>Birth: {this.state?.driverDetails?.Driver?.dateOfBirth}</p>
           <p>
             Biography:
-            <a href={this.state.driverDetails.Driver?.url} target="_blank" >
+            <a href={this.state?.driverDetails?.Driver?.url} target="_blank" >
               <OpenInNewIcon className="openNewTab" />
             </a>
           </p>
@@ -148,7 +160,7 @@ export default class DriverDetails extends React.Component {
 
         <table className="tab-container details-tab-container">
           <thead>
-            <td colSpan={5}>Formula 1 2013 Results</td>
+            <td colSpan={5}>Formula 1 {this.context.year} Results</td>
             <tr>
               <th>Round</th>
               <th>Grand Prix</th>
@@ -159,16 +171,16 @@ export default class DriverDetails extends React.Component {
           </thead>
 
           <tbody>
-            {this.state.races.map((d) => (
-              <tr key={d.round}>
-                <td>{d.round}</td>
+            {this.state?.races?.map((d) => (
+              <tr key={d?.round}>
+                <td>{d?.round}</td>
                 <td className="flag-container">
-                  <Flag country={this.getFlagCode(d.Circuit.Location.country)} />
-                  {d.raceName}
+                  <Flag country={this.getFlagCode(d?.Circuit?.Location?.country)} />
+                  {d?.raceName}
                 </td>
-                <td> {d.Results[0].Constructor.name}</td>
+                <td> {d?.Results[0]?.Constructor?.name}</td>
                 <td>{d.Results[0].grid}</td>
-                <td className={"position_" + d.Results[0].position } > {d.Results[0].position} </td>
+                <td className={"position_" + d?.Results[0]?.position } > {d?.Results[0]?.position} </td>
               </tr>
             ))}
           </tbody>
@@ -178,6 +190,6 @@ export default class DriverDetails extends React.Component {
   }
 }
 
-
+  DriverDetails.contextType = YearContext;
 
 

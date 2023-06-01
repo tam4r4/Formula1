@@ -3,6 +3,7 @@ import axios from "axios";
 import Loader from "./Loader";
 import Flag from "react-flagkit";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
+import YearContext from "../context/YearContext";
 
 export default class RacesDetails extends React.Component {
   state = {
@@ -19,11 +20,15 @@ export default class RacesDetails extends React.Component {
 
   getAllRaces = async () => {
     const id = this.props.match.params.round;
+    let year = this.context.year;
 
-    const url = `http://ergast.com/api/f1/2013/${id}/results.json`;
-    const url2 = `http://ergast.com/api/f1/2013/${id}/results/1.json`;
+    console.log("Prosledjena godina u RacesDetails: " , year);
+
+
+    const url = `http://ergast.com/api/f1/${year}/${id}/results.json`;
+    const url2 = `http://ergast.com/api/f1/${year}/${id}/results/1.json`;
     const url3 = "https://raw.githubusercontent.com/Dinuks/country-nationality-list/master/countries.json";
-    const url4 = `https://ergast.com/api/f1/2013/${id}/qualifying.json`;
+    const url4 = `https://ergast.com/api/f1/${year}/${id}/qualifying.json`;
 
     const response = await axios.get(url);
     const response2 = await axios.get(url2);
@@ -32,11 +37,11 @@ export default class RacesDetails extends React.Component {
 
 
     this.setState({
-      results: response.data.MRData.RaceTable.Races[0].Results,
-      details: response2.data.MRData.RaceTable.Races[0],
+      results: response.data?.MRData?.RaceTable?.Races[0]?.Results,
+      details: response2.data?.MRData?.RaceTable?.Races[0],
       flags: response3.data,
       loading: false,
-      qualifiers: response4.data.MRData.RaceTable.Races[0].QualifyingResults,
+      qualifiers: response4.data?.MRData?.RaceTable?.Races[0]?.QualifyingResults,
     });
   };
 
@@ -105,14 +110,14 @@ export default class RacesDetails extends React.Component {
         <aside className="details race-details">
           <p>
             <Flag
-              country={this.getFlagCode2(this.state.details.Circuit.Location.country)}
+              country={this.getFlagCode2(this.state.details?.Circuit?.Location?.country)}
               size={70}
             />
           </p>
-          <p className="details-name">{this.state.details.raceName}</p>
-          <p>Country: {this.state.details.Circuit.Location.country}</p>
-          <p>Location: {this.state.details.Circuit.Location.locality}</p>
-          <p>Date: {this.state.details.date}</p>
+          <p className="details-name">{this.state.details?.raceName}</p>
+          <p>Country: {this.state.details?.Circuit?.Location?.country}</p>
+          <p>Location: {this.state.details?.Circuit?.Location?.locality}</p>
+          <p>Date: {this.state.details?.date}</p>
           <p>
             Full Report:{" "}
             <a href={this.state.details.url} target="_blank">
@@ -134,16 +139,16 @@ export default class RacesDetails extends React.Component {
             </thead>
 
             <tbody>
-              {this.state.qualifiers.map((raceQual) => (
-                <tr key={raceQual.position}>
+              {this.state?.qualifiers?.map((raceQual, i) => (
+                <tr key={i}>
                   <td>{raceQual.position}</td>
                   <td className="flag-container">
                     <Flag
-                      country={this.getFlagCode(raceQual.Driver.nationality)}
+                      country={this.getFlagCode(raceQual?.Driver?.nationality)}
                     />{" "}
-                    {raceQual.Driver.givenName} {raceQual.Driver.familyName}
+                    {raceQual?.Driver?.givenName} {raceQual?.Driver?.familyName}
                   </td>
-                  <td>{raceQual.Constructor.name}</td>
+                  <td>{raceQual?.Constructor?.name}</td>
                   <td>{this.TheBestTime(raceQual)}</td>
                 </tr>
               ))}
@@ -165,12 +170,12 @@ export default class RacesDetails extends React.Component {
             </thead>
 
             <tbody>
-              {this.state.results.map((res) => (
-                <tr key={res.position}>
+              {this.state.results.map((res, i) => (
+                <tr key={i}>
                   <td>{res.position}</td>
                   <td className="flag-container">
-                    <Flag country={this.getFlagCode(res.Driver.nationality)} />
-                    {res.Driver.givenName} {res.Driver.familyName}
+                    <Flag country={this.getFlagCode(res?.Driver?.nationality)} />
+                    {res?.Driver?.givenName} {res?.Driver?.familyName}
                   </td>
                   <td>{res.Constructor.name}</td>
                   <td>{res.Time ? res.Time.time : null}</td>
@@ -184,3 +189,5 @@ export default class RacesDetails extends React.Component {
     );
   }
 }
+
+RacesDetails.contextType = YearContext;

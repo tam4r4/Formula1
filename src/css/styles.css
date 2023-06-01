@@ -194,13 +194,16 @@ h1 {
 }
 
 .kon-loader {
-    height: 100vh;
+    min-height: 100vh;
+    width: 100%;
     background-color: rgb(255, 255, 205);
-    display: flex;
-    justify-content: center;
-    align-items: center;
     color: mediumseagreen;
-    size: 30px;
+    size: 80px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
 }
 
 
@@ -226,23 +229,23 @@ h1 {
 }
 
 .position_6 {
-    background-color: darkgray;
+    background-color: lightseagreen;
 }
 
 .position_7 {
-    background-color: darkgray;
+    background-color: lightseagreen;
 }
 
 .position_8 {
-    background-color: darkgray;
+    background-color: lightseagreen;
 }
 
 .position_9 {
-    background-color: darkgray;
+    background-color: lightpink;
 }
 
 .position_10 {
-    background-color: darkgray;
+    background-color: lightpink;
 }
 
 .position_11 {
@@ -295,5 +298,53 @@ h1 {
 
 .position_23 {
     background-color: darkgray;
+}
+
+.position_24 {
+    background-color: darkgray;
+}
+
+.position_25 {
+    background-color: darkgray;
+}
+
+.position_26 {
+    background-color: darkgray;
+}
+
+.position_27 {
+    background-color: darkgray;
+}
+
+.position_28 {
+    background-color: darkgray;
+}
+
+.position_29 {
+    background-color: darkgray;
+}
+
+.position_30 {
+    background-color: darkgray;
+}
+
+.position_31 {
+    background-color: darkgray;
+}
+
+
+.year-container {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.loader-container {
+
+    display:flex;
+    justify-content: center;
+    align-items: center;
 }
 

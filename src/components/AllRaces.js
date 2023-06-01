@@ -4,6 +4,7 @@ import history from "../history";
 import Loader from "./Loader";
 import RacesDetails from "./RacesDetails";
 import Flag from "react-flagkit";
+import YearContext from "../context/YearContext";
 
 export default class AllRaces extends React.Component {
   state = {
@@ -16,14 +17,20 @@ export default class AllRaces extends React.Component {
   }
 
   getAllRaces = async () => {
-    const url = "https://ergast.com/api/f1/2013/results/1.json";
+
+     let year = this.context.year;
+
+     console.log("Prosledjena godina u AllRaces: " , year);
+
+    const url = `https://ergast.com/api/f1/${year}/results/1.json`;
+
     const response = await axios.get(url);
     console.log(response.data.MRData.RaceTable.Races);
     const url2 =
       "https://raw.githubusercontent.com/Dinuks/country-nationality-list/master/countries.json";
     const response2 = await axios.get(url2);
     this.setState({
-      races: response.data.MRData.RaceTable.Races,
+      races: response.data?.MRData?.RaceTable?.Races,
       flags: response2.data,
     });
   };
@@ -35,8 +42,6 @@ export default class AllRaces extends React.Component {
 
   getFlagCode = (nationality) => {
     console.log("getFlagCode");
-
-    //  console.log(country);
 
     let zastava = this.state.flags.filter(
       (x) => x.en_short_name === nationality
@@ -54,8 +59,6 @@ export default class AllRaces extends React.Component {
         return "AE";
       }
     }
-
-    //  return zastava[0].alpha_2_code;
   };
 
   render() {
@@ -72,7 +75,7 @@ export default class AllRaces extends React.Component {
         <h1>RACE CALENDAR</h1>
         <table className="tab-container">
           <thead>
-            <td colSpan={5}>Race Calendar 2013</td>
+            <td colSpan={5}>Race Calendar {this.context.year} </td>
             <tr>
               <th>Round</th>
               <th>Grand Prix</th>
@@ -86,15 +89,15 @@ export default class AllRaces extends React.Component {
             {this.state.races.map((race) => (
               <tr key={race.round}>
                 <td>{race.round}</td>
-                <td onClick={() => this.handleRaceDetails(race.round)} className="flag-container cursor">
+                <td onClick={() => this.handleRaceDetails(race?.round)} className="flag-container cursor">
                   <Flag
-                    country={this.getFlagCode(race.Circuit.Location.country)}
+                    country={this.getFlagCode(race?.Circuit?.Location?.country)}
                   />
-                  {race.raceName}
+                  {race?.raceName}
                 </td>
-                <td>{race.Circuit.circuitName}</td>
-                <td>{race.date}</td>
-                <td>{race.Results[0].Driver.familyName}</td>
+                <td>{race?.Circuit?.circuitName}</td>
+                <td>{race?.date}</td>
+                <td>{race?.Results[0]?.Driver?.familyName}</td>
               </tr>
             ))}
           </tbody>
@@ -103,3 +106,5 @@ export default class AllRaces extends React.Component {
     );
   }
 }
+
+AllRaces.contextType = YearContext;

@@ -3,6 +3,7 @@ import axios from "axios";
 import Loader from "./Loader";
 import history from "../history";
 import Flag from 'react-flagkit';
+import YearContext from "../context/YearContext";
 
 export default class AllTeams extends React.Component {
     state = {
@@ -16,7 +17,14 @@ export default class AllTeams extends React.Component {
     }
 
     getTeams = async () => {
-        const url = "http://ergast.com/api/f1/2013/constructorStandings.json";
+
+        let year = this.context.year;
+
+        console.log("Prosledjena vrednost u AllTeams: ", this.context.year);
+
+        const url = `http://ergast.com/api/f1/${year}/constructorStandings.json`;
+
+    //   const url = "https://raw.githubusercontent.com/nkezic/f1/main/AllTeams";
         const response = await axios.get(url);
 
         const url2 = "https://raw.githubusercontent.com/Dinuks/country-nationality-list/master/countries.json";
@@ -28,7 +36,7 @@ export default class AllTeams extends React.Component {
 
 
         this.setState({
-            teamStandings: response.data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings,
+            teamStandings: response.data?.MRData?.StandingsTable?.StandingsLists[0]?.ConstructorStandings,
             flags: response2.data,
             loading: false
         });
@@ -45,8 +53,6 @@ export default class AllTeams extends React.Component {
 
         console.log("getFlagCode");
 
-        // let nationality = this.state.teamStandings[1].Constructor.nationality;
-
         let zastava = this.state.flags.filter(x => x.nationality === nationality);
         if (zastava.length) {
             return zastava[0].alpha_2_code;
@@ -55,10 +61,7 @@ export default class AllTeams extends React.Component {
                 return "GB";
             }
         }
-
-        //console.log("zastava", zastava);
     }
-
 
 
     render() {
@@ -75,19 +78,19 @@ export default class AllTeams extends React.Component {
                 <h1>CONSTRUCTORS CHAMPIONSHIP</h1>
                 <table className="tab-container">
                     <thead>
-                        <td colSpan={5}>Constructor Championship Standings - 2013</td>
+                        <td colSpan={5}>Constructor Championship Standings - {this.context.year}</td>
                     </thead>
                     <tbody>
-                        {this.state.teamStandings.map((x) => (
-                            <tr key={x.position}>
-                                <td> {x.position}</td>
-                                <td onClick={() => this.handleTeamDetails(x.Constructor.constructorId)} className="flag-container cursor">
-                                    <Flag country={this.getFlagCode(x.Constructor.nationality)} /> {x.Constructor.name}
+                        {this.state?.teamStandings?.map((x) => (
+                            <tr key={x?.position}>
+                                <td> {x?.position}</td>
+                                <td onClick={() => this.handleTeamDetails(x?.Constructor?.constructorId)} className="flag-container cursor">
+                                    <Flag country={this.getFlagCode(x?.Constructor?.nationality)} /> {x?.Constructor?.name}
                                 </td>
                                 <td>
-                                    <a href={x.Constructor.url}>Details </a>
+                                    <a href={x?.Constructor?.url}>Details </a>
                                 </td>
-                                <td>{x.points}</td>
+                                <td>{x?.points}</td>
                             </tr>
                         ))}
                     </tbody>
@@ -97,3 +100,5 @@ export default class AllTeams extends React.Component {
         );
     }
 }
+
+AllTeams.contextType = YearContext;
