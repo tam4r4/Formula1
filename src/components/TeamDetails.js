@@ -11,8 +11,8 @@ export default class TeamDetails extends React.Component {
     drivers: "",
     flags: [],
     country: "",
-    loading: true,
-    details: {}
+    details: {},
+    loading: true
   };
 
   componentDidMount() {
@@ -42,7 +42,7 @@ export default class TeamDetails extends React.Component {
       loading: false,
       details: response4.data?.MRData?.StandingsTable?.StandingsLists[0]?.ConstructorStandings[0],
     });
-  };
+  }
 
 
   getFlagCode = (nationality) => {
@@ -63,7 +63,7 @@ export default class TeamDetails extends React.Component {
         return "AE";
       }
     }
-  };
+  }
 
   getFlagCode2 = (nationality) => {
 
@@ -89,7 +89,7 @@ export default class TeamDetails extends React.Component {
         return "AE";
       }
     }
-  };
+  }
 
   getTeamImageCode = (teamName) => {
     var x = teamName.toLowerCase();
@@ -99,7 +99,7 @@ export default class TeamDetails extends React.Component {
   render() {
     if (this.state.loading) {
       return (
-        <div className="kon-loader">
+        <div>
           <Loader />
         </div>
       )
@@ -107,6 +107,7 @@ export default class TeamDetails extends React.Component {
 
     return (
       <div className="main">
+
         <aside className="details">
           <img src={this.getTeamImageCode(this.state?.details?.Constructor?.constructorId)} alt="Team picture" className="team-image" />
           <p><Flag country={this.getFlagCode2(this.state?.details?.Constructor?.nationality)} /></p>

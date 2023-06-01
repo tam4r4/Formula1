@@ -33,7 +33,7 @@ export default class DriverDetails extends React.Component {
    // const url2 = "https://raw.githubusercontent.com/nkezic/f1/main/DriverDetails";
 
     const url3 = "https://raw.githubusercontent.com/Dinuks/country-nationality-list/master/countries.json";
-    
+
     const response = await axios.get(url);
     const response2 = await axios.get(url2);
     const response3 = await axios.get(url3);
@@ -45,9 +45,9 @@ export default class DriverDetails extends React.Component {
           ?.DriverStandings[0],
       races: response2.data?.MRData?.RaceTable?.Races,
       flags: response3.data,
-      loading: false,
+      loading: false
     });
-  };
+  }
 
 
   getFlagCode = (nationality) => {
@@ -68,8 +68,7 @@ export default class DriverDetails extends React.Component {
         return "AE";
       }
     }
-
-  };
+  }
 
 
   getFlagCode2 = (nationality) => {
@@ -97,8 +96,7 @@ export default class DriverDetails extends React.Component {
         return "AE";
       }
     }
-
-  };
+  }
 
 
   getImageCode = (lastName) => {
@@ -122,21 +120,19 @@ export default class DriverDetails extends React.Component {
     if (x === "di resta") {
       x = "resta";
     }
-
     return "../img/" + x + ".jpg";
-
   }
 
 
   render() {
     if (this.state.loading) {
       return (
-        <div className="kon-loader">
+        <div>
           <Loader />
         </div>
       )
     }
-    
+
     return (
       <div className="main">
         <aside className="details">

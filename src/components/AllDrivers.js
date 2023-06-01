@@ -10,7 +10,7 @@ export default class AllDrivers extends React.Component {
   state = {
     driverStandings: [],
     flags: [],
-    loading: true
+    loading: true,
   };
 
   componentDidMount() {
@@ -27,26 +27,22 @@ export default class AllDrivers extends React.Component {
      const url = `https://ergast.com/api/f1/${year}/driverStandings.json`;
 
     const response = await axios.get(url);
-    console.log(
-      response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings
-    );
-
-    const url3 = "https://raw.githubusercontent.com/Dinuks/country-nationality-list/master/countries.json";
     const response3 = await axios.get(url3);
 
 
     this.setState({
       driverStandings: response.data?.MRData?.StandingsTable?.StandingsLists[0]?.DriverStandings,
       flags: response3.data,
-      loading: false
+      loading: false,
     });
-  }
+  };
 
   handleDriverDetails = (name) => {
 
     const linkTo = "/driverDetails/" + name;
     history.push(linkTo);
   };
+
 
 
   getFlagCode = (nationality) => {
@@ -65,8 +61,6 @@ export default class AllDrivers extends React.Component {
       }
     }
   };
-
-
 
   render() {
     
