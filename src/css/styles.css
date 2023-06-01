@@ -7,16 +7,12 @@ body {
   padding: 0;
   font-family: Arial, Helvetica, sans-serif;
   background-color: rgb(40, 40, 40);
-  /*background: url(./../../public/img/pexels-dimitrije-djekanovic-13857977.jpg) no-repeat center fixed;*/
   background: url(./../../public/img/trace-flag-w.png) no-repeat center fixed;
   background-size: cover;
 }
 
-/*---------------------------------- NAVBAR -----------------------------------*/
 
-.nav-icons-container .drivers-link,
-.nav-icons-container .teams-link,
-.nav-icons-container .races-link {
+.nav-icons-container {
   position: absolute;
   left: -180px;
   transition: 1s;
@@ -25,72 +21,70 @@ body {
   color: white;
   text-decoration: none;
   border-radius: 0 10px 10px 0;
+  margin-top: 100px;
 }
 
-.nav-icons-container .drivers-link:hover,
-.nav-icons-container .teams-link:hover,
-.nav-icons-container .races-link:hover {
+.nav-icons-container:hover {
   left: 0;
-  background-color: black;
 }
 
-.drivers-link,
-.teams-link,
-.races-link {
+.nav-icons-container ul {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: flex-end;
   padding: 0;
   margin: 0;
 }
 
-.drivers-link {
-  top: 220px;
-}
-
-.teams-link {
-  top: 345px;
-}
-
-.races-link {
-  top: 466px;
-}
-
-.nav-icons-container div a {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
 .logo-icon,
-.nav-icons-container div img,
-.nav-icons-container div a {
-  padding: 15px;
+.nav-icons-container ul li {
+  padding: 25px;
   list-style-type: none;
 }
 
-.nav-icons-container div img {
-  margin-left: 45px;
+.image {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
-.nav-icons-container .drivers-link img {
-  margin-left: 30px;
-}
-
-.nav-icons-container div a {
-  font-family: "Audiowide", sans-serif;
-  color: white;
-  font-size: 30px;
-  text-decoration: none;
-}
-
-.active-link {
-  background-color: mediumseagreen;
-  width: 310px;
+.overlay {
+  position: absolute;
   left: 0;
-  border-radius: 0 10px 10px 0;
+  width: 300px;
+  opacity: 0;
+  background-color: mediumseagreen;
 }
 
-/*----------------------------------- TABLES ----------------------------------*/
+.nav-icons-container ul li:hover .overlay {
+  opacity: 1;
+}
+
+.drivers {
+  top: 0;
+  height: 110px;
+}
+
+.teams {
+  top: 110px;
+  height: 109px;
+}
+
+.races {
+  bottom: 0;
+  height: 111px;
+}
+
+.text {
+  position: absolute;
+  color: white;
+  font-size: 40px;
+  top: 50%;
+  left: 50%;
+  text-align: center;
+  transform: translate(-50%, -50%);
+  font-family: "Audiowide", sans-serif;
+}
 
 .main {
   display: flex;
@@ -141,6 +135,7 @@ body {
   font-size: 25px;
 }
 
+
 .tab-container thead td {
   background-color: aliceblue;
   border-radius: 10px 10px 0 0;
@@ -172,42 +167,20 @@ h1 {
   font-family: "Audiowide", sans-serif;
 }
 
-.new-tab-link {
-  text-decoration: none;
-  color: black;
-}
-
-.new-tab-link:hover {
-  text-decoration: underline;
-  color: mediumseagreen;
-}
-
-.new-tab-link:visited {
-  background-color: red;
-}
-
-/*---------------------------------- ICONS ----------------------------------*/
-
-.cursor {
-  cursor: pointer;
-}
-
 .flag-container {
   display: flex;
   align-items: center;
 }
 
-.flag-icon {
-  margin-right: 10px;
+.cursor {
+  cursor: pointer;
 }
 
-.open-new-tab-icon {
-  padding: 5px;
+.openNewTab {
+  cursor: pointer;
+  color: white;
+  opacity: .4;
 }
-
-/* .new-tab-container {
-    text-align: justify;
-} */
 
 .img-drivers {
   height: auto;
@@ -220,17 +193,22 @@ h1 {
 }
 
 .kon-loader {
-    min-height: 100vh;
-    width: 100%;
-    background-color: rgb(255, 255, 205);
-    color: mediumseagreen;
-    size: 80px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 9999;
+  min-height: 100vh;
+  width: 100%;
+  background-color: rgb(255, 255, 205);
+  color: mediumseagreen;
+  size: 80px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+
 
 .position_1 {
   background-color: yellow;
@@ -253,23 +231,23 @@ h1 {
 }
 
 .position_6 {
-    background-color: lightseagreen;
+  background-color: lightseagreen;
 }
 
 .position_7 {
-    background-color: lightseagreen;
+  background-color: lightseagreen;
 }
 
 .position_8 {
-    background-color: lightseagreen;
+  background-color: lightseagreen;
 }
 
 .position_9 {
-    background-color: lightpink;
+  background-color: lightpink;
 }
 
 .position_10 {
-    background-color: lightpink;
+  background-color: lightpink;
 }
 
 .position_11 {
@@ -324,29 +302,48 @@ h1 {
   background-color: darkgray;
 }
 
-@media screen and (max-width: 780px) {
-  .main {
-    flex-direction: column;
-  }
-  .tab-container {
-    width: 100%;
-  }
-  .details {
-    flex-direction: column;
-    width: 100%;
-    text-align: center;
-  }
+.position_24 {
+  background-color: darkgray;
 }
-@media screen and (max-width: 580px) {
-  .main {
-    flex-direction: column;
-  }
-  .tab-container {
-    width: 100%;
-  }
-  .details {
-    flex-direction: column;
-    width: 100%;
-    text-align: center;
-  }
+
+.position_25 {
+  background-color: darkgray;
+}
+
+.position_26 {
+  background-color: darkgray;
+}
+
+.position_27 {
+  background-color: darkgray;
+}
+
+.position_28 {
+  background-color: darkgray;
+}
+
+.position_29 {
+  background-color: darkgray;
+}
+
+.position_30 {
+  background-color: darkgray;
+}
+
+.position_31 {
+  background-color: darkgray;
+}
+
+
+.year-container {
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.select-container {
+
+  margin: 8px;
 }

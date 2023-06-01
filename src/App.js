@@ -11,6 +11,7 @@ import Home from "./components/Home";
 import { YearProvider } from './context/YearContext';
 
 export default class App extends React.Component {
+
   render() {
     return (
       <div>
@@ -57,11 +58,7 @@ export default class App extends React.Component {
             <Route path="/" exact component={Home} />
 
             <Route path="/drivers" exact component={AllDrivers} />
-            <Route
-              path="/driverDetails/:name"
-              exact
-              component={DriverDetails}
-            />
+            <Route path="/driverDetails/:name" exact component={DriverDetails} />
             <Route path="/teams" exact component={AllTeams} />
             <Route path="/teamDetails/:name" exact component={TeamDetails} />
             <Route path="/races" exact component={AllRaces} />
@@ -74,3 +71,4 @@ export default class App extends React.Component {
     );
   }
 }
+

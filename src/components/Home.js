@@ -1,6 +1,5 @@
 import React from "react";
 import history from "../history";
-import AllDrivers from "./AllDrivers";
 
 import YearContext from "../context/YearContext";
 
@@ -48,12 +47,9 @@ export default class Home extends React.Component {
 
                  <h2>Select year: </h2>
 
-                <select size="4" id="dropdown" onChange={this.handleChange} >
-                 
+                <select size="4" id="dropdown" onChange={this.handleChange} className="select-container" >
                     {this.handleYears()}
                 </select>
- 
-               {/* <input type="button" value="Click to confirm year" onClick={() => this.handleSomeYear(this.state.year)} /> */}
   
             </div>
         );

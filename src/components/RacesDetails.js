@@ -10,8 +10,8 @@ export default class RacesDetails extends React.Component {
     results: [],
     details: {},
     flags: [],
-    qualifiers: [],
-    loading: true
+    loading: true,
+    qualifiers: []
   };
 
   componentDidMount() {
@@ -43,14 +43,14 @@ export default class RacesDetails extends React.Component {
       loading: false,
       qualifiers: response4.data?.MRData?.RaceTable?.Races[0]?.QualifyingResults,
     });
-  }
+  };
 
-  getBestTime = (raceQual) => {
+  TheBestTime = (raceQual) => {
     let qual = [raceQual.Q1, raceQual.Q2, raceQual.Q3];
 
     let newArray = qual.sort();
     return newArray[0];
-  }
+  };
 
   getFlagCode = (nationality) => {
 
@@ -68,7 +68,7 @@ export default class RacesDetails extends React.Component {
         return "AE";
       }
     }
-  }
+  };
 
   getFlagCode2 = (nationality) => {
 
@@ -94,12 +94,12 @@ export default class RacesDetails extends React.Component {
         return "AE";
       }
     }
-  }
+  };
 
   render() {
     if (this.state.loading) {
       return (
-        <div>
+        <div className="kon-loader">
           <Loader />
         </div>
       );

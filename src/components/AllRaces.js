@@ -2,14 +2,14 @@ import React from "react";
 import axios from "axios";
 import history from "../history";
 import Loader from "./Loader";
+import RacesDetails from "./RacesDetails";
 import Flag from "react-flagkit";
 import YearContext from "../context/YearContext";
 
 export default class AllRaces extends React.Component {
   state = {
     races: [],
-    flags: [],
-    loading: true,
+    flags: []
   };
 
   componentDidMount() {
@@ -28,13 +28,10 @@ export default class AllRaces extends React.Component {
     console.log(response.data.MRData.RaceTable.Races);
     const url2 =
       "https://raw.githubusercontent.com/Dinuks/country-nationality-list/master/countries.json";
-
     const response2 = await axios.get(url2);
-
     this.setState({
       races: response.data?.MRData?.RaceTable?.Races,
       flags: response2.data,
-      loading: false,
     });
   };
 
@@ -46,9 +43,11 @@ export default class AllRaces extends React.Component {
   getFlagCode = (nationality) => {
     console.log("getFlagCode");
 
-    let flag = this.state.flags.filter((x) => x.en_short_name === nationality);
-    if (flag.length) {
-      return flag[0].alpha_2_code;
+    let zastava = this.state.flags.filter(
+      (x) => x.en_short_name === nationality
+    );
+    if (zastava.length) {
+      return zastava[0].alpha_2_code;
     } else {
       if (nationality === "UK") {
         return "GB";
@@ -65,10 +64,10 @@ export default class AllRaces extends React.Component {
   render() {
     if (this.state.loading) {
       return (
-        <div>
+        <div className="kon-loader">
           <Loader />
         </div>
-      );
+      )
     }
 
     return (
