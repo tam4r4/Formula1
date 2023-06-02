@@ -74,6 +74,8 @@ export default class AllDrivers extends React.Component {
 
     return (
       <div>
+
+  
         <div>
           <Breadcrumbs routes={routes} />
         </div>
@@ -89,7 +91,9 @@ export default class AllDrivers extends React.Component {
                 <tr key={x?.position}>
                   <td> {x?.position}</td>
                   <td onClick={() => this.handleDriverDetails(x?.Driver?.driverId)} className="flag-container cursor">
-                    <Flag country={this.getFlagCode(x?.Driver?.nationality)} />
+                    <Flag country={this.getFlagCode(x?.Driver?.nationality)}
+                      className="flag-icon"
+                    />
                     {x?.Driver?.givenName} {x?.Driver?.familyName}
                   </td>
                   <td>{x?.Constructors[0]?.name}</td>

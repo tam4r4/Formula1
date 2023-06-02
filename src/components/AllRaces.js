@@ -27,7 +27,7 @@ export default class AllRaces extends React.Component {
     
     this.setState({
       races: response.data?.MRData?.RaceTable?.Races,
-      flags: response2.data,
+      flags: response2.data
     });
   }
 

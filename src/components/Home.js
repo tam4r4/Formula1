@@ -32,7 +32,7 @@ export default class Home extends React.Component {
     render() {
         return (
             <div className="year-container">
-                <h2>Select year: </h2>
+                <h2>SELECT YEAR </h2>
                 <select size="4" id="dropdown" onChange={this.handleChange} className="select-container" >
                     {this.handleYears()}
                 </select>
