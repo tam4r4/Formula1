@@ -10,7 +10,7 @@ export default class AllRaces extends React.Component {
   state = {
     races: [],
     flags: [],
-    loading: true
+    loading: true,
   };
 
   componentDidMount() {
@@ -20,21 +20,23 @@ export default class AllRaces extends React.Component {
   getAllRaces = async () => {
     let year = this.context.year;
     const url = `https://ergast.com/api/f1/${year}/results/1.json`;
-    const url2 = "https://raw.githubusercontent.com/Dinuks/country-nationality-list/master/countries.json";
+    const url2 =
+      "https://raw.githubusercontent.com/Dinuks/country-nationality-list/master/countries.json";
 
     const response = await axios.get(url);
     const response2 = await axios.get(url2);
-    
+
     this.setState({
       races: response.data?.MRData?.RaceTable?.Races,
-      flags: response2.data
+      flags: response2.data,
+      loading: false,
     });
-  }
+  };
 
   handleRaceDetails = (round) => {
     const linkTo = "/raceDetails/" + round;
     history.push(linkTo);
-  }
+  };
 
   getFlagCode = (nationality) => {
     let zastava = this.state.flags.filter(
@@ -53,7 +55,7 @@ export default class AllRaces extends React.Component {
         return "AE";
       }
     }
-  }
+  };
 
   render() {
     if (this.state.loading) {
@@ -61,16 +63,15 @@ export default class AllRaces extends React.Component {
         <div>
           <Loader />
         </div>
-      )
+      );
     }
 
-    const routes =
-      [
-        {
-          path: "/races",
-          title: "Races"
-        }
-      ];
+    const routes = [
+      {
+        path: "/races",
+        title: "Races",
+      },
+    ];
 
     return (
       <div>
@@ -96,11 +97,16 @@ export default class AllRaces extends React.Component {
               {this.state.races.map((race) => (
                 <tr key={race.round}>
                   <td>{race.round}</td>
-                  <td onClick={() => this.handleRaceDetails(race?.round)} className="flag-container cursor">
+                  <td
+                    onClick={() => this.handleRaceDetails(race?.round)}
+                    className="flag-container cursor"
+                  >
                     <Flag
-                      country={this.getFlagCode(race?.Circuit?.Location?.country)}
+                      country={this.getFlagCode(
+                        race?.Circuit?.Location?.country
+                      )}
                       className="flag-icon"
-                      />
+                    />
                     {race?.raceName}
                   </td>
                   <td>{race?.Circuit?.circuitName}</td>
