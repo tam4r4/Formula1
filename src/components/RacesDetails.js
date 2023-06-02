@@ -22,9 +22,6 @@ export default class RacesDetails extends React.Component {
     const id = this.props.match.params.round;
     let year = this.context.year;
 
-    console.log("Prosledjena godina u RacesDetails: " , year);
-
-
     const url = `http://ergast.com/api/f1/${year}/${id}/results.json`;
     const url2 = `http://ergast.com/api/f1/${year}/${id}/results/1.json`;
     const url3 = "https://raw.githubusercontent.com/Dinuks/country-nationality-list/master/countries.json";
@@ -45,7 +42,7 @@ export default class RacesDetails extends React.Component {
     });
   };
 
-  TheBestTime = (raceQual) => {
+  getBestTime = (raceQual) => {
     let qual = [raceQual.Q1, raceQual.Q2, raceQual.Q3];
 
     let newArray = qual.sort();
@@ -149,7 +146,7 @@ export default class RacesDetails extends React.Component {
                     {raceQual?.Driver?.givenName} {raceQual?.Driver?.familyName}
                   </td>
                   <td>{raceQual?.Constructor?.name}</td>
-                  <td>{this.TheBestTime(raceQual)}</td>
+                  <td>{this.getBestTime(raceQual)}</td>
                 </tr>
               ))}
             </tbody>

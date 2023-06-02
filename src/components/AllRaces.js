@@ -18,16 +18,12 @@ export default class AllRaces extends React.Component {
 
   getAllRaces = async () => {
 
-     let year = this.context.year;
-
-     console.log("Prosledjena godina u AllRaces: " , year);
+    let year = this.context.year;
 
     const url = `https://ergast.com/api/f1/${year}/results/1.json`;
+    const url2 = "https://raw.githubusercontent.com/Dinuks/country-nationality-list/master/countries.json";
 
     const response = await axios.get(url);
-    console.log(response.data.MRData.RaceTable.Races);
-    const url2 =
-      "https://raw.githubusercontent.com/Dinuks/country-nationality-list/master/countries.json";
     const response2 = await axios.get(url2);
     this.setState({
       races: response.data?.MRData?.RaceTable?.Races,
@@ -41,7 +37,6 @@ export default class AllRaces extends React.Component {
   };
 
   getFlagCode = (nationality) => {
-    console.log("getFlagCode");
 
     let zastava = this.state.flags.filter(
       (x) => x.en_short_name === nationality

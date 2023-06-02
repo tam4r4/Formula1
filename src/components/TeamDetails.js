@@ -40,7 +40,7 @@ export default class TeamDetails extends React.Component {
       drivers: response.data?.MRData?.RaceTable?.Races[0]?.Results,
       country: response3.data,
       loading: false,
-      details: response4.data?.MRData?.StandingsTable?.StandingsLists[0]?.ConstructorStandings[0],
+      details: response4.data?.MRData?.StandingsTable?.StandingsLists[0]?.ConstructorStandings[0]
     });
   };
 
@@ -143,8 +143,8 @@ export default class TeamDetails extends React.Component {
                   <Flag country={this.getFlagCode(x?.Circuit?.Location?.country)} />
                   {x?.raceName}
                 </td>
-                <td className={"position_" + x?.Results[0]?.position }>{x?.Results[0]?.position}</td>
-                <td className={"position_" + x?.Results[1]?.position }>{x?.Results[1]?.position}</td>
+                <td className={"position_" + x?.Results[0]?.position}>{x?.Results[0]?.position}</td>
+                <td className={"position_" + x?.Results[1]?.position}>{x?.Results[1]?.position}</td>
                 <td>
                   {parseInt(x?.Results[0]?.points) + parseInt(x?.Results[1]?.points)}
                 </td>

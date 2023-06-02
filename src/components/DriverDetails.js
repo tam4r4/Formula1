@@ -3,7 +3,6 @@ import axios from "axios";
 import Loader from "./Loader";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import Flag from "react-flagkit";
-
 import YearContext from "../context/YearContext";
 
 export default class DriverDetails extends React.Component {
@@ -20,29 +19,19 @@ export default class DriverDetails extends React.Component {
 
   getDriverDetails = async () => {
     const id = this.props.match.params.name;
-
     const year = this.context.year;
 
-    console.log("Prosledjena g. u DriverDetails: ", this.context.year);
-
     const url = `https://ergast.com/api/f1/${year}/drivers/${id}/driverStandings.json`;
-   //   const url = "https://raw.githubusercontent.com/nkezic/f1/main/DriverDetails";
-
     const url2 = `http://ergast.com/api/f1/${year}/drivers/${id}/results.json`;
-
-   // const url2 = "https://raw.githubusercontent.com/nkezic/f1/main/DriverDetails";
-
     const url3 = "https://raw.githubusercontent.com/Dinuks/country-nationality-list/master/countries.json";
-    
+
     const response = await axios.get(url);
     const response2 = await axios.get(url2);
     const response3 = await axios.get(url3);
 
 
     this.setState({
-      driverDetails:
-        response.data.MRData?.StandingsTable?.StandingsLists[0]
-          ?.DriverStandings[0],
+      driverDetails: response.data.MRData?.StandingsTable?.StandingsLists[0]?.DriverStandings[0],
       races: response2.data?.MRData?.RaceTable?.Races,
       flags: response3.data,
       loading: false,
@@ -136,7 +125,7 @@ export default class DriverDetails extends React.Component {
         </div>
       )
     }
-    
+
     return (
       <div className="main">
         <aside className="details">
@@ -180,7 +169,7 @@ export default class DriverDetails extends React.Component {
                 </td>
                 <td> {d?.Results[0]?.Constructor?.name}</td>
                 <td>{d.Results[0].grid}</td>
-                <td className={"position_" + d?.Results[0]?.position } > {d?.Results[0]?.position} </td>
+                <td className={"position_" + d?.Results[0]?.position} > {d?.Results[0]?.position} </td>
               </tr>
             ))}
           </tbody>
@@ -190,4 +179,4 @@ export default class DriverDetails extends React.Component {
   }
 }
 
-  DriverDetails.contextType = YearContext;
+DriverDetails.contextType = YearContext;

@@ -12,8 +12,6 @@ export default class Home extends React.Component {
 
     handleChange = (e) => {
 
-        console.log("handleChange method");
-
         this.setState({
             year: e.target.value
         });
@@ -30,11 +28,9 @@ export default class Home extends React.Component {
 
     handleYears = () => {
 
-        console.log("handleYears");
-
-        let items = [];         
-        for (let i = 1950; i <= 2022; i++) {             
-             items.push(<option key={i} value={i}>{i}</option>);       
+        let items = [];
+        for (let i = 1950; i <= 2022; i++) {
+            items.push(<option key={i} value={i}>{i}</option>);
         }
         return items;
     }
@@ -45,29 +41,15 @@ export default class Home extends React.Component {
         return (
             <div className="year-container">
 
-                 <h2>Select year: </h2>
-
+                <h2>Select year: </h2>
                 <select size="4" id="dropdown" onChange={this.handleChange} className="select-container" >
                     {this.handleYears()}
                 </select>
-  
+
             </div>
         );
     }
 }
 
- Home.contextType = YearContext;
+Home.contextType = YearContext;
 
-
-
-// updateContext = () => {
-//     console.log(this.context);
-//     this.context.updateYear("1984");
-//   }
-
-//   handleChangeSelectYear = (e) => {
-//     this.setState({
-//       selectedYear: e.target.value
-//     });
-//     this.context.updateYear(e.target.value);
-//   }

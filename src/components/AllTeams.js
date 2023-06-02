@@ -20,20 +20,11 @@ export default class AllTeams extends React.Component {
 
         let year = this.context.year;
 
-        console.log("Prosledjena vrednost u AllTeams: ", this.context.year);
-
         const url = `http://ergast.com/api/f1/${year}/constructorStandings.json`;
-
-    //   const url = "https://raw.githubusercontent.com/nkezic/f1/main/AllTeams";
-        const response = await axios.get(url);
-
         const url2 = "https://raw.githubusercontent.com/Dinuks/country-nationality-list/master/countries.json";
 
+        const response = await axios.get(url);
         const response2 = await axios.get(url2);
-
-
-        console.log("response2", response2);
-
 
         this.setState({
             teamStandings: response.data?.MRData?.StandingsTable?.StandingsLists[0]?.ConstructorStandings,
@@ -43,15 +34,13 @@ export default class AllTeams extends React.Component {
     }
 
     handleTeamDetails = (name) => {
-        console.log(name);
+
         const linkTo = "/teamDetails/" + name;
         history.push(linkTo);
     }
 
 
     getFlagCode = (nationality) => {
-
-        console.log("getFlagCode");
 
         let zastava = this.state.flags.filter(x => x.nationality === nationality);
         if (zastava.length) {
@@ -67,11 +56,11 @@ export default class AllTeams extends React.Component {
     render() {
         if (this.state.loading) {
             return (
-              <div className="kon-loader">
-                <Loader />
-              </div>
+                <div className="kon-loader">
+                    <Loader />
+                </div>
             )
-          }
+        }
 
         return (
             <div className="main">
