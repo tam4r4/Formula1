@@ -12,8 +12,8 @@ export default class TeamDetails extends React.Component {
     drivers: "",
     flags: [],
     country: "",
-    loading: true,
-    details: {}
+    details: {},
+    loading: true
   };
 
   componentDidMount() {
@@ -22,7 +22,6 @@ export default class TeamDetails extends React.Component {
 
   getTeamDetails = async () => {
     const id = this.props.match.params.name;
-
     let year = this.context.year;
 
     const url = `http://ergast.com/api/f1/${year}/constructors/${id}/results.json`;
@@ -40,14 +39,13 @@ export default class TeamDetails extends React.Component {
       flags: response2.data,
       drivers: response.data?.MRData?.RaceTable?.Races[0]?.Results,
       country: response3.data,
-      loading: false,
-      details: response4.data?.MRData?.StandingsTable?.StandingsLists[0]?.ConstructorStandings[0]
+      details: response4.data?.MRData?.StandingsTable?.StandingsLists[0]?.ConstructorStandings[0],
+      loading: false
     });
-  };
+  }
 
 
   getFlagCode = (nationality) => {
-
     let flag = this.state?.flags?.filter(
       (x) => x.en_short_name === nationality
     );
@@ -64,10 +62,9 @@ export default class TeamDetails extends React.Component {
         return "AE";
       }
     }
-  };
+  }
 
   getFlagCode2 = (nationality) => {
-
     let flag = this.state?.flags?.filter(
       (x) => x.nationality === nationality
     );
@@ -90,7 +87,7 @@ export default class TeamDetails extends React.Component {
         return "AE";
       }
     }
-  };
+  }
 
   getTeamImageCode = (teamName) => {
     var x = teamName.toLowerCase();
@@ -100,7 +97,7 @@ export default class TeamDetails extends React.Component {
   render() {
     if (this.state.loading) {
       return (
-        <div className="kon-loader">
+        <div>
           <Loader />
         </div>
       )
@@ -119,20 +116,31 @@ export default class TeamDetails extends React.Component {
       ];
 
     return (
-      <div className="main">
-        <aside className="details">
-          <img src={this.getTeamImageCode(this.state?.details?.Constructor?.constructorId)} alt="Team picture" className="team-image" />
-          <p><Flag country={this.getFlagCode2(this.state?.details?.Constructor?.nationality)} /></p>
-          <p className="details-name">{this.state?.details?.Constructor?.name}</p>
-          <p>Country: {this.state?.details?.Constructor?.nationality}</p>
-          <p>Position: {this.state?.details?.position}</p>
-          <p>Points: {this.state?.details?.points}</p>
-          <p>Biography:
-            <a href={this.state?.details?.Constructor?.url} target="_blank">
-              <OpenInNewIcon className="openNewTab" />
-            </a>
-          </p>
-        </aside>
+      <div>
+        <div>
+          <Breadcrumbs routes={routes} />
+        </div>
+
+        <div className="main">
+          <aside className="details">
+            <img src={this.getTeamImageCode(this.state?.details?.Constructor?.constructorId)}
+              alt="Team picture"
+              className="team-image"
+            />
+            <p><Flag
+              className="details-flag"
+              country={this.getFlagCode2(this.state?.details?.Constructor?.nationality)} />
+            </p>
+            <p className="details-name">{this.state?.details?.Constructor?.name}</p>
+            <p>Country: {this.state?.details?.Constructor?.nationality}</p>
+            <p>Position: {this.state?.details?.position}</p>
+            <p>Points: {this.state?.details?.points}</p>
+            <p>Biography:
+              <a href={this.state?.details?.Constructor?.url} target="_blank">
+                <OpenInNewIcon className="open-new-tab-icon" />
+              </a>
+            </p>
+          </aside>
 
           <table className="tab-container details-tab-container">
             <thead>
@@ -148,23 +156,27 @@ export default class TeamDetails extends React.Component {
               </tr>
             </thead>
 
-          <tbody>
-            {this.state?.someRaces?.map((x) => (
-              <tr key={x?.round}>
-                <td>{x?.round}</td>
-                <td className="flag-container">
-                  <Flag country={this.getFlagCode(x?.Circuit?.Location?.country)} />
-                  {x?.raceName}
-                </td>
-                <td className={"position_" + x?.Results[0]?.position}>{x?.Results[0]?.position}</td>
-                <td className={"position_" + x?.Results[1]?.position}>{x?.Results[1]?.position}</td>
-                <td>
-                  {parseInt(x?.Results[0]?.points) + parseInt(x?.Results[1]?.points)}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+            <tbody>
+              {this.state?.someRaces?.map((x) => (
+                <tr key={x?.round}>
+                  <td>{x?.round}</td>
+                  <td className="flag-container">
+                    <Flag
+                      country={this.getFlagCode(x?.Circuit?.Location?.country)}
+                      className="flag-icon"
+                    />
+                    {x?.raceName}
+                  </td>
+                  <td className={"position_" + x?.Results[0]?.position}>{x?.Results[0]?.position}</td>
+                  <td className={"position_" + x?.Results[1]?.position}>{x?.Results[1]?.position}</td>
+                  <td>
+                    {parseInt(x?.Results[0]?.points) + parseInt(x?.Results[1]?.points)}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     );
   }

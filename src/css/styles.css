@@ -21,20 +21,24 @@ body {
     margin: 40px;
 }
 
-.nav-icons-container {
-  position: absolute;
-  left: -180px;
-  transition: 1s;
-  width: 300px;
-  background-color: rgb(255, 0, 0);
-  color: white;
-  text-decoration: none;
-  border-radius: 0 10px 10px 0;
-  margin-top: 100px;
+.nav-icons-container .drivers-link,
+.nav-icons-container .teams-link,
+.nav-icons-container .races-link {
+    position: absolute;
+    left: -180px;
+    transition: 1s;
+    width: 300px;
+    background-color: rgb(255, 0, 0);
+    color: white;
+    text-decoration: none;
+    border-radius: 0 10px 10px 0;
 }
 
-.nav-icons-container:hover {
-  left: 0;
+.nav-icons-container .drivers-link:hover,
+.nav-icons-container .teams-link:hover,
+.nav-icons-container .races-link:hover {
+    left: 0;
+    background-color: black;
 }
 
 .drivers-link,
@@ -84,9 +88,8 @@ body {
     margin: 0;
 }
 
-.teams {
-  top: 110px;
-  height: 109px;
+.nav-icons-container div img {
+    margin-left: 45px;
 }
 
 .nav-icons-container .drivers-link img {
@@ -109,6 +112,8 @@ body {
     left: 0;
     border-radius: 0 10px 10px 0;
 }
+
+/*----------------------------------- TABLES ----------------------------------*/
 
 .main {
     display: flex;
@@ -176,7 +181,6 @@ body {
     font-size: 20px;
 }
 
-
 .tab-container thead td {
     background-color: aliceblue;
     border-radius: 10px 10px 0 0;
@@ -209,20 +213,38 @@ h1 {
     letter-spacing: 2px;
 }
 
-.flag-container {
-  display: flex;
-  align-items: center;
+.new-tab-link {
+    text-decoration: none;
+    color: black;
 }
 
+.new-tab-link:hover {
+    text-decoration: underline;
+    color: mediumseagreen;
+}
+
+.new-tab-link:visited {
+    background-color: red;
+}
+
+/*---------------------------------- ICONS ----------------------------------*/
+
 .cursor {
-  cursor: pointer;
+    cursor: pointer;
+}
+
+.flag-container {
+    display: flex;
+    align-items: center;
+}
+
+.flag-icon {
+    margin-right: 10px;
     border-radius: 7px;
 }
 
-.openNewTab {
-  cursor: pointer;
-  color: white;
-  opacity: .4;
+.open-new-tab-icon {
+    padding: 5px;
 }
 
 .img-drivers {
@@ -232,8 +254,8 @@ h1 {
 }
 
 .team-image {
-  height: auto;
-  width: 100px;
+    height: auto;
+    width: 100px;
 }
 
 /*---------------------------- LOADER --------------------------*/
@@ -600,5 +622,4 @@ h1 {
     .breadcrumbs a+a::before {
         padding-right: 12px;
     }
-
 }

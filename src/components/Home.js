@@ -1,17 +1,13 @@
 import React from "react";
-import history from "../history";
-
 import YearContext from "../context/YearContext";
 
 export default class Home extends React.Component {
-
     state = {
         year: "2010",
         years: []
     }
 
     handleChange = (e) => {
-
         this.setState({
             year: e.target.value
         });
@@ -20,14 +16,12 @@ export default class Home extends React.Component {
     }
 
     componentDidMount() {
-
         this.setState({
             years: this.handleYears()
         });
     }
 
     handleYears = () => {
-
         let items = [];
         for (let i = 1950; i <= 2022; i++) {
             items.push(<option key={i} value={i}>{i}</option>);
@@ -35,17 +29,13 @@ export default class Home extends React.Component {
         return items;
     }
 
-
     render() {
-
         return (
             <div className="year-container">
-
                 <h2>Select year: </h2>
                 <select size="4" id="dropdown" onChange={this.handleChange} className="select-container" >
                     {this.handleYears()}
                 </select>
-
             </div>
         );
     }

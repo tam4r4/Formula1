@@ -2,7 +2,6 @@ import React from "react";
 import axios from "axios";
 import history from "../history";
 import Loader from "./Loader";
-import RacesDetails from "./RacesDetails";
 import Flag from "react-flagkit";
 import YearContext from "../context/YearContext";
 import Breadcrumbs from "./Breadcrumbs";
@@ -10,7 +9,8 @@ import Breadcrumbs from "./Breadcrumbs";
 export default class AllRaces extends React.Component {
   state = {
     races: [],
-    flags: []
+    flags: [],
+    loading: true
   };
 
   componentDidMount() {
@@ -18,27 +18,25 @@ export default class AllRaces extends React.Component {
   }
 
   getAllRaces = async () => {
-
     let year = this.context.year;
-
     const url = `https://ergast.com/api/f1/${year}/results/1.json`;
     const url2 = "https://raw.githubusercontent.com/Dinuks/country-nationality-list/master/countries.json";
 
     const response = await axios.get(url);
     const response2 = await axios.get(url2);
+    
     this.setState({
       races: response.data?.MRData?.RaceTable?.Races,
       flags: response2.data,
     });
-  };
+  }
 
   handleRaceDetails = (round) => {
     const linkTo = "/raceDetails/" + round;
     history.push(linkTo);
-  };
+  }
 
   getFlagCode = (nationality) => {
-
     let zastava = this.state.flags.filter(
       (x) => x.en_short_name === nationality
     );
@@ -55,12 +53,12 @@ export default class AllRaces extends React.Component {
         return "AE";
       }
     }
-  };
+  }
 
   render() {
     if (this.state.loading) {
       return (
-        <div className="kon-loader">
+        <div>
           <Loader />
         </div>
       )
@@ -101,6 +99,7 @@ export default class AllRaces extends React.Component {
                   <td onClick={() => this.handleRaceDetails(race?.round)} className="flag-container cursor">
                     <Flag
                       country={this.getFlagCode(race?.Circuit?.Location?.country)}
+                      className="flag-icon"
                       />
                     {race?.raceName}
                   </td>

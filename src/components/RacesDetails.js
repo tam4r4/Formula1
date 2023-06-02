@@ -11,8 +11,8 @@ export default class RacesDetails extends React.Component {
     results: [],
     details: {},
     flags: [],
-    loading: true,
-    qualifiers: []
+    qualifiers: [],
+    loading: true
   };
 
   componentDidMount() {
@@ -33,25 +33,22 @@ export default class RacesDetails extends React.Component {
     const response3 = await axios.get(url3);
     const response4 = await axios.get(url4);
 
-
     this.setState({
       results: response.data?.MRData?.RaceTable?.Races[0]?.Results,
       details: response2.data?.MRData?.RaceTable?.Races[0],
       flags: response3.data,
-      loading: false,
       qualifiers: response4.data?.MRData?.RaceTable?.Races[0]?.QualifyingResults,
+      loading: false
     });
-  };
+  }
 
   getBestTime = (raceQual) => {
     let qual = [raceQual.Q1, raceQual.Q2, raceQual.Q3];
-
     let newArray = qual.sort();
     return newArray[0];
-  };
+  }
 
   getFlagCode = (nationality) => {
-
     let flag = this.state.flags.filter((x) => x.nationality === nationality);
     if (flag.length) {
       return flag[0].alpha_2_code;
@@ -66,10 +63,9 @@ export default class RacesDetails extends React.Component {
         return "AE";
       }
     }
-  };
+  }
 
   getFlagCode2 = (nationality) => {
-
     let flag = this.state.flags.filter(
       (x) => x.en_short_name === nationality
     );
@@ -92,12 +88,12 @@ export default class RacesDetails extends React.Component {
         return "AE";
       }
     }
-  };
+  }
 
   render() {
     if (this.state.loading) {
       return (
-        <div className="kon-loader">
+        <div>
           <Loader />
         </div>
       );
@@ -134,8 +130,7 @@ export default class RacesDetails extends React.Component {
             <p>Country: {this.state.details?.Circuit?.Location?.country}</p>
             <p>Location: {this.state.details?.Circuit?.Location?.locality}</p>
             <p>Date: {this.state.details?.date}</p>
-            <p>
-            Full Report:{" "}
+            <p>Full Report:
               <a href={this.state.details.url} target="_blank">
                 <OpenInNewIcon className="openNewTab" />
               </a>
@@ -154,23 +149,24 @@ export default class RacesDetails extends React.Component {
                 </tr>
               </thead>
 
-            <tbody>
-              {this.state?.qualifiers?.map((raceQual, i) => (
-                <tr key={i}>
-                  <td>{raceQual.position}</td>
-                  <td className="flag-container">
-                    <Flag
-                      country={this.getFlagCode(raceQual?.Driver?.nationality)}
-                    />{" "}
-                    {raceQual?.Driver?.givenName} {raceQual?.Driver?.familyName}
-                  </td>
-                  <td>{raceQual?.Constructor?.name}</td>
-                  <td>{this.getBestTime(raceQual)}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+              <tbody>
+                {this.state?.qualifiers?.map((raceQual, i) => (
+                  <tr key={i}>
+                    <td>{raceQual.position}</td>
+                    <td className="flag-container">
+                      <Flag
+                        country={this.getFlagCode(raceQual?.Driver?.nationality)}
+                        className="flag-icon"
+                      />
+                      {raceQual?.Driver?.givenName} {raceQual?.Driver?.familyName}
+                    </td>
+                    <td>{raceQual?.Constructor?.name}</td>
+                    <td>{this.getBestTime(raceQual)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
 
           <div>
             <table className="tab-container results-tab-container">
@@ -190,8 +186,9 @@ export default class RacesDetails extends React.Component {
                   <tr key={i}>
                     <td>{res.position}</td>
                     <td className="flag-container">
-                      <Flag 
-                      country={this.getFlagCode(res?.Driver?.nationality)} className="flag-icon"
+                      <Flag
+                        country={this.getFlagCode(res?.Driver?.nationality)}
+                        className="flag-icon"
                       />
                       {res?.Driver?.givenName} {res?.Driver?.familyName}
                     </td>

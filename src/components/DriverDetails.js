@@ -37,11 +37,10 @@ export default class DriverDetails extends React.Component {
       flags: response3.data,
       loading: false,
     });
-  };
+  }
 
 
   getFlagCode = (nationality) => {
-
     let flag = this.state?.flags?.filter(
       (x) => x.en_short_name === nationality
     );
@@ -58,12 +57,10 @@ export default class DriverDetails extends React.Component {
         return "AE";
       }
     }
-
-  };
+  }
 
 
   getFlagCode2 = (nationality) => {
-
     let flag = this.state?.flags?.filter(
       (x) => x.nationality === nationality
     );
@@ -79,7 +76,6 @@ export default class DriverDetails extends React.Component {
       if (nationality === "Dutch") {
         return "NL";
       }
-
       if (nationality === "Korea") {
         return "KR";
       }
@@ -87,12 +83,10 @@ export default class DriverDetails extends React.Component {
         return "AE";
       }
     }
-
-  };
+  }
 
 
   getImageCode = (lastName) => {
-
     var x = lastName.toLowerCase();
     if (x === "räikkönen") {
       x = "raikkonen";
@@ -112,16 +106,14 @@ export default class DriverDetails extends React.Component {
     if (x === "di resta") {
       x = "resta";
     }
-
     return "../img/" + x + ".jpg";
-
   }
 
 
   render() {
     if (this.state.loading) {
       return (
-        <div className="kon-loader">
+        <div>
           <Loader />
         </div>
       )
@@ -147,9 +139,13 @@ export default class DriverDetails extends React.Component {
 
         <div className="main">
           <aside className="details">
-            <img src={this.getImageCode(this.state?.driverDetails?.Driver?.familyName)} alt="driver picture" className="img-drivers" />
-            <p>   <Flag className="details-flag" country={this.getFlagCode2(this.state?.driverDetails?.Driver?.nationality)} />   </p>
-
+            <img src={this.getImageCode(this.state?.driverDetails?.Driver?.familyName)}
+              alt="driver picture"
+              className="img-drivers" />
+            <p>
+              <Flag className="details-flag"
+                country={this.getFlagCode2(this.state?.driverDetails?.Driver?.nationality)} />
+            </p>
             <p className="drivers-name">
               {this.state?.driverDetails?.Driver?.givenName}
             </p>
@@ -159,9 +155,9 @@ export default class DriverDetails extends React.Component {
             <p>Country: {this.state?.driverDetails?.Driver?.nationality}</p>
             <p>Team: {this.state?.driverDetails?.Constructors[0]?.name}</p>
             <p>Birth: {this.state?.driverDetails?.Driver?.dateOfBirth}</p>
-            <p>
-              Biography:
-              <a href={this.state?.driverDetails?.Driver?.url} target="_blank" >
+            <p>Biography:
+              <a href={this.state?.driverDetails?.Driver?.url}
+                target="_blank" >
                 <OpenInNewIcon className="openNewTab" />
               </a>
             </p>
@@ -184,12 +180,17 @@ export default class DriverDetails extends React.Component {
                 <tr key={d?.round}>
                   <td>{d?.round}</td>
                   <td className="flag-container">
-                    <Flag country={this.getFlagCode(d?.Circuit?.Location?.country)} />
+                    <Flag
+                      country={this.getFlagCode(d?.Circuit?.Location?.country)}
+                      className="flag-icon"
+                    />
                     {d?.raceName}
                   </td>
                   <td> {d?.Results[0]?.Constructor?.name}</td>
                   <td>{d.Results[0].grid}</td>
-                  <td className={"position_" + d?.Results[0]?.position} > {d?.Results[0]?.position} </td>
+                  <td className={"position_" + d?.Results[0]?.position} >
+                    {d?.Results[0]?.position}
+                  </td>
                 </tr>
               ))}
             </tbody>
