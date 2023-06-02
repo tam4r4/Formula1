@@ -20,7 +20,7 @@ export default class AllTeams extends React.Component {
 
     getTeams = async () => {
         let year = this.context.year;
-        const url = `http://ergast.com/api/f1/${year}/constructorStandings.json`;
+        const url = `https://ergast.com/api/f1/${year}/constructorStandings.json`;
         const url2 = "https://raw.githubusercontent.com/Dinuks/country-nationality-list/master/countries.json";
 
         const response = await axios.get(url);

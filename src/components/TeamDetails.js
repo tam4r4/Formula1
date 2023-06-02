@@ -24,10 +24,10 @@ export default class TeamDetails extends React.Component {
     const id = this.props.match.params.name;
     let year = this.context.year;
 
-    const url = `http://ergast.com/api/f1/${year}/constructors/${id}/results.json`;
+    const url = `https://ergast.com/api/f1/${year}/constructors/${id}/results.json`;
     const url2 = "https://raw.githubusercontent.com/Dinuks/country-nationality-list/master/countries.json";
-    const url3 = `http://ergast.com/api/f1/${year}/constructors/results.json`;
-    const url4 = `http://ergast.com/api/f1/${year}/constructors/${id}/constructorStandings.json`;
+    const url3 = `https://ergast.com/api/f1/${year}/constructors/results.json`;
+    const url4 = `https://ergast.com/api/f1/${year}/constructors/${id}/constructorStandings.json`;
 
     const response = await axios.get(url);
     const response2 = await axios.get(url2);

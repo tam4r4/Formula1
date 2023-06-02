@@ -23,7 +23,7 @@ export default class DriverDetails extends React.Component {
     const year = this.context.year;
 
     const url = `https://ergast.com/api/f1/${year}/drivers/${id}/driverStandings.json`;
-    const url2 = `http://ergast.com/api/f1/${year}/drivers/${id}/results.json`;
+    const url2 = `https://ergast.com/api/f1/${year}/drivers/${id}/results.json`;
     const url3 = "https://raw.githubusercontent.com/Dinuks/country-nationality-list/master/countries.json";
 
     const response = await axios.get(url);
