@@ -3,6 +3,7 @@ import axios from "axios";
 import history from "../history";
 import Loader from "./Loader";
 import Flag from "react-flagkit";
+import Breadcrumbs from "./Breadcrumbs";
 
 export default class AllRaces extends React.Component {
   state = {
@@ -16,8 +17,8 @@ export default class AllRaces extends React.Component {
   }
 
   getAllRaces = async () => {
-    // const url = "https://ergast.com/api/f1/2013/results/1.json";
-    const url = "https://raw.githubusercontent.com/nkezic/f1/main/AllRaces";
+    const url = "https://ergast.com/api/f1/2013/results/1.json";
+    // const url = "https://raw.githubusercontent.com/nkezic/f1/main/AllRaces";
     const url2 = "https://raw.githubusercontent.com/Dinuks/country-nationality-list/master/countries.json";
 
     const response = await axios.get(url);
@@ -66,39 +67,53 @@ export default class AllRaces extends React.Component {
       )
     }
 
-    return (
-      <div className="main">
-        <h1>RACE CALENDAR</h1>
-        <table className="tab-container">
-          <thead>
-            <td colSpan={5}>Race Calendar 2013</td>
-            <tr>
-              <th>Round</th>
-              <th>Grand Prix</th>
-              <th>Circuit</th>
-              <th>Date</th>
-              <th>Winner</th>
-            </tr>
-          </thead>
+    const routes =
+      [
+        {
+          path: "/races",
+          title: "Races"
+        }
+      ];
 
-          <tbody>
-            {this.state.races.map((race) => (
-              <tr key={race.round}>
-                <td>{race.round}</td>
-                <td onClick={() => this.handleRaceDetails(race.round)} className="flag-container cursor">
-                  <Flag
-                    country={this.getFlagCode(race.Circuit.Location.country)}
-                    className="flag-icon"
-                  />
-                  {race.raceName}
-                </td>
-                <td>{race.Circuit.circuitName}</td>
-                <td>{race.date}</td>
-                <td>{race.Results[0].Driver.familyName}</td>
+    return (
+      <div>
+        <div>
+          <Breadcrumbs routes={routes} />
+        </div>
+
+        <div className="main">
+          <h1>RACE CALENDAR</h1>
+          <table className="tab-container">
+            <thead>
+              <td colSpan={5}>Race Calendar 2013</td>
+              <tr>
+                <th>Round</th>
+                <th>Grand Prix</th>
+                <th>Circuit</th>
+                <th>Date</th>
+                <th>Winner</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+
+            <tbody>
+              {this.state.races.map((race) => (
+                <tr key={race.round}>
+                  <td>{race.round}</td>
+                  <td onClick={() => this.handleRaceDetails(race.round)} className="flag-container cursor">
+                    <Flag
+                      country={this.getFlagCode(race.Circuit.Location.country)}
+                      className="flag-icon"
+                    />
+                    {race.raceName}
+                  </td>
+                  <td>{race.Circuit.circuitName}</td>
+                  <td>{race.date}</td>
+                  <td>{race.Results[0].Driver.familyName}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     );
   }

@@ -3,6 +3,7 @@ import axios from "axios";
 import Loader from "./Loader";
 import Flag from "react-flagkit";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
+import Breadcrumbs from "./Breadcrumbs";
 
 export default class RacesDetails extends React.Component {
   state = {
@@ -19,13 +20,13 @@ export default class RacesDetails extends React.Component {
 
   getAllRaces = async () => {
     const id = this.props.match.params.round;
-
-    // const url = `http://ergast.com/api/f1/2013/${id}/results.json`;
-    const url = `https://raw.githubusercontent.com/nkezic/f1/main/Results`;
-    const url2 = `http://ergast.com/api/f1/2013/${id}/results/1.json`;
+    //const url = `http://ergast.com/api/f1/2013/${id}/results.json`;
+    const url = "https://raw.githubusercontent.com/nkezic/f1/main/TeamResults";
+    const url2 = `https://raw.githubusercontent.com/nkezic/f1/main/Results`;
+    //const url2 = `http://ergast.com/api/f1/2013/${id}/results/1.json`;
     const url3 = "https://raw.githubusercontent.com/Dinuks/country-nationality-list/master/countries.json";
-    // const url4 = `https://ergast.com/api/f1/2013/${id}/qualifying.json`;
-    const url4 = `https://ergast.com/api/f1/2013/${id}/qualifying.json`;
+    //const url4 = `https://ergast.com/api/f1/2013/${id}/qualifying.json`;
+    const url4 = `https://raw.githubusercontent.com/nkezic/f1/main/Qualifiers`;
 
     const response = await axios.get(url);
     const response2 = await axios.get(url2);
@@ -102,85 +103,106 @@ export default class RacesDetails extends React.Component {
       );
     }
 
+    const routes =
+      [
+        {
+          path: "/races",
+          title: "Races"
+        },
+        {
+          path: "",
+          title: this.state.details.raceName
+        }
+      ];
+
     return (
-      <div className="main">
-        <aside className="details race-details">
-          <p>
-            <Flag
-              country={this.getFlagCode2(this.state.details.Circuit.Location.country)}
-              size={70}
-            />
-          </p>
-          <p className="details-name">{this.state.details.raceName}</p>
-          <p>Country: {this.state.details.Circuit.Location.country}</p>
-          <p>Location: {this.state.details.Circuit.Location.locality}</p>
-          <p>Date: {this.state.details.date}</p>
-          <p>Full Report:
-            <a href={this.state.details.url} target="_blank">
-              <OpenInNewIcon className="openNewTab" />
-            </a>
-          </p>
-        </aside>
-
+      <div>
         <div>
-          <table className="tab-container qualify-tab-container">
-            <thead>
-              <td colSpan={4}>Qualifying Results</td>
-              <tr>
-                <th>Pos</th>
-                <th>Driver</th>
-                <th>Team</th>
-                <th>Best Time</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              {this.state.qualifiers.map((raceQual) => (
-                <tr key={raceQual.position}>
-                  <td>{raceQual.position}</td>
-                  <td className="flag-container">
-                    <Flag
-                      country={this.getFlagCode(raceQual.Driver.nationality)}
-                      className="flag-icon"
-                    />
-                    {raceQual.Driver.givenName} {raceQual.Driver.familyName}
-                  </td>
-                  <td>{raceQual.Constructor.name}</td>
-                  <td>{this.getBestTime(raceQual)}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <Breadcrumbs routes={routes} />
         </div>
 
-        <div>
-          <table className="tab-container results-tab-container">
-            <thead>
-              <td colSpan={5}>Driver Results</td>
-              <tr>
-                <th>Pos</th>
-                <th>Driver</th>
-                <th>Team</th>
-                <th>Result</th>
-                <th>Points</th>
-              </tr>
-            </thead>
+        <div className="main">
+          <aside className="details race-details">
+            <p>
+              <Flag
+                country={this.getFlagCode2(this.state.details.Circuit.Location.country)}
+                size={70}
+                className="flag-icon"
+              />
+            </p>
+            <p className="grand-prix-name">{this.state.details.raceName}</p>
+            <p>Country: {this.state.details.Circuit.Location.country}</p>
+            <p>Location: {this.state.details.Circuit.Location.locality}</p>
+            <p>Date: {this.state.details.date}</p>
+            <p>Full Report:
+              <a href={this.state.details.url} target="_blank">
+                <OpenInNewIcon className="openNewTab" />
+              </a>
+            </p>
+          </aside>
 
-            <tbody>
-              {this.state.results.map((res) => (
-                <tr key={res.position}>
-                  <td>{res.position}</td>
-                  <td className="flag-container">
-                    <Flag country={this.getFlagCode(res.Driver.nationality)} />
-                    {res.Driver.givenName} {res.Driver.familyName}
-                  </td>
-                  <td>{res.Constructor.name}</td>
-                  <td>{res.Time ? res.Time.time : null}</td>
-                  <td className={"position_" + res.position} > {res.points} </td>
+          <div>
+            <table className="tab-container qualify-tab-container">
+              <thead>
+                <td colSpan={4}>Qualifying Results</td>
+                <tr>
+                  <th>Pos</th>
+                  <th>Driver</th>
+                  <th>Team</th>
+                  <th>Best Time</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+
+              <tbody>
+                {this.state.qualifiers.map((raceQual) => (
+                  <tr key={raceQual.position}>
+                    <td>{raceQual.position}</td>
+                    <td className="flag-container">
+                      <Flag
+                        country={this.getFlagCode(raceQual.Driver.nationality)}
+                        className="flag-icon"
+                      />
+                      {raceQual.Driver.givenName} {raceQual.Driver.familyName}
+                    </td>
+                    <td>{raceQual.Constructor.name}</td>
+                    <td>{this.getBestTime(raceQual)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <div>
+            <table className="tab-container results-tab-container">
+              <thead>
+                <td colSpan={5}>Driver Results</td>
+                <tr>
+                  <th>Pos</th>
+                  <th>Driver</th>
+                  <th>Team</th>
+                  <th>Result</th>
+                  <th>Points</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                {this.state.results.map((res) => (
+                  <tr key={res.position}>
+                    <td>{res.position}</td>
+                    <td className="flag-container">
+                      <Flag 
+                      country={this.getFlagCode(res.Driver.nationality)} className="flag-icon"
+                      />
+                      {res.Driver.givenName} {res.Driver.familyName}
+                    </td>
+                    <td>{res.Constructor.name}</td>
+                    <td>{res.Time ? res.Time.time : null}</td>
+                    <td className={"position_" + res.position} > {res.points} </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     );

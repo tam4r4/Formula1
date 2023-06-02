@@ -3,6 +3,7 @@ import axios from "axios";
 import Loader from "./Loader";
 import history from "../history";
 import Flag from "react-flagkit";
+import Breadcrumbs from "./Breadcrumbs";
 
 export default class AllDrivers extends React.Component {
   state = {
@@ -16,8 +17,8 @@ export default class AllDrivers extends React.Component {
   }
 
   getDrivers = async () => {
-    // const url = "https://ergast.com/api/f1/2013/driverStandings.json";
-    const url = "https://raw.githubusercontent.com/nkezic/f1/main/AllDrivers";
+    const url = "https://ergast.com/api/f1/2013/driverStandings.json";
+    // const url = "https://raw.githubusercontent.com/nkezic/f1/main/AllDrivers";
     const url3 = "https://raw.githubusercontent.com/Dinuks/country-nationality-list/master/countries.json";
 
     const response = await axios.get(url);
@@ -56,6 +57,14 @@ export default class AllDrivers extends React.Component {
 
 
   render() {
+    const routes =
+      [
+        {
+          path: "/drivers",
+          title: "Drivers"
+        }
+      ];
+
     if (this.state.loading) {
       return (
         <div>
@@ -66,6 +75,10 @@ export default class AllDrivers extends React.Component {
 
     return (
       <div>
+        <div>
+          <Breadcrumbs routes={routes} />
+        </div>
+
         <div className="main">
           <h1>DRIVERS CHAMPIONSHIP</h1>
           <table className="tab-container">

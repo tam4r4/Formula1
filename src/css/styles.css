@@ -8,11 +8,18 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     background-color: rgb(40, 40, 40);
     /*background: url(./../../public/img/pexels-dimitrije-djekanovic-13857977.jpg) no-repeat center fixed;*/
-    background: url(./../../public/img/trace-flag-w.png) no-repeat center fixed;
+    /*background: url(./../../public/img/trace-flag-w.png) no-repeat center fixed;*/
+    background: url(./../../public/img/f-1.png) no-repeat center fixed;
     background-size: cover;
 }
 
 /*---------------------------------- NAVBAR -----------------------------------*/
+
+.logo-icon {
+    width: 250px;
+    position: absolute;
+    margin: 40px;
+}
 
 .nav-icons-container .drivers-link,
 .nav-icons-container .teams-link,
@@ -38,9 +45,7 @@ body {
 .teams-link,
 .races-link {
     display: flex;
-    justify-content: center;
-    padding: 0;
-    margin: 0;
+    justify-content: flex-end;
 }
 
 .drivers-link {
@@ -55,9 +60,20 @@ body {
     top: 466px;
 }
 
+.icon-drivers {
+    width: 80px;
+}
+
+.icon-teams {
+    width: 90px;
+}
+
+.icon-races {
+    width: 90px;
+}
+
 .nav-icons-container div a {
     display: flex;
-    justify-content: space-between;
     align-items: center;
 }
 
@@ -68,12 +84,17 @@ body {
     list-style-type: none;
 }
 
+.nav-icons-container div p {
+    margin: 0;
+}
+
 .nav-icons-container div img {
     margin-left: 45px;
 }
 
 .nav-icons-container .drivers-link img {
-    margin-left: 30px;
+    margin-right: 5px;
+    margin-left: 28px;
 }
 
 .nav-icons-container div a {
@@ -84,8 +105,10 @@ body {
 }
 
 .active-link {
-    background-color:mediumseagreen;
-    width: 310px;
+    display: flex;
+    justify-content: flex-end;
+    background-color: mediumseagreen;
+    width: 300px;
     left: 0;
     border-radius: 0 10px 10px 0;
 }
@@ -95,7 +118,6 @@ body {
 .main {
     display: flex;
     justify-content: flex-end;
-    align-items: stretch;
     float: right;
     width: 75%;
     background-color: rgba(0, 0, 0, 0.7);
@@ -126,7 +148,8 @@ body {
 .details {
     background-color: black;
     color: white;
-    font-size: 15px;
+    font-size: 14px;
+    /* line-height: 80%; */
     padding: 20px;
     border-radius: 10px 0 0 10px;
     width: 20%;
@@ -136,9 +159,26 @@ body {
     width: 15%;
 }
 
-.details-name {
+.details-flag {
+    margin-top: 25px;
+}
+
+.drivers-name {
+    font-size: 17px;
+    letter-spacing: 1px;
+    margin: 0;
+}
+
+.grand-prix-name,
+.drivers-family-name {
+    font-family: "Audiowide", sans-serif;
     font-weight: bold;
-    font-size: 25px;
+    font-size: 30px;
+    margin-top: 0;
+}
+
+.grand-prix-name {
+    font-size: 20px;
 }
 
 .tab-container thead td {
@@ -146,7 +186,7 @@ body {
     border-radius: 10px 10px 0 0;
     text-align: center;
     font-size: 17px;
-    padding: 10px 0;
+    padding: 10px;
 }
 
 .tab-container th,
@@ -170,6 +210,7 @@ h1 {
     font-size: 30px;
     padding: 10px 25px;
     font-family: "Audiowide", sans-serif;
+    letter-spacing: 2px;
 }
 
 .new-tab-link {
@@ -199,25 +240,25 @@ h1 {
 
 .flag-icon {
     margin-right: 10px;
+    border-radius: 7px;
 }
 
 .open-new-tab-icon {
     padding: 5px;
 }
 
-/* .new-tab-container {
-    text-align: justify;
-} */
-
 .img-drivers {
     height: auto;
     width: 100px;
+    border-radius: 7px;
 }
 
 .team-image {
     height: auto;
     width: 100px;
 }
+
+/*---------------------------- LOADER --------------------------*/
 
 .loader-container {
     position: absolute;
@@ -227,7 +268,6 @@ h1 {
     right: 0;
     height: 100vh;
     background-color: rgb(241, 241, 241);
-    text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -235,44 +275,80 @@ h1 {
     size: 30px;
 }
 
+/*------------------------- BREADCRUMBS -------------------------*/
+
+.breadcrumbs {
+    display: flex;
+    justify-content: center;
+    float: right;
+    margin-right: 60px;
+    margin-bottom: 168px;
+    background-color: rgb(0, 0, 0);
+    width: 65%;
+    padding: 8px;
+    border-radius: 0 0 10px 10px;
+}
+
+.breadcrumbs a {
+    padding: 7px 20px;
+    text-decoration: none;
+    color: white;
+}
+
+.breadcrumbs a+a::before {
+    content: "/\00a0";
+    padding-right: 15px;
+}
+
+.breadcrumbs a:hover {
+    background-color: mediumseagreen;
+    border-radius: 50px;
+}
+
+.breadcrumbs .active-link {
+    font-style: italic;
+}
+
+/*---------------------- POSITION COLORS -----------------------*/
+
 .position_1 {
-    background-color: yellow;
+    background-color: rgb(255, 255, 113);
 }
 
 .position_2 {
-    background-color: grey;
+    background-color: rgb(203, 212, 206);
 }
 
 .position_3 {
-    background-color: orange;
+    background-color: rgb(255, 170, 84);
 }
 
 .position_4 {
-    background-color: lightgreen;
+    background-color: rgb(181, 251, 162);
 }
 
 .position_5 {
-    background-color: lightblue;
+    background-color: rgb(198, 233, 255);
 }
 
 .position_6 {
-    background-color: darkgray;
+    background-color: rgb(255, 210, 210);
 }
 
 .position_7 {
-    background-color: darkgray;
+    background-color: rgb(255, 210, 210);
 }
 
 .position_8 {
-    background-color: darkgray;
+    background-color: rgb(255, 210, 210);
 }
 
 .position_9 {
-    background-color: darkgray;
+    background-color: rgb(255, 210, 210);
 }
 
 .position_10 {
-    background-color: darkgray;
+    background-color: rgb(255, 210, 210);
 }
 
 .position_11 {
@@ -325,4 +401,226 @@ h1 {
 
 .position_23 {
     background-color: darkgray;
+}
+
+/*-------------------------- RESPONSIVE ------------------------*/
+
+@media screen and (max-width: 768px) {
+
+    .logo-icon {
+        width: 200px;
+        margin: 80px 20px;
+    }
+
+    .nav-icons-container .drivers-link,
+    .nav-icons-container .teams-link,
+    .nav-icons-container .races-link {
+        left: -120px;
+        width: 220px;
+    }
+
+    .drivers-link {
+        top: 250px;
+    }
+
+    .teams-link {
+        top: 355px;
+    }
+
+    .races-link {
+        top: 457px;
+    }
+
+    .icon-drivers {
+        width: 65px;
+    }
+
+    .icon-teams {
+        width: 75px;
+    }
+
+    .icon-races {
+        width: 75px;
+    }
+
+    .nav-icons-container div img,
+    .nav-icons-container div a {
+        padding: 12px;
+    }
+
+    .nav-icons-container div img {
+        margin-left: 30px;
+    }
+
+    .nav-icons-container .drivers-link img {
+        margin-right: 7px;
+        margin-left: 18px;
+    }
+
+    .nav-icons-container div a {
+        font-size: 24px;
+    }
+
+    .main {
+        flex-direction: column;
+        float: right;
+        padding: 20px;
+    }
+
+    .tab-container {
+        font-size: 12px;
+        width: 100%;
+    }
+
+    .results-tab-container,
+    .qualify-tab-container {
+        margin: 0;
+    }
+
+    .driver-details-tab {
+        margin-top: 20px;
+    }
+
+    .qualify-tab-container {
+        margin: 20px 0;
+    }
+
+    .details {
+        line-height: 70%;
+        font-size: 15px;
+        width: 100%;
+        border-radius: 5px;
+        text-align: center;
+        padding: 30px 0;
+    }
+    
+    .grand-prix-name,
+    .drivers-family-name {
+        margin: 12px 0 40px 0;
+    }
+    
+    .grand-prix-name {
+        font-size: 20px;
+    }
+
+    .tab-container td {
+        font-size: 14px;
+    }
+
+    h1 {
+        font-size: 30px;
+    }
+
+    .breadcrumbs {
+        margin-bottom: 206px;
+        margin-right: 0;
+        width: 100%;
+        border-radius: 0;
+    }
+}
+
+@media screen and (max-width: 415px) {
+
+    .logo-icon {
+        display: flex;
+        width: 200px;
+        position: static;
+        margin: auto;
+        padding: 40px 0;
+    }
+
+    .nav-icons-container {
+        width: 100%;
+        margin: 50px 0 0 0;
+    }
+
+    .nav-icons-container .drivers-link,
+    .nav-icons-container .teams-link,
+    .nav-icons-container .races-link {
+        display: block;
+        position: static;
+        left: 0;
+        transition: 0s;
+        width: 100%;
+        border-radius: 0;
+    }
+
+    .nav-icons-container .drivers-link:hover,
+    .nav-icons-container .teams-link:hover,
+    .nav-icons-container .races-link:hover {
+        transition: 1s;
+    }
+
+    .icon-drivers {
+        width: 70px;
+    }
+
+    .icon-teams {
+        width: 80px;
+    }
+
+    .icon-races {
+        width: 80px;
+    }
+
+    .nav-icons-container div a {
+        display: flex;
+        justify-content: center;
+    }
+
+    .nav-icons-container div a {
+        font-size: 30px;
+    }
+
+    .active-link {
+        width: 100%;
+        border-radius: 0;
+    }
+
+    .main {
+        width: 100%;
+        float: none;
+        margin: 0;
+        padding: 100px 20px 60px 20px;
+        border-radius: 0;
+    }
+
+    .tab-container {
+        width: 100%;
+        padding: 20px;
+    }
+
+    .tab-container thead td {
+        font-size: 16px;
+        padding: 10px 0;
+    }
+    
+    .tab-container th,
+    .tab-container td {
+        font-size: 12px;
+        padding: 5px 6px;
+    }
+
+    .drivers-family-name {
+        font-size: 30px;
+        margin: 15px 0 50px 0;
+    }
+
+    .breadcrumbs {
+        position: fixed;
+        top: 0;
+        left: 0;
+        font-size: 15px;
+        margin-bottom: 205px;
+        padding: 8px;
+    }
+
+    .breadcrumbs a {
+        padding: 6px 15px;
+    }
+
+    .breadcrumbs a+a::before {
+        padding-right: 12px;
+    }
+
 }

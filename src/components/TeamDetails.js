@@ -3,6 +3,7 @@ import Loader from "./Loader";
 import axios from "axios";
 import Flag from "react-flagkit";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
+import Breadcrumbs from "./Breadcrumbs";
 
 export default class TeamDetails extends React.Component {
   state = {
@@ -20,9 +21,11 @@ export default class TeamDetails extends React.Component {
 
   getTeamDetails = async () => {
     const id = this.props.match.params.name;
-    const url = `http://ergast.com/api/f1/2013/constructors/${id}/results.json`;
+    const url = `https://raw.githubusercontent.com/nkezic/f1/main/TeamDetails`;
+    //const url = `http://ergast.com/api/f1/2013/constructors/${id}/results.json`;
     const url2 = "https://raw.githubusercontent.com/Dinuks/country-nationality-list/master/countries.json";
-    const url3 = `http://ergast.com/api/f1/2013/constructors/results.json`;
+    // const url3 = `http://ergast.com/api/f1/2013/constructors/results.json`;
+    const url3 = `https://raw.githubusercontent.com/nkezic/f1/main/TeamResults`;
     const url4 = `http://ergast.com/api/f1/2013/constructors/${id}/constructorStandings.json`;
 
     const response = await axios.get(url);
@@ -101,56 +104,77 @@ export default class TeamDetails extends React.Component {
       )
     }
 
+    const routes =
+      [
+        {
+          path: "/teams",
+          title: "Teams"
+        },
+        {
+          path: "",
+          title: this.state.details.Constructor.name
+        }
+      ];
+
     return (
-      <div className="main">
+      <div>
+        <div>
+          <Breadcrumbs routes={routes} />
+        </div>
 
-        <aside className="details">
-          <img src={this.getTeamImageCode(this.state.details.Constructor.constructorId)} alt="Team picture" className="team-image" />
-          <p><Flag country={this.getFlagCode2(this.state.details.Constructor.nationality)} /></p>
-          <p className="details-name">{this.state.details.Constructor.name}</p>
-          <p>Country: {this.state.details.Constructor.nationality}</p>
-          <p>Position: {this.state.details.position}</p>
-          <p>Points: {this.state.details.points}</p>
-          <p>Biography:
-            <a href={this.state.details.Constructor.url} target="_blank">
-              <OpenInNewIcon className="open-new-tab-icon" />
-            </a>
-          </p>
-        </aside>
+        <div className="main">
+          <aside className="details">
+            <img src={this.getTeamImageCode(this.state.details.Constructor.constructorId)} alt="Team picture" className="team-image" />
+            <p>
+              <Flag className="details-flag"
+                country={this.getFlagCode2(this.state.details.Constructor.nationality)}
+              />
+            </p>
+            <p className="details-name">{this.state.details.Constructor.name}</p>
+            <p>Country: {this.state.details.Constructor.nationality}</p>
+            <p>Position: {this.state.details.position}</p>
+            <p>Points: {this.state.details.points}</p>
+            <p>Biography:
+              <a href={this.state.details.Constructor.url} target="_blank">
+                <OpenInNewIcon className="open-new-tab-icon" />
+              </a>
+            </p>
+          </aside>
 
-        <table className="tab-container details-tab-container">
-          <thead>
-            <tr>
-              <td colSpan={5}>Formula 1 2013 Results</td>
-            </tr>
-            <tr>
-              <th>Round</th>
-              <th>Grand Prix</th>
-              <th>{this.state.drivers[0].Driver.familyName}</th>
-              <th>{this.state.drivers[1].Driver.familyName}</th>
-              <th>Points</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {this.state.someRaces.map((x) => (
-              <tr key={x.round}>
-                <td>{x.round}</td>
-                <td className="flag-container">
-                  <Flag country={this.getFlagCode(x.Circuit.Location.country)}
-                    className="flag-icon"
-                  />
-                  {x.raceName}
-                </td>
-                <td className={"position_" + x.Results[0].position}>{x.Results[0].position}</td>
-                <td className={"position_" + x.Results[1].position}>{x.Results[1].position}</td>
-                <td>
-                  {parseInt(x.Results[0].points) + parseInt(x.Results[1].points)}
-                </td>
+          <table className="tab-container details-tab-container">
+            <thead>
+              <tr>
+                <td colSpan={5}>Formula 1 2013 Results</td>
               </tr>
-            ))}
-          </tbody>
-        </table>
+              <tr>
+                <th>Round</th>
+                <th>Grand Prix</th>
+                <th>{this.state.drivers[0].Driver.familyName}</th>
+                <th>{this.state.drivers[1].Driver.familyName}</th>
+                <th>Points</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {this.state.someRaces.map((x) => (
+                <tr key={x.round}>
+                  <td>{x.round}</td>
+                  <td className="flag-container">
+                    <Flag country={this.getFlagCode(x.Circuit.Location.country)}
+                      className="flag-icon"
+                    />
+                    {x.raceName}
+                  </td>
+                  <td className={"position_" + x.Results[0].position}>{x.Results[0].position}</td>
+                  <td className={"position_" + x.Results[1].position}>{x.Results[1].position}</td>
+                  <td>
+                    {parseInt(x.Results[0].points) + parseInt(x.Results[1].points)}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     );
   }
