@@ -45,7 +45,7 @@ export default class App extends React.Component {
             <Route path="/home" exact component={Home} />
 
             <Route path="/drivers" exact component={AllDrivers} />
-            <Route path="/driverDetails/:name" exact component={DriverDetails} />
+            <Route path="/driverDetails/:name" component={DriverDetails} />
             <Route path="/teams" exact component={AllTeams} />
             <Route path="/teamDetails/:name" exact component={TeamDetails} />
             <Route path="/races" exact component={AllRaces} />

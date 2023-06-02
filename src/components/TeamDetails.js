@@ -21,11 +21,11 @@ export default class TeamDetails extends React.Component {
 
   getTeamDetails = async () => {
     const id = this.props.match.params.name;
-    const url = `https://raw.githubusercontent.com/nkezic/f1/main/TeamDetails`;
-    //const url = `http://ergast.com/api/f1/2013/constructors/${id}/results.json`;
+    // const url = `https://raw.githubusercontent.com/nkezic/f1/main/TeamDetails`;
+    const url = `http://ergast.com/api/f1/2013/constructors/${id}/results.json`;
     const url2 = "https://raw.githubusercontent.com/Dinuks/country-nationality-list/master/countries.json";
-    // const url3 = `http://ergast.com/api/f1/2013/constructors/results.json`;
-    const url3 = `https://raw.githubusercontent.com/nkezic/f1/main/TeamResults`;
+    const url3 = `http://ergast.com/api/f1/2013/constructors/results.json`;
+    // const url3 = `https://raw.githubusercontent.com/nkezic/f1/main/TeamResults`;
     const url4 = `http://ergast.com/api/f1/2013/constructors/${id}/constructorStandings.json`;
 
     const response = await axios.get(url);
