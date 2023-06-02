@@ -8,6 +8,7 @@ import TeamDetails from "./components/TeamDetails";
 import DriverDetails from "./components/DriverDetails";
 import RacesDetails from "./components/RacesDetails";
 import Home from "./components/Home";
+import { YearProvider } from './context/YearContext';
 
 export default class App extends React.Component {
 
@@ -15,6 +16,7 @@ export default class App extends React.Component {
     return (
       <div>
         <Router history={history}>
+        <YearProvider>
           <nav className="nav-icons-container">
 
             <NavLink to="/"><img src="/img/F1_logo.png" className="logo-icon" /></NavLink>
@@ -41,18 +43,21 @@ export default class App extends React.Component {
             </div>
           </nav>
 
-          <Switch>
-            <Route path="/home" exact component={Home} />
+            <Switch>
+              <Route path="/" exact component={Home} />
 
-            <Route path="/drivers" exact component={AllDrivers} />
-            <Route path="/driverDetails/:name" component={DriverDetails} />
-            <Route path="/teams" exact component={AllTeams} />
-            <Route path="/teamDetails/:name" exact component={TeamDetails} />
-            <Route path="/races" exact component={AllRaces} />
-            <Route path="/raceDetails/:round" exact component={RacesDetails} />
-          </Switch>
+              <Route path="/drivers" exact component={AllDrivers} />
+              <Route path="/driverDetails/:name" component={DriverDetails} />
+              <Route path="/teams" exact component={AllTeams} />
+              <Route path="/teamDetails/:name" exact component={TeamDetails} />
+              <Route path="/races" exact component={AllRaces} />
+              <Route path="/raceDetails/:round" exact component={RacesDetails} />
+            </Switch>
+
+          </YearProvider>
         </Router>
       </div>
     );
   }
 }
+
