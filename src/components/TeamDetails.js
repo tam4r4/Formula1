@@ -91,7 +91,7 @@ export default class TeamDetails extends React.Component {
 
   getTeamImageCode = (teamName) => {
     var x = teamName.toLowerCase();
-    return "../img/" + x + ".png";
+    return "../../img/" + x + ".png";
   }
 
   render() {
