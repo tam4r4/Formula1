@@ -19,26 +19,26 @@ export default class App extends React.Component {
           <YearProvider>
             <nav className="nav-icons-container">
 
-              <NavLink to="/"><img src="./../img/f1_logo.png" className="logo-icon" /></NavLink>
+              <NavLink to="/"><img src="/img/f1_logo.png" className="logo-icon" /></NavLink>
 
               <div className="drivers-link">
                 <NavLink to="/drivers" exact activeClassName="active-link">
                   <p>Drivers</p>
-                  <img src="./../img/drivers.png" alt="Drivers" className="icon-drivers" />
+                  <img src="/img/drivers.png" alt="Drivers" className="icon-drivers" />
                 </NavLink>
               </div>
 
               <div className="teams-link">
                 <NavLink to="/teams" exact activeClassName="active-link">
                   <p>Teams</p>
-                  <img src="./../img/teams.png" alt="Teams" className="icon-teams" />
+                  <img src="/img/teams.png" alt="Teams" className="icon-teams" />
                 </NavLink>
               </div>
 
               <div className="races-link">
                 <NavLink to="/races" exact activeClassName="active-link">
                   <p>Races</p>
-                  <img src="./../img/races.png" alt="Races" className="icon-races" />
+                  <img src="/img/races.png" alt="Races" className="icon-races" />
                 </NavLink>
               </div>
             </nav>
@@ -49,9 +49,9 @@ export default class App extends React.Component {
               <Route path="/drivers" exact component={AllDrivers} />
               <Route path="/driverDetails/:name" component={DriverDetails} />
               <Route path="/teams" exact component={AllTeams} />
-              <Route path="/teamDetails/:name" exact component={TeamDetails} />
+              <Route path="/teamDetails/:name" component={TeamDetails} />
               <Route path="/races" exact component={AllRaces} />
-              <Route path="/raceDetails/:round" exact component={RacesDetails} />
+              <Route path="/raceDetails/:round" component={RacesDetails} />
             </Switch>
 
           </YearProvider>

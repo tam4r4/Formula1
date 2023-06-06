@@ -106,7 +106,7 @@ export default class DriverDetails extends React.Component {
     if (x === "di resta") {
       x = "resta";
     }
-    return "../../img/" + x + ".jpg";
+    return "../img/" + x + ".jpg";
   }
 
 
