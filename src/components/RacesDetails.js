@@ -62,6 +62,9 @@ export default class RacesDetails extends React.Component {
       if (nationality === "UAE") {
         return "AE";
       }
+      if (nationality === "Russia") {
+        return "RU";
+      }
     }
   }
 
@@ -86,6 +89,9 @@ export default class RacesDetails extends React.Component {
       }
       if (nationality === "UAE") {
         return "AE";
+      }
+      if (nationality === "Russia") {
+        return "RU";
       }
     }
   }
@@ -120,11 +126,7 @@ export default class RacesDetails extends React.Component {
         <div className="main">
           <aside className="details race-details">
             <p>
-              <Flag
-                country={this.getFlagCode2(this.state.details?.Circuit?.Location?.country)}
-                size={70}
-                className="flag-icon"
-              />
+             {this.getFlagCode2(this.state.details?.Circuit?.Location?.country) != "AZ"  ? <Flag country={this.getFlagCode2(this.state.details?.Circuit?.Location?.country)} size={70} /*className="flag-icon"*/ /> : <img src="../img/azer400.png" alt="slika zastave Azerbejdzana" className="azer_big" /> }
             </p>
             <p className="grand-prix-name">{this.state.details?.raceName}</p>
             <p>Country: {this.state.details?.Circuit?.Location?.country}</p>

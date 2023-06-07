@@ -56,6 +56,10 @@ export default class DriverDetails extends React.Component {
       if (nationality === "UAE") {
         return "AE";
       }
+      if (nationality === "Russia") {
+        return "RU";
+      }
+
     }
   }
 
@@ -180,10 +184,8 @@ export default class DriverDetails extends React.Component {
                 <tr key={d?.round}>
                   <td>{d?.round}</td>
                   <td className="flag-container">
-                    <Flag
-                      country={this.getFlagCode(d?.Circuit?.Location?.country)}
-                      className="flag-icon"
-                    />
+                  {this.getFlagCode(d?.Circuit?.Location?.country) != "AZ" ? <Flag country={this.getFlagCode(d?.Circuit?.Location?.country)} className="flag-icon" /> : <img src="../img/azer400.png" alt="slika zastave Azerbejdzana" className="azer" /> }
+          
                     {d?.raceName}
                   </td>
                   <td> {d?.Results[0]?.Constructor?.name}</td>

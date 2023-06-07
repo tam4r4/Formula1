@@ -61,6 +61,9 @@ export default class TeamDetails extends React.Component {
       if (nationality === "UAE") {
         return "AE";
       }
+      if (nationality === "Russia") {
+        return "RU";
+      }
     }
   }
 
@@ -85,6 +88,9 @@ export default class TeamDetails extends React.Component {
       }
       if (nationality === "UAE") {
         return "AE";
+      }
+      if (nationality === "Russia") {
+        return "RU";
       }
     }
   }
@@ -161,10 +167,8 @@ export default class TeamDetails extends React.Component {
                 <tr key={x?.round}>
                   <td>{x?.round}</td>
                   <td className="flag-container">
-                    <Flag
-                      country={this.getFlagCode(x?.Circuit?.Location?.country)}
-                      className="flag-icon"
-                    />
+                  {this.getFlagCode(x?.Circuit?.Location?.country) != "AZ" ? <Flag country={this.getFlagCode(x?.Circuit?.Location?.country)} className="flag-icon" /> : <img src="../img/azer400.png" alt="slika zastave Azerbejdzana" className="azer" /> }
+                
                     {x?.raceName}
                   </td>
                   <td className={"position_" + x?.Results[0]?.position}>{x?.Results[0]?.position}</td>
