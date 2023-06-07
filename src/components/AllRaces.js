@@ -104,7 +104,7 @@ export default class AllRaces extends React.Component {
                     onClick={() => this.handleRaceDetails(race?.round)}
                     className="flag-container cursor"
                   >
-                   {this.getFlagCode(race?.Circuit?.Location?.country) != "AZ" ? <Flag country= {this.getFlagCode(race?.Circuit?.Location?.country)} className="flag-icon" /> : <img src="../img/azer400.png" alt="slika zastave Azerbejdzana" className="azer" /> }
+                   {this.getFlagCode(race?.Circuit?.Location?.country) != "AZ" ? <Flag country= {this.getFlagCode(race?.Circuit?.Location?.country)} className="flag-icon" /> : <img src="../img/azer400.png" alt="slika zastave Azerbejdzana" className="azer flag-icon2" /> }
                       
                     {race?.raceName}
                   </td>

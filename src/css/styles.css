@@ -266,6 +266,12 @@ h1 {
     border-radius: 7px;
 }
 
+
+.flag-icon2 {
+    margin-right: 10px;
+    border-radius: 3px;
+}
+
 .open-new-tab-icon {
     padding: 5px;
 }

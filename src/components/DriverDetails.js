@@ -184,7 +184,7 @@ export default class DriverDetails extends React.Component {
                 <tr key={d?.round}>
                   <td>{d?.round}</td>
                   <td className="flag-container">
-                  {this.getFlagCode(d?.Circuit?.Location?.country) != "AZ" ? <Flag country={this.getFlagCode(d?.Circuit?.Location?.country)} className="flag-icon" /> : <img src="../img/azer400.png" alt="slika zastave Azerbejdzana" className="azer" /> }
+                  {this.getFlagCode(d?.Circuit?.Location?.country) != "AZ" ? <Flag country={this.getFlagCode(d?.Circuit?.Location?.country)} className="flag-icon" /> : <img src="../img/azer400.png" alt="slika zastave Azerbejdzana" className="azer flag-icon2" /> }
           
                     {d?.raceName}
                   </td>
