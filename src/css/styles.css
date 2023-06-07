@@ -235,11 +235,11 @@ h1 {
 }
 
 .position_7 {
-  background-color: lightseagreen;
+  background-color: lightcyan;
 }
 
 .position_8 {
-  background-color: lightseagreen;
+  background-color: lightgoldenrodyellow;
 }
 
 .position_9 {
@@ -247,7 +247,7 @@ h1 {
 }
 
 .position_10 {
-  background-color: lightpink;
+  background-color: lightsalmon;
 }
 
 .position_11 {
@@ -346,4 +346,18 @@ h1 {
 .select-container {
 
   margin: 8px;
+}
+
+
+.azer {
+
+  height: 16px;
+  width: 24px;
+}
+
+
+.azer_big {
+
+  height: 46px;
+  width: 70px;
 }

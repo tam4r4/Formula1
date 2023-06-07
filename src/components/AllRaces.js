@@ -53,6 +53,9 @@ export default class AllRaces extends React.Component {
       if (nationality === "UAE") {
         return "AE";
       }
+      if (nationality === "Russia") {
+        return "RU";
+      }
     }
   };
 
@@ -85,9 +88,7 @@ export default class AllRaces extends React.Component {
               <tr key={race.round}>
                 <td>{race.round}</td>
                 <td onClick={() => this.handleRaceDetails(race?.round)} className="flag-container cursor">
-                  <Flag
-                    country={this.getFlagCode(race?.Circuit?.Location?.country)}
-                  />
+                {this.getFlagCode(race?.Circuit?.Location?.country) != "AZ" ? <Flag country= {this.getFlagCode(race?.Circuit?.Location?.country)} /> : <img src="../img/azer400.png" alt="slika zastave Azerbejdzana" className="azer" /> }
                   {race?.raceName}
                 </td>
                 <td>{race?.Circuit?.circuitName}</td>
