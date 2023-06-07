@@ -1,7 +1,6 @@
 import React from "react";
 import { CircleLoader } from "react-spinners";
 
-
 export default class Loader extends React.Component {
     render() {
         return(

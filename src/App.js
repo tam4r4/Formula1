@@ -1,5 +1,5 @@
 import React from "react";
-import { Router, Switch, Route, Link, NavLink } from "react-router-dom";
+import { Router, Switch, Route, NavLink } from "react-router-dom";
 import history from "./history";
 import AllDrivers from "./components/AllDrivers";
 import AllTeams from "./components/AllTeams";
@@ -8,7 +8,7 @@ import TeamDetails from "./components/TeamDetails";
 import DriverDetails from "./components/DriverDetails";
 import RacesDetails from "./components/RacesDetails";
 import Home from "./components/Home";
-import { YearProvider } from './context/YearContext';
+import { YearProvider } from "./context/YearContext";
 
 export default class App extends React.Component {
 
@@ -17,40 +17,29 @@ export default class App extends React.Component {
       <div>
         <Router history={history}>
           <YearProvider>
-            <ul>
-              <li className="logo-icon"><Link to="/"><img src="/img/F1_logo.png" width={200} /></Link></li>
-            </ul>
+            <nav className="nav-icons-container">
 
-            <nav>
-              <div className="nav-icons-container">
-                <ul>
-                  <li className="drivers">
-                    <img src="/img/drivers.png" alt="drivers" width={60} className="image" />
-                    <NavLink to="/drivers">
-                      <div className="overlay drivers">
-                        <div className="text">Drivers</div>
-                      </div>
-                    </NavLink>
-                  </li>
+              <NavLink to="/"><img src="/img/f1_logo.png" className="logo-icon" /></NavLink>
 
-                  <li className="teams">
-                    <img src="/img/teams.png" alt="teams" width={60} className="image" />
-                    <NavLink to="/teams">
-                      <div className="overlay teams">
-                        <div className="text">Teams</div>
-                      </div>
-                    </NavLink>
-                  </li>
+              <div className="drivers-link">
+                <NavLink to="/drivers" exact activeClassName="active-link">
+                  <p>Drivers</p>
+                  <img src="/img/drivers.png" alt="Drivers" className="icon-drivers" />
+                </NavLink>
+              </div>
 
-                  <li className="races">
-                    <img src="/img/races.png" alt="races" width={60} className="image" />
-                    <NavLink to="/races">
-                      <div className="overlay races">
-                        <div className="text">Races</div>
-                      </div>
-                    </NavLink>
-                  </li>
-                </ul>
+              <div className="teams-link">
+                <NavLink to="/teams" exact activeClassName="active-link">
+                  <p>Teams</p>
+                  <img src="/img/teams.png" alt="Teams" className="icon-teams" />
+                </NavLink>
+              </div>
+
+              <div className="races-link">
+                <NavLink to="/races" exact activeClassName="active-link">
+                  <p>Races</p>
+                  <img src="/img/races.png" alt="Races" className="icon-races" />
+                </NavLink>
               </div>
             </nav>
 
@@ -58,11 +47,11 @@ export default class App extends React.Component {
               <Route path="/" exact component={Home} />
 
               <Route path="/drivers" exact component={AllDrivers} />
-              <Route path="/driverDetails/:name" exact component={DriverDetails} />
+              <Route path="/driverDetails/:name" component={DriverDetails} />
               <Route path="/teams" exact component={AllTeams} />
-              <Route path="/teamDetails/:name" exact component={TeamDetails} />
+              <Route path="/teamDetails/:name" component={TeamDetails} />
               <Route path="/races" exact component={AllRaces} />
-              <Route path="/raceDetails/:round" exact component={RacesDetails} />
+              <Route path="/raceDetails/:round" component={RacesDetails} />
             </Switch>
 
           </YearProvider>

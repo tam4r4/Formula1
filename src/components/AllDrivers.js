@@ -4,6 +4,7 @@ import Loader from "./Loader";
 import history from "../history";
 import Flag from "react-flagkit";
 import YearContext from "../context/YearContext";
+import Breadcrumbs from "./Breadcrumbs";
 
 export default class AllDrivers extends React.Component {
 
@@ -14,14 +15,11 @@ export default class AllDrivers extends React.Component {
   };
 
   componentDidMount() {
-
     this.getDrivers();
   }
 
   getDrivers = async () => {
-
     let year = this.context.year;
-
     const url = `https://ergast.com/api/f1/${year}/driverStandings.json`;
     const url3 = "https://raw.githubusercontent.com/Dinuks/country-nationality-list/master/countries.json";
 
@@ -36,11 +34,9 @@ export default class AllDrivers extends React.Component {
   }
 
   handleDriverDetails = (name) => {
-
     const linkTo = "/driverDetails/" + name;
     history.push(linkTo);
-  };
-
+  }
 
   getFlagCode = (nationality) => {
     let flag = this.state?.flags?.filter((x) => x.nationality === nationality);
@@ -57,15 +53,20 @@ export default class AllDrivers extends React.Component {
         return "AE";
       }
     }
-  };
-
-
+  }
 
   render() {
+    const routes =
+      [
+        {
+          path: "/drivers",
+          title: "Drivers"
+        }
+      ];
 
     if (this.state.loading) {
       return (
-        <div className="kon-loader">
+        <div>
           <Loader />
         </div>
       )
@@ -73,6 +74,12 @@ export default class AllDrivers extends React.Component {
 
     return (
       <div>
+
+  
+        <div>
+          <Breadcrumbs routes={routes} />
+        </div>
+
         <div className="main">
           <h1>DRIVERS CHAMPIONSHIP</h1>
           <table className="tab-container">
@@ -84,7 +91,9 @@ export default class AllDrivers extends React.Component {
                 <tr key={x?.position}>
                   <td> {x?.position}</td>
                   <td onClick={() => this.handleDriverDetails(x?.Driver?.driverId)} className="flag-container cursor">
-                    <Flag country={this.getFlagCode(x?.Driver?.nationality)} />
+                    <Flag country={this.getFlagCode(x?.Driver?.nationality)}
+                      className="flag-icon"
+                    />
                     {x?.Driver?.givenName} {x?.Driver?.familyName}
                   </td>
                   <td>{x?.Constructors[0]?.name}</td>
@@ -94,7 +103,6 @@ export default class AllDrivers extends React.Component {
             </tbody>
           </table>
         </div>
-
       </div>
     );
   }
