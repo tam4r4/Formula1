@@ -126,7 +126,7 @@ export default class RacesDetails extends React.Component {
         <div className="main">
           <aside className="details race-details">
             <p>
-             {this.getFlagCode2(this.state.details?.Circuit?.Location?.country) != "AZ"  ? <Flag country={this.getFlagCode2(this.state.details?.Circuit?.Location?.country)} size={70} className="flag-icon" /> : <img src="../img/azer400.png" alt="slika zastave Azerbejdzana" className="azer_big" /> }
+             {this.getFlagCode2(this.state.details?.Circuit?.Location?.country) != "AZ"  ? <Flag country={this.getFlagCode2(this.state.details?.Circuit?.Location?.country)} size={70} /*className="flag-icon"*/ /> : <img src="../img/azer400.png" alt="slika zastave Azerbejdzana" className="azer_big" /> }
             </p>
             <p className="grand-prix-name">{this.state.details?.raceName}</p>
             <p>Country: {this.state.details?.Circuit?.Location?.country}</p>
@@ -138,22 +138,6 @@ export default class RacesDetails extends React.Component {
               </a>
             </p>
           </aside>
-      <div className="main">
-        <aside className="details race-details">
-          <p>
-          {this.getFlagCode2(this.state.details?.Circuit?.Location?.country) != "AZ"  ? <Flag country={this.getFlagCode2(this.state.details?.Circuit?.Location?.country)} size={70} /> : <img src="../img/azer400.png" alt="slika zastave Azerbejdzana" className="azer_big" /> }
-          </p>
-          <p className="details-name">{this.state.details?.raceName}</p>
-          <p>Country: {this.state.details?.Circuit?.Location?.country}</p>
-          <p>Location: {this.state.details?.Circuit?.Location?.locality}</p>
-          <p>Date: {this.state.details?.date}</p>
-          <p>
-            Full Report:{" "}
-            <a href={this.state.details.url} target="_blank">
-              <OpenInNewIcon className="openNewTab" />
-            </a>
-          </p>
-        </aside>
 
           <div>
             <table className="tab-container qualify-tab-container">
@@ -219,7 +203,6 @@ export default class RacesDetails extends React.Component {
             </table>
           </div>
         </div>
-      </div>
       </div>
     );
   }

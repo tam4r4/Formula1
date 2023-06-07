@@ -173,7 +173,6 @@ body {
     background-color: black;
     color: white;
     font-size: 14px;
-    /* line-height: 80%; */
     padding: 20px;
     border-radius: 10px 0 0 10px;
     width: 20%;
@@ -360,11 +359,11 @@ h1 {
 }
 
 .position_7 {
-  background-color: lightcyan;
+    background-color: rgb(255, 210, 210);
 }
 
 .position_8 {
-  background-color: lightgoldenrodyellow;
+    background-color: rgb(255, 210, 210);
 }
 
 .position_9 {
@@ -372,7 +371,6 @@ h1 {
 }
 
 .position_10 {
-  background-color: lightsalmon;
     background-color: rgb(255, 210, 210);
 }
 
@@ -614,79 +612,76 @@ h1 {
         width: 80px;
     }
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+    .nav-icons-container div a {
+        display: flex;
+        justify-content: center;
+    }
 
-.nav-icons-container div a {
-  display: flex;
-  justify-content: center;
-}
+    .nav-icons-container div a {
+        font-size: 30px;
+    }
 
-.nav-icons-container div a {
-  font-size: 30px;
-}
+    .active-link {
+        width: 100%;
+        border-radius: 0;
+    }
 
-.active-link {
-  width: 100%;
-  border-radius: 0;
-}
+    .main {
+        width: 100%;
+        float: none;
+        margin: 0;
+        padding: 100px 20px 60px 20px;
+        border-radius: 0;
+    }
 
-.main {
-  width: 100%;
-  float: none;
-  margin: 0;
-  padding: 100px 20px 60px 20px;
-  border-radius: 0;
-}
+    .tab-container {
+        width: 100%;
+        padding: 20px;
+    }
 
-.tab-container {
-  width: 100%;
-  padding: 20px;
-}
+    .tab-container thead td {
+        font-size: 16px;
+        padding: 10px 0;
+    }
 
-.tab-container thead td {
-  font-size: 16px;
-  padding: 10px 0;
-}
+    .tab-container th,
+    .tab-container td {
+        font-size: 12px;
+        padding: 5px 6px;
+    }
 
-.tab-container th,
-.tab-container td {
-  font-size: 12px;
-  padding: 5px 6px;
-}
+    .drivers-family-name {
+        font-size: 30px;
+        margin: 15px 0 50px 0;
+    }
 
-.drivers-family-name {
-  font-size: 30px;
-  margin: 15px 0 50px 0;
-}
-
-
-.breadcrumbs {
-    position: fixed;
+    .breadcrumbs {
+        position: fixed;
         top: 0;
         left: 0;
         font-size: 15px;
         margin-bottom: 205px;
         padding: 8px;
-}
+    }
 
-.select-container {
+    .breadcrumbs a {
+        padding: 6px 15px;
+    }
 
-  margin: 8px;
+    .breadcrumbs a+a::before {
+        padding-right: 12px;
+    }
 }
 
 
 .azer {
 
-  height: 16px;
-  width: 24px;
-}
-
-
-.azer_big {
-
-  height: 46px;
-  width: 70px;
-}
+    height: 16px;
+    width: 24px;
+  }
+  
+  .azer_big {
+  
+    height: 46px;
+    width: 70px;
+  }
