@@ -6,12 +6,14 @@ import Flag from 'react-flagkit';
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import YearContext from "../context/YearContext";
 import Breadcrumbs from "./Breadcrumbs";
+import SearchIcon from '@mui/icons-material/Search';
 
 export default class AllTeams extends React.Component {
     state = {
         teamStandings: [],
         flags: [],
-        loading: true
+        loading: true,
+        searchText: ""
     }
 
     componentDidMount() {
@@ -49,6 +51,16 @@ export default class AllTeams extends React.Component {
         }
     }
 
+    handleInput = (e) => {
+        console.log("handleInput metoda");
+
+        this.setState({
+            searchText: e.target.value
+        });
+
+        console.log(this.state.searchText);
+    }
+
 
     render() {
         if (this.state.loading) {
@@ -72,7 +84,12 @@ export default class AllTeams extends React.Component {
                 <div>
                     <Breadcrumbs routes={routes} />
                 </div>
-
+                <div className="main2">
+                    <div className="search-container2">
+                        <SearchIcon className="search-icon" />
+                        <input type="text" placeholder="Search..." size="140" onChange={this.handleInput} className="input-field" />
+                    </div>
+                </div>
                 <div className="main">
                     <h1>CONSTRUCTORS CHAMPIONSHIP</h1>
                     <table className="tab-container">
@@ -80,7 +97,13 @@ export default class AllTeams extends React.Component {
                             <td colSpan={5}>Constructor Championship Standings - {this.context.year}</td>
                         </thead>
                         <tbody>
-                            {this.state?.teamStandings?.map((x) => (
+                            {this.state?.teamStandings?.filter((x) => {
+                                if (this.state.searchText == "") {
+                                    return x
+                                } else if (x.Constructor.name.toLowerCase().includes(this.state.searchText.toLowerCase())) {
+                                    return x
+                                }
+                            }).map((x) => (
                                 <tr key={x?.position}>
                                     <td> {x?.position}</td>
                                     <td onClick={() => this.handleTeamDetails(x?.Constructor?.constructorId)}

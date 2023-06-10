@@ -5,13 +5,15 @@ import history from "../history";
 import Flag from "react-flagkit";
 import YearContext from "../context/YearContext";
 import Breadcrumbs from "./Breadcrumbs";
+import SearchIcon from '@mui/icons-material/Search';
 
 export default class AllDrivers extends React.Component {
 
   state = {
     driverStandings: [],
     flags: [],
-    loading: true
+    loading: true,
+    searchText: ""
   };
 
   componentDidMount() {
@@ -55,6 +57,17 @@ export default class AllDrivers extends React.Component {
     }
   }
 
+  handleInput = (e) => {
+    console.log("handleInput metoda");
+
+    this.setState({
+      searchText: e.target.value
+    });
+
+    console.log(this.state.searchText);
+}
+
+
   render() {
     const routes =
       [
@@ -74,10 +87,15 @@ export default class AllDrivers extends React.Component {
 
     return (
       <div>
-
-  
         <div>
           <Breadcrumbs routes={routes} />
+        </div>
+
+        <div className="main">
+          <div className="search-container">
+          <SearchIcon className="search-icon" />
+          <input type="text" placeholder="Search..." size="150" onChange={ this.handleInput} className="input-field" />
+          </div>
         </div>
 
         <div className="main">
@@ -87,7 +105,15 @@ export default class AllDrivers extends React.Component {
               <td colSpan={4}>Driver Championship Standings {this.context.year} </td>
             </thead>
             <tbody>
-              {this.state?.driverStandings?.map((x) => (
+              {this.state?.driverStandings?.filter((x) => {
+                if(this.state.searchText == ""){
+                  return x
+                }else if(x.Driver.givenName.toLowerCase().includes(this.state.searchText.toLowerCase())
+                || x.Driver.familyName.toLowerCase().includes(this.state.searchText.toLowerCase())
+                || x.Constructors[0].name.toLowerCase().includes(this.state.searchText.toLowerCase())){
+                  return x
+                }
+              }).map((x) => (
                 <tr key={x?.position}>
                   <td> {x?.position}</td>
                   <td onClick={() => this.handleDriverDetails(x?.Driver?.driverId)} className="flag-container cursor">

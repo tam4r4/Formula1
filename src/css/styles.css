@@ -704,3 +704,58 @@ h1 {
     }
 }
 
+
+.search-icon {
+    cursor: pointer;
+  }
+  
+  .input-field {
+   border:none;
+    font-size: 16px;
+    border-collapse: collapse;
+  }
+  
+  .input-field:focus-visible {
+    outline: none;
+  }
+  
+  
+  .search-container {
+    border: 3px solid rgba(0, 0, 0, 0.7);
+    padding: 15px 10px;
+    background-color: whitesmoke;
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+  }
+  
+  
+  .search-container2 {
+    border: 3px solid rgba(0, 0, 0, 0.7);
+    padding: 15px 10px;
+    background-color: whitesmoke;
+    border-radius: 9px;
+    width: 75%;
+    display: flex;
+    align-items: stretch;
+    justify-content: flex-end;
+    margin:20px;
+    float: right;
+    
+  }
+  
+  
+  .main2 {
+    background-color: rgba(0, 0, 0, 0.7);
+    margin: 0 20px 20px 0;
+    padding: 4px;
+    border-radius: 5px;
+    height: 110px;
+    width: 75%;
+    float: right;
+  }
+
+
+

@@ -5,12 +5,14 @@ import Loader from "./Loader";
 import Flag from "react-flagkit";
 import YearContext from "../context/YearContext";
 import Breadcrumbs from "./Breadcrumbs";
+import SearchIcon from '@mui/icons-material/Search';
 
 export default class AllRaces extends React.Component {
   state = {
     races: [],
     flags: [],
     loading: true,
+    searchText: ""
   };
 
   componentDidMount() {
@@ -60,6 +62,18 @@ export default class AllRaces extends React.Component {
     }
   };
 
+
+  handleInput = (e) => {
+    console.log("handleInput metoda");
+
+    this.setState({
+      searchText: e.target.value
+    });
+
+    console.log(this.state.searchText);
+}
+
+
   render() {
     if (this.state.loading) {
       return (
@@ -81,7 +95,12 @@ export default class AllRaces extends React.Component {
         <div>
           <Breadcrumbs routes={routes} />
         </div>
-
+        <div className="main2">
+      <div className="search-container2">
+          <SearchIcon className="search-icon2" />
+          <input type="text" placeholder="Search..." size="138" onChange={ this.handleInput} className="input-field" />
+          </div>
+          </div>
         <div className="main">
           <h1>RACE CALENDAR</h1>
           <table className="tab-container">
@@ -95,16 +114,23 @@ export default class AllRaces extends React.Component {
                 <th>Winner</th>
               </tr>
             </thead>
-
             <tbody>
-              {this.state.races.map((race) => (
+              {this.state.races.filter((race) => {
+                if(this.state.searchText == ""){
+                  return race
+                 }else if(race.raceName.toLowerCase().includes(this.state.searchText.toLowerCase())
+                 || (race?.Results[0]?.Driver?.familyName.toLowerCase().includes(this.state.searchText.toLowerCase()))
+                 || (race?.Circuit?.circuitName.toLowerCase().includes(this.state.searchText.toLowerCase()))) {
+                  return race
+                 }
+              }).map((race) => (
                 <tr key={race.round}>
                   <td>{race.round}</td>
                   <td
                     onClick={() => this.handleRaceDetails(race?.round)}
                     className="flag-container cursor"
                   >
-                   {this.getFlagCode(race?.Circuit?.Location?.country) != "AZ" ? <Flag country= {this.getFlagCode(race?.Circuit?.Location?.country)} className="flag-icon" /> : <img src="../img/azer400.png" alt="slika zastave Azerbejdzana" className="azer flag-icon2" /> }
+                   {this.getFlagCode(race?.Circuit?.Location?.country) != "AZ" ? <Flag country= {this.getFlagCode(race?.Circuit?.Location?.country)} className="flag-icon" /> : <img src="../img/azer400.png" alt="flag of Azerbeidjan" className="azer flag-icon2" /> }
                       
                     {race?.raceName}
                   </td>
