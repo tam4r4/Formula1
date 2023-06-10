@@ -118,7 +118,7 @@ export default class AllRaces extends React.Component {
               {this.state.races.filter((race) => {
                 if(this.state.searchText == ""){
                   return race
-                 }else if(race.raceName.toLowerCase().includes(this.state.searchText.toLowerCase())
+                 }else if(race?.raceName.toLowerCase().includes(this.state.searchText.toLowerCase())
                  || (race?.Results[0]?.Driver?.familyName.toLowerCase().includes(this.state.searchText.toLowerCase()))
                  || (race?.Circuit?.circuitName.toLowerCase().includes(this.state.searchText.toLowerCase()))) {
                   return race

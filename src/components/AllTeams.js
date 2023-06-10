@@ -100,7 +100,7 @@ export default class AllTeams extends React.Component {
                             {this.state?.teamStandings?.filter((x) => {
                                 if (this.state.searchText == "") {
                                     return x
-                                } else if (x.Constructor.name.toLowerCase().includes(this.state.searchText.toLowerCase())) {
+                                } else if (x?.Constructor?.name.toLowerCase().includes(this.state.searchText.toLowerCase())) {
                                     return x
                                 }
                             }).map((x) => (

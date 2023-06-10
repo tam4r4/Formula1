@@ -65,7 +65,7 @@ export default class AllDrivers extends React.Component {
     });
 
     console.log(this.state.searchText);
-}
+  }
 
 
   render() {
@@ -93,8 +93,8 @@ export default class AllDrivers extends React.Component {
 
         <div className="main">
           <div className="search-container">
-          <SearchIcon className="search-icon" />
-          <input type="text" placeholder="Search..." size="150" onChange={ this.handleInput} className="input-field" />
+            <SearchIcon className="search-icon" />
+            <input type="text" placeholder="Search..." size="150" onChange={this.handleInput} className="input-field" />
           </div>
         </div>
 
@@ -106,11 +106,11 @@ export default class AllDrivers extends React.Component {
             </thead>
             <tbody>
               {this.state?.driverStandings?.filter((x) => {
-                if(this.state.searchText == ""){
+                if (this.state.searchText == "") {
                   return x
-                }else if(x.Driver.givenName.toLowerCase().includes(this.state.searchText.toLowerCase())
-                || x.Driver.familyName.toLowerCase().includes(this.state.searchText.toLowerCase())
-                || x.Constructors[0].name.toLowerCase().includes(this.state.searchText.toLowerCase())){
+                } else if (x?.Driver?.givenName.toLowerCase().includes(this.state.searchText.toLowerCase())
+                  || x?.Driver?.familyName.toLowerCase().includes(this.state.searchText.toLowerCase())
+                  || x?.Constructors[0]?.name.toLowerCase().includes(this.state.searchText.toLowerCase())) {
                   return x
                 }
               }).map((x) => (
