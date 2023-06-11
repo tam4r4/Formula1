@@ -110,6 +110,16 @@ export default class DriverDetails extends React.Component {
     if (x === "di resta") {
       x = "resta";
     }
+
+    if((x != "perez") && (x != "garde") && (x != "resta") && (x != "hulkenberg") && (x != "gutierrez") && (x != "raikkonen")
+    && (x != "rosberg") && (x != "ricciardo") && (x != "garde") && (x != "vettel") && (x != "webber") && (x != "vergne")
+     && (x != "sutil") && (x != "massa") && (x != "maldonado") && (x != "kovalainen") && (x != "hulkenberg") && (x != "hamilton")
+     && (x != "grosjean") && (x != "chilton") && (x != "button") && (x != "bottas") && (x != "bianchi") && (x != "alonso") ) {
+
+      return "../img/placeholder.jpg";
+    }
+
+
     return "../img/" + x + ".jpg";
   }
 
