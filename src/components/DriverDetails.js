@@ -111,15 +111,13 @@ export default class DriverDetails extends React.Component {
       x = "resta";
     }
 
-    if((x != "perez") && (x != "garde") && (x != "resta") && (x != "hulkenberg") && (x != "gutierrez") && (x != "raikkonen")
-    && (x != "rosberg") && (x != "ricciardo") && (x != "garde") && (x != "vettel") && (x != "webber") && (x != "vergne")
-     && (x != "sutil") && (x != "massa") && (x != "maldonado") && (x != "kovalainen") && (x != "hulkenberg") && (x != "hamilton")
-     && (x != "grosjean") && (x != "chilton") && (x != "button") && (x != "bottas") && (x != "bianchi") && (x != "alonso") ) {
+    if ((x != "perez") && (x != "garde") && (x != "resta") && (x != "hulkenberg") && (x != "gutierrez") && (x != "raikkonen")
+      && (x != "rosberg") && (x != "ricciardo") && (x != "garde") && (x != "vettel") && (x != "webber") && (x != "vergne")
+      && (x != "sutil") && (x != "massa") && (x != "maldonado") && (x != "kovalainen") && (x != "hulkenberg") && (x != "hamilton")
+      && (x != "grosjean") && (x != "chilton") && (x != "button") && (x != "bottas") && (x != "bianchi") && (x != "alonso")) {
 
       return "../img/placeholder.jpg";
     }
-
-
     return "../img/" + x + ".jpg";
   }
 
@@ -141,15 +139,14 @@ export default class DriverDetails extends React.Component {
         },
         {
           path: "",
-          title: this.state.driverDetails.Driver?.givenName + this.state.driverDetails.Driver?.familyName
+          title: this.state.driverDetails.Driver?.givenName + " " + this.state.driverDetails.Driver?.familyName
         }
       ];
 
     return (
-      <div>
-        <div>
-          <Breadcrumbs routes={routes} />
-        </div>
+      <div className="bgImg">
+
+        <Breadcrumbs routes={routes} />
 
         <div className="main">
           <aside className="details">
@@ -169,15 +166,15 @@ export default class DriverDetails extends React.Component {
             <p>Country: {this.state?.driverDetails?.Driver?.nationality}</p>
             <p>Team: {this.state?.driverDetails?.Constructors[0]?.name}</p>
             <p>Birth: {this.state?.driverDetails?.Driver?.dateOfBirth}</p>
-            <p>Biography:
+            <p className="new-tab-cont">Biography:
               <a href={this.state?.driverDetails?.Driver?.url}
                 target="_blank" >
-                <OpenInNewIcon className="openNewTab" />
+                <OpenInNewIcon className="new-tab-icon" />
               </a>
             </p>
           </aside>
 
-          <table className="tab-container driver-details-tab details-tab-container">
+          <table className="tab-container">
             <thead>
               <td colSpan={5}>Formula 1 {this.context.year} Results</td>
               <tr>
@@ -194,8 +191,12 @@ export default class DriverDetails extends React.Component {
                 <tr key={d?.round}>
                   <td>{d?.round}</td>
                   <td className="flag-container">
-                  {this.getFlagCode(d?.Circuit?.Location?.country) != "AZ" ? <Flag country={this.getFlagCode(d?.Circuit?.Location?.country)} className="flag-icon" /> : <img src="../img/azer400.png" alt="slika zastave Azerbejdzana" className="azer flag-icon2" /> }
-          
+                    {this.getFlagCode(d?.Circuit?.Location?.country) != "AZ" ? <Flag country={this.getFlagCode(d?.Circuit?.Location?.country)}
+                      className="flag-icon" /> :
+                      <img src="../img/azer400.png"
+                        alt="flag of Azerbeidjan"
+                        className="azer" />}
+
                     {d?.raceName}
                   </td>
                   <td> {d?.Results[0]?.Constructor?.name}</td>

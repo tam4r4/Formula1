@@ -118,90 +118,88 @@ export default class RacesDetails extends React.Component {
       ];
 
     return (
-      <div>
-        <div>
-          <Breadcrumbs routes={routes} />
-        </div>
+      <div className="bgImg">
 
-        <div className="main">
+        <Breadcrumbs routes={routes} />
+
+        <div className="main race-details-main">
           <aside className="details race-details">
             <p>
-             {this.getFlagCode2(this.state.details?.Circuit?.Location?.country) != "AZ"  ? <Flag country={this.getFlagCode2(this.state.details?.Circuit?.Location?.country)} size={70} /*className="flag-icon"*/ /> : <img src="../img/azer400.png" alt="slika zastave Azerbejdzana" className="azer_big" /> }
+              {this.getFlagCode2(this.state.details?.Circuit?.Location?.country) != "AZ" ?
+                <Flag country={this.getFlagCode2(this.state.details?.Circuit?.Location?.country)} size={70} /> :
+                <img src="../img/azer400.png" alt="flag of Azerbeidjan" className="azer_big" />
+              }
             </p>
             <p className="grand-prix-name">{this.state.details?.raceName}</p>
             <p>Country: {this.state.details?.Circuit?.Location?.country}</p>
             <p>Location: {this.state.details?.Circuit?.Location?.locality}</p>
             <p>Date: {this.state.details?.date}</p>
-            <p>Full Report:
+            <p className="new-tab-cont">Full Report:
               <a href={this.state.details.url} target="_blank">
-                <OpenInNewIcon className="openNewTab" />
+                <OpenInNewIcon className="new-tab-icon" />
               </a>
             </p>
           </aside>
 
-          <div>
-            <table className="tab-container qualify-tab-container">
-              <thead>
-                <td colSpan={4}>Qualifying Results</td>
-                <tr>
-                  <th>Pos</th>
-                  <th>Driver</th>
-                  <th>Team</th>
-                  <th>Best Time</th>
+          <table className="tab-container qualify-tab-container">
+            <thead>
+              <td colSpan={4}>Qualifying Results</td>
+              <tr>
+                <th>Pos</th>
+                <th>Driver</th>
+                <th>Team</th>
+                <th>Best Time</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {this.state?.qualifiers?.map((raceQual, i) => (
+                <tr key={i}>
+                  <td>{raceQual.position}</td>
+                  <td className="flag-container">
+                    <Flag
+                      country={this.getFlagCode(raceQual?.Driver?.nationality)}
+                      className="flag-icon"
+                    />
+                    {raceQual?.Driver?.givenName} {raceQual?.Driver?.familyName}
+                  </td>
+                  <td>{raceQual?.Constructor?.name}</td>
+                  <td>{this.getBestTime(raceQual)}</td>
                 </tr>
-              </thead>
+              ))}
+            </tbody>
+          </table>
 
-              <tbody>
-                {this.state?.qualifiers?.map((raceQual, i) => (
-                  <tr key={i}>
-                    <td>{raceQual.position}</td>
-                    <td className="flag-container">
-                      <Flag
-                        country={this.getFlagCode(raceQual?.Driver?.nationality)}
-                        className="flag-icon"
-                      />
-                      {raceQual?.Driver?.givenName} {raceQual?.Driver?.familyName}
-                    </td>
-                    <td>{raceQual?.Constructor?.name}</td>
-                    <td>{this.getBestTime(raceQual)}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+          <table className="tab-container">
+            <thead>
+              <td colSpan={5}>Driver Results</td>
+              <tr>
+                <th>Pos</th>
+                <th>Driver</th>
+                <th>Team</th>
+                <th>Result</th>
+                <th>Points</th>
+              </tr>
+            </thead>
 
-          <div>
-            <table className="tab-container results-tab-container">
-              <thead>
-                <td colSpan={5}>Driver Results</td>
-                <tr>
-                  <th>Pos</th>
-                  <th>Driver</th>
-                  <th>Team</th>
-                  <th>Result</th>
-                  <th>Points</th>
+            <tbody>
+              {this.state.results.map((res, i) => (
+                <tr key={i}>
+                  <td>{res.position}</td>
+                  <td className="flag-container">
+                    <Flag
+                      country={this.getFlagCode(res?.Driver?.nationality)}
+                      className="flag-icon"
+                    />
+                    {res?.Driver?.givenName} {res?.Driver?.familyName}
+                  </td>
+                  <td>{res.Constructor.name}</td>
+                  <td>{res.Time ? res.Time.time : null}</td>
+                  <td className={"position_" + res.position} > {res.points} </td>
                 </tr>
-              </thead>
-
-              <tbody>
-                {this.state.results.map((res, i) => (
-                  <tr key={i}>
-                    <td>{res.position}</td>
-                    <td className="flag-container">
-                      <Flag
-                        country={this.getFlagCode(res?.Driver?.nationality)}
-                        className="flag-icon"
-                      />
-                      {res?.Driver?.givenName} {res?.Driver?.familyName}
-                    </td>
-                    <td>{res.Constructor.name}</td>
-                    <td>{res.Time ? res.Time.time : null}</td>
-                    <td className={"position_" + res.position} > {res.points} </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
     );

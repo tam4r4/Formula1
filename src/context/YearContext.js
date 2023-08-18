@@ -4,7 +4,7 @@ const YearContext = React.createContext();
 
 export class YearProvider extends React.Component {
     state = {
-        year: "2013"
+        year: ""
     }
 
     updateYear = (year) => {

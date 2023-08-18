@@ -5,7 +5,9 @@ import history from "../history";
 import Flag from "react-flagkit";
 import YearContext from "../context/YearContext";
 import Breadcrumbs from "./Breadcrumbs";
-import SearchIcon from '@mui/icons-material/Search';
+import Box from '@mui/material/Box';
+import FormControl from '@mui/material/FormControl';
+import TextField from '@mui/material/TextField';
 
 export default class AllDrivers extends React.Component {
 
@@ -14,7 +16,7 @@ export default class AllDrivers extends React.Component {
     flags: [],
     loading: true,
     searchText: ""
-  };
+  }
 
   componentDidMount() {
     this.getDrivers();
@@ -58,15 +60,10 @@ export default class AllDrivers extends React.Component {
   }
 
   handleInput = (e) => {
-    console.log("handleInput metoda");
-
     this.setState({
       searchText: e.target.value
     });
-
-    console.log(this.state.searchText);
   }
-
 
   render() {
     const routes =
@@ -86,20 +83,19 @@ export default class AllDrivers extends React.Component {
     }
 
     return (
-      <div>
-        <div>
-          <Breadcrumbs routes={routes} />
-        </div>
+      <div className="bgImg">
 
-        <div className="main">
-          <div className="search-container">
-            <SearchIcon className="search-icon" />
-            <input type="text" placeholder="Search..." size="150" onChange={this.handleInput} className="input-field" />
-          </div>
-        </div>
+        <Breadcrumbs routes={routes} />
 
         <div className="main">
           <h1>DRIVERS CHAMPIONSHIP</h1>
+
+          <Box className="search-container">
+            <FormControl fullWidth>
+              <TextField id="search-field" size="small" label="Search" variant="outlined" onChange={this.handleInput} className="cursor" />
+            </FormControl>
+          </Box>
+
           <table className="tab-container">
             <thead>
               <td colSpan={4}>Driver Championship Standings {this.context.year} </td>
@@ -107,11 +103,13 @@ export default class AllDrivers extends React.Component {
             <tbody>
               {this.state?.driverStandings?.filter((x) => {
                 if (this.state.searchText == "") {
-                  return x
-                } else if (x?.Driver?.givenName.toLowerCase().includes(this.state.searchText.toLowerCase())
-                  || x?.Driver?.familyName.toLowerCase().includes(this.state.searchText.toLowerCase())
-                  || x?.Constructors[0]?.name.toLowerCase().includes(this.state.searchText.toLowerCase())) {
-                  return x
+                  return x;
+                } else if (
+                  x?.Driver?.givenName.toLowerCase().includes(this.state.searchText.toLowerCase()) ||
+                  x?.Driver?.familyName.toLowerCase().includes(this.state.searchText.toLowerCase()) ||
+                  x?.Constructors[0]?.name.toLowerCase().includes(this.state.searchText.toLowerCase())
+                ) {
+                  return x;
                 }
               }).map((x) => (
                 <tr key={x?.position}>
@@ -135,3 +133,4 @@ export default class AllDrivers extends React.Component {
 }
 
 AllDrivers.contextType = YearContext;
+

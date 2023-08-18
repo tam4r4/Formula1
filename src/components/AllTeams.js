@@ -6,7 +6,9 @@ import Flag from 'react-flagkit';
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import YearContext from "../context/YearContext";
 import Breadcrumbs from "./Breadcrumbs";
-import SearchIcon from '@mui/icons-material/Search';
+import Box from '@mui/material/Box';
+import FormControl from '@mui/material/FormControl';
+import TextField from '@mui/material/TextField';
 
 export default class AllTeams extends React.Component {
     state = {
@@ -52,13 +54,9 @@ export default class AllTeams extends React.Component {
     }
 
     handleInput = (e) => {
-        console.log("handleInput metoda");
-
         this.setState({
             searchText: e.target.value
         });
-
-        console.log(this.state.searchText);
     }
 
 
@@ -80,28 +78,31 @@ export default class AllTeams extends React.Component {
             ];
 
         return (
-            <div>
-                <div>
-                    <Breadcrumbs routes={routes} />
-                </div>
-                <div className="main2">
-                    <div className="search-container2">
-                        <SearchIcon className="search-icon" />
-                        <input type="text" placeholder="Search..." size="140" onChange={this.handleInput} className="input-field" />
-                    </div>
-                </div>
+            <div className="bgImg">
+
+                <Breadcrumbs routes={routes} />
+
                 <div className="main">
                     <h1>CONSTRUCTORS CHAMPIONSHIP</h1>
+
+                    <Box className="search-container">
+                        <FormControl fullWidth>
+                            <TextField id="search-field" size="small" label="Search" variant="outlined" onChange={this.handleInput} className="cursor" />
+                        </FormControl>
+                    </Box>
+
                     <table className="tab-container">
                         <thead>
-                            <td colSpan={5}>Constructor Championship Standings - {this.context.year}</td>
+                            <td colSpan={5}>Constructor Championship Standings {this.context.year}</td>
                         </thead>
                         <tbody>
                             {this.state?.teamStandings?.filter((x) => {
                                 if (this.state.searchText == "") {
-                                    return x
-                                } else if (x?.Constructor?.name.toLowerCase().includes(this.state.searchText.toLowerCase())) {
-                                    return x
+                                    return x;
+                                } else if (
+                                    x?.Constructor?.name.toLowerCase().includes(this.state.searchText.toLowerCase())
+                                ) {
+                                    return x;
                                 }
                             }).map((x) => (
                                 <tr key={x?.position}>
@@ -114,9 +115,11 @@ export default class AllTeams extends React.Component {
                                         />
                                         {x?.Constructor?.name}
                                     </td>
-                                    <td className="new-tab-container">
-                                        <a href={x?.Constructor?.url} className="new-tab-link cursor" target="_blank">Details
-                                            <OpenInNewIcon className="open-new-tab-icon" />
+                                    <td className="cursor">
+                                        <a href={x?.Constructor?.url}
+                                            className="new-tab-link new-tab-icon new-tab-cont"
+                                            target="_blank">Details
+                                            <OpenInNewIcon className="new-tab-icon-black"/>
                                         </a>
                                     </td>
                                     <td>{x?.points}</td>

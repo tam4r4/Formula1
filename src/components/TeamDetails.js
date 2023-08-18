@@ -122,33 +122,38 @@ export default class TeamDetails extends React.Component {
       ];
 
     return (
-      <div>
-        <div>
-          <Breadcrumbs routes={routes} />
-        </div>
+      <div className="bgImg">
+
+        <Breadcrumbs routes={routes} />
 
         <div className="main">
           <aside className="details">
-            <img src={this.getTeamImageCode(this.state?.details?.Constructor?.constructorId)}
+            <img
+              src={this.getTeamImageCode(this.state?.details?.Constructor?.constructorId)}
               alt="Team picture"
               className="team-image"
             />
-            <p><Flag
-              className="details-flag"
-              country={this.getFlagCode2(this.state?.details?.Constructor?.nationality)} />
+            <p>
+              <Flag className="details-flag"
+                country={this.getFlagCode2(this.state?.details?.Constructor?.nationality)}
+              />
             </p>
-            <p className="details-name">{this.state?.details?.Constructor?.name}</p>
+            <p className="grand-prix-name">{this.state?.details?.Constructor?.name}
+            </p>
             <p>Country: {this.state?.details?.Constructor?.nationality}</p>
             <p>Position: {this.state?.details?.position}</p>
             <p>Points: {this.state?.details?.points}</p>
-            <p>Biography:
-              <a href={this.state?.details?.Constructor?.url} target="_blank">
-                <OpenInNewIcon className="open-new-tab-icon" />
+            <p
+              className="new-tab-cont">Biography:
+              <a
+                href={this.state?.details?.Constructor?.url}
+                target="_blank">
+                <OpenInNewIcon className="new-tab-icon" />
               </a>
             </p>
           </aside>
 
-          <table className="tab-container details-tab-container">
+          <table className="tab-container">
             <thead>
               <tr>
                 <td colSpan={5}>Formula 1 {this.context.year} Results</td>
@@ -167,8 +172,8 @@ export default class TeamDetails extends React.Component {
                 <tr key={x?.round}>
                   <td>{x?.round}</td>
                   <td className="flag-container">
-                  {this.getFlagCode(x?.Circuit?.Location?.country) != "AZ" ? <Flag country={this.getFlagCode(x?.Circuit?.Location?.country)} className="flag-icon" /> : <img src="../img/azer400.png" alt="slika zastave Azerbejdzana" className="azer flag-icon2" /> }
-                
+                    {this.getFlagCode(x?.Circuit?.Location?.country) != "AZ" ? <Flag country={this.getFlagCode(x?.Circuit?.Location?.country)} className="flag-icon" /> : <img src="../img/azer400.png" alt="flag of Azerbeidjan" className="azer flag-icon2" />}
+
                     {x?.raceName}
                   </td>
                   <td className={"position_" + x?.Results[0]?.position}>{x?.Results[0]?.position}</td>

@@ -1,15 +1,25 @@
 import React from "react";
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 export default class Breadcrumbs extends React.Component {
-
     render() {
         return (
-            <div className="breadcrumbs">
-                <Link to="/">Home</Link>
-                {this.props.routes.map(route =>
-                    <Link to={route.path} key={route.path}>{route.title}</Link>
-                )}  
+            <div className="logo-container">
+                <NavLink to="/"><img src="/img/f1_logo.png" className="logo-icon" /></NavLink>
+                
+                <div className="breadcrumbs">
+                    <NavLink exact to="/" activeClassName="breadcrumb-active" className="breadcrumb-not-active">Home</NavLink>
+                    {this.props.routes.map(route =>
+                        <NavLink
+                            to={route.path}
+                            key={route.path}
+                            activeClassName="breadcrumb-active"
+                            className="breadcrumb-not-active"
+                        >
+                            {route.title}
+                        </NavLink>
+                    )}
+                </div>
             </div>
         );
     }

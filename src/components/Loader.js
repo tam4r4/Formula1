@@ -1,11 +1,11 @@
 import React from "react";
-import { CircleLoader } from "react-spinners";
+import { PulseLoader } from "react-spinners";
 
 export default class Loader extends React.Component {
     render() {
         return(
             <div className="loader-container">
-                <CircleLoader size={50} />
+                <PulseLoader size={25} color="mediumseagreen" />
             </div>
         );
     }
